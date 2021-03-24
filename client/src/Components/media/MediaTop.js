@@ -13,11 +13,12 @@ const MediaTop = ({ media, type }) => {
 					<div className='overlay'></div>
 				</div>
 				<div className='media-top-poster-info'>
-					{/* <img
-						className='poster'
-						src={`https://image.tmdb.org/t/p/original/${media.poster_path}`}
-						alt='poster'
-					/> */}
+					<div className='poster'>
+						<img
+							src={`https://image.tmdb.org/t/p/original/${media.poster_path}`}
+							alt='poster'
+						/>
+					</div>
 					<div className='info'>
 						<p className='info-title'>
 							{type === 'movie' ? media.original_title : media.name}

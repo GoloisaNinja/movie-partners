@@ -186,6 +186,8 @@ img {
   border: none;
   border-radius: 5px;
   border-bottom: #9e008c;
+  font-size: 1.8rem;
+  font-weight: 700;
   margin-right: 2rem;
   width: 50%;
   cursor: pointer;
