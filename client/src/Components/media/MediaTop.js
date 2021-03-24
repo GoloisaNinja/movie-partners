@@ -18,7 +18,7 @@ const MediaTop = ({ media, type }) => {
 						src={`https://image.tmdb.org/t/p/original/${media.poster_path}`}
 						alt='poster'
 					/>
-					<div className='info'>
+					{/* <div className='info'>
 						<p className='info-title'>
 							{type === 'movie' ? media.original_title : media.name}
 						</p>
@@ -41,7 +41,7 @@ const MediaTop = ({ media, type }) => {
 								Rating: {media.vote_average} / out of {media.vote_count} votes
 							</li>
 						</ul>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</>
