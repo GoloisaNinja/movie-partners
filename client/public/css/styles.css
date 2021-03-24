@@ -185,7 +185,7 @@ img {
   padding: 1.65rem 2rem;
   border: none;
   border-radius: 5px;
-  border-bottom: #9e008c;
+  border-bottom: 2px #9e008c solid;
   font-size: 1.8rem;
   font-weight: 700;
   margin-right: 2rem;
@@ -197,6 +197,7 @@ img {
 
 .watchlist-btn {
   background-color: #5b009c;
+  border-bottom: 2px #3d0069 solid;
   margin-right: 0; }
   .watchlist-btn:hover {
     background-color: #7900cf; }
