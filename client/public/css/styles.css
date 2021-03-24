@@ -65,7 +65,8 @@ img {
   font-family: 'Darker Grotesque', sans-serif;
   font-size: 1.6rem;
   font-weight: 700;
-  padding: 0 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-bottom: 0.5rem;
   transition: all 0.5s ease-in-out; }
   .nav-login:hover {
@@ -139,7 +140,7 @@ img {
     width: 20%; } }
 
 .media-bottom-info {
-  max-width: 75%;
+  max-width: 85%;
   margin: 0 auto;
   margin-bottom: 2rem; }
 
@@ -149,8 +150,9 @@ img {
   text-align: center; }
 
 .media-bottom-iframe {
-  max-width: 75%;
+  max-width: 85%;
   margin: 0 auto;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -173,14 +175,14 @@ img {
   width: 100%;
   align-items: center;
   text-align: center;
-  max-width: 75%;
+  max-width: 85%;
   margin: 0 auto;
   margin-bottom: 2.5rem; }
 
 .favorites-btn, .watchlist-btn {
   background-color: #d100b9;
   color: #fff;
-  padding: 1rem 2rem;
+  padding: 1.65rem 2rem;
   border: none;
   border-radius: 5px;
   border-bottom: #9e008c;

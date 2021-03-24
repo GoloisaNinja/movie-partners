@@ -4,14 +4,14 @@
 	width: 100%;
 	align-items: center;
 	text-align: center;
-	max-width: 75%;
+	max-width: 85%;
 	margin: 0 auto;
 	margin-bottom: 2.5rem;
 }
 .favorites-btn {
 	background-color: $secondary-button-color;
 	color: $primary-text-color;
-	padding: 1rem 2rem;
+	padding: 1.65rem 2rem;
 	border: none;
 	border-radius: 5px;
 	border-bottom: darken($secondary-button-color, 10%);
