@@ -5,7 +5,11 @@ import connectDB from './db/db.js';
 import user from './routes/user.js';
 import profile from './routes/profile.js';
 import watchlist from './routes/watchlist.js';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // create server
 const app = express();
