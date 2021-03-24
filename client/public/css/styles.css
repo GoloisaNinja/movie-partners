@@ -1,0 +1,242 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  background-color: #242424;
+  color: #fff;
+  font-family: 'Darker Grotesque', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.6; }
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500; }
+
+ul,
+li {
+  list-style: none; }
+
+img {
+  width: 100%; }
+
+.btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  vertical-align: middle; }
+
+.container {
+  margin: 2rem; }
+
+.navbar {
+  background-color: #d100b9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 50px; }
+
+.nav-start {
+  display: flex;
+  flex: 1; }
+
+.nav-end {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 1rem; }
+
+.nav-logo {
+  width: 50px; }
+
+.nav-login {
+  background-color: #5b009c;
+  border: none;
+  border-bottom: 2px #3d0069 solid;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Darker Grotesque', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 0 2rem;
+  padding-bottom: 0.5rem;
+  transition: all 0.5s ease-in-out; }
+  .nav-login:hover {
+    background-color: #7900cf; }
+
+.media-top-outer {
+  position: relative; }
+
+.media-top-backdrop {
+  position: relative; }
+
+.backdrop {
+  z-index: 2;
+  opacity: 0.5;
+  vertical-align: bottom; }
+
+.overlay {
+  background-color: #000000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.3;
+  display: block; }
+
+.media-top-poster-info {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  bottom: 5%;
+  left: 5%;
+  padding: 1rem; }
+
+.poster {
+  width: 20%; }
+
+.info {
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .info li {
+    font-weight: 500; }
+
+.info-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-transform: uppercase; }
+
+@media (max-width: 425px) {
+  .info-title {
+    font-size: 2rem; }
+  .info li {
+    font-size: 1rem; }
+  .poster {
+    width: 30%; } }
+
+@media (min-width: 426px) {
+  .info-title {
+    font-size: 2.5rem; }
+  .poster {
+    width: 30%; } }
+
+@media (min-width: 768px) {
+  .info-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-transform: uppercase; }
+  .poster {
+    width: 20%; } }
+
+.media-bottom-info {
+  max-width: 75%;
+  margin: 0 auto;
+  margin-bottom: 2rem; }
+
+.media-bottom-tag {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center; }
+
+.media-bottom-iframe {
+  max-width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 56.25%;
+  position: relative;
+  overflow: hidden; }
+
+.bottom-iframe {
+  border: 0;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  top: 0; }
+
+.profile-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  max-width: 75%;
+  margin: 0 auto;
+  margin-bottom: 2.5rem; }
+
+.favorites-btn, .watchlist-btn {
+  background-color: #d100b9;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  border-bottom: #9e008c;
+  margin-right: 2rem;
+  width: 50%;
+  cursor: pointer;
+  transition: all 0.7s ease-in-out; }
+  .favorites-btn:hover, .watchlist-btn:hover {
+    background-color: #ff05e2; }
+
+.watchlist-btn {
+  background-color: #5b009c;
+  margin-right: 0; }
+  .watchlist-btn:hover {
+    background-color: #7900cf; }
+
+@media (max-width: 425px) {
+  .profile-buttons {
+    flex-direction: column;
+    margin-bottom: 0;
+    align-items: center; }
+  .favorites-btn, .watchlist-btn,
+  .watchlist-btn {
+    width: 100%; }
+  .favorites-btn, .watchlist-btn {
+    margin-bottom: 2.5rem;
+    margin-right: 0; }
+  .watchlist-btn {
+    margin-bottom: 0; }
+  .button-outer-container {
+    justify-content: center;
+    align-items: center; } }
+
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.thumbnail-title {
+  font-weight: 700; }
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 4fr);
+  grid-gap: 2rem;
+  margin-top: 2rem; }
+
+@media (max-width: 425px) {
+  .landing-grid {
+    grid-template-columns: repeat(2, 10fr); } }
+
+@media (min-width: 426px) {
+  .landing-grid {
+    grid-template-columns: repeat(4, 5fr); } }
+
+@media (min-width: 768px) {
+  .landing-grid {
+    grid-template-columns: repeat(5, 4fr); } }

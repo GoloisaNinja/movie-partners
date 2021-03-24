@@ -7,10 +7,7 @@ import { GET_WATCHLIST, ADD_TITLE } from './watchlistActions';
 
 const WatchlistState = ({ children }) => {
 	const initialState = {
-		watchlist: {
-			id: 123,
-			title: 'My Watchlist 123',
-		},
+		watchlist: {},
 		watchlists: [],
 	};
 	const [state, dispatch] = useReducer(watchlistReducer, initialState);

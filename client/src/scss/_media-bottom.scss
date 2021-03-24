@@ -1,0 +1,29 @@
+.media-bottom-info {
+	max-width: 75%;
+	margin: 0 auto;
+	margin-bottom: 2rem;
+}
+.media-bottom-tag {
+	font-size: 2.5rem;
+	font-weight: 700;
+	text-align: center;
+}
+.media-bottom-iframe {
+	max-width: 75%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 56.25%;
+	position: relative;
+	overflow: hidden;
+}
+.bottom-iframe {
+	border: 0;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+}

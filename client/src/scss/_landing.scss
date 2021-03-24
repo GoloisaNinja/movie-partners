@@ -1,0 +1,21 @@
+.landing-grid {
+	display: grid;
+	grid-template-columns: repeat(5, 4fr);
+	grid-gap: 2rem;
+	margin-top: 2rem;
+}
+@media (max-width: 425px) {
+	.landing-grid {
+		grid-template-columns: repeat(2, 10fr);
+	}
+}
+@media (min-width: 426px) {
+	.landing-grid {
+		grid-template-columns: repeat(4, 5fr);
+	}
+}
+@media (min-width: 768px) {
+	.landing-grid {
+		grid-template-columns: repeat(5, 4fr);
+	}
+}

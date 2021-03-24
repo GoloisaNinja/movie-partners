@@ -1,0 +1,39 @@
+// Color for application
+
+// Dark Theme Color Set
+
+$primary-bg-color: #242424;
+$primary-nav-color: #d100b9;
+$primary-button-color: #5b009c;
+$secondary-button-color: #d100b9;
+$primary-text-color: #fff;
+$secondary-text-color: #ededed;
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+html {
+	font-size: 62.5%;
+}
+body {
+	background-color: $primary-bg-color;
+	color: $primary-text-color;
+	font-family: 'Darker Grotesque', sans-serif;
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 1.6;
+}
+a {
+	text-decoration: none;
+	color: $primary-text-color;
+	font-weight: 500;
+}
+ul,
+li {
+	list-style: none;
+}
+img {
+	width: 100%;
+}
