@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
-const db = process.env.MONGODB_URI_TEST;
+const db = process.env.MONGODB_URI;
 
 const connectDB = async () => {
 	console.log(db);
