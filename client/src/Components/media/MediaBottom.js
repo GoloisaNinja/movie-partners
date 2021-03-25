@@ -26,7 +26,8 @@ const MediaBottom = ({ media, type, media_id }) => {
 		};
 		getProviders();
 	}, [apiKey, media_id, type]);
-
+	console.log(media);
+	console.log(providers);
 	return !providers.results ? (
 		<p>loading...</p>
 	) : (
@@ -40,16 +41,16 @@ const MediaBottom = ({ media, type, media_id }) => {
 					<p className='media-bottom-overview'>{media.overview}</p>
 				</div>
 				<MediaGenres genres={media.genres} />
-				{providers.results !== 'none' && (
-					<MediaServices providers={providers} />
-				)}
+				{providers.results.US && <MediaServices providers={providers} />}
 				<MediaButtons />
-				<div className='media-bottom-iframe'>
-					<iframe
-						className='bottom-iframe'
-						title={media.videos.results[0].id}
-						src={`https://www.youtube.com/embed/${media.videos.results[0].key}`}></iframe>
-				</div>
+				{media.videos.results.length !== 0 && (
+					<div className='media-bottom-iframe'>
+						<iframe
+							className='bottom-iframe'
+							title={media.videos.results[0].id}
+							src={`https://www.youtube.com/embed/${media.videos.results[0].key}`}></iframe>
+					</div>
+				)}
 			</div>
 		</>
 	);
