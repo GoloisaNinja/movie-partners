@@ -97,6 +97,7 @@ img {
   position: absolute;
   z-index: 1;
   display: flex;
+  align-items: center;
   bottom: 5%;
   left: 5%;
   padding: 1rem; }
@@ -110,18 +111,20 @@ img {
   flex-direction: column;
   justify-content: center; }
   .info li {
-    font-weight: 500; }
+    font-weight: 500;
+    line-height: 1.2; }
 
 .info-title {
   font-size: 3.5rem;
+  line-height: 1.4;
   font-weight: 700;
   text-transform: uppercase; }
 
 @media (max-width: 425px) {
   .info-title {
-    font-size: 2rem; }
+    font-size: 2.2rem; }
   .info li {
-    font-size: 1rem; }
+    font-size: 1.4rem; }
   .poster {
     width: 30%; } }
 
@@ -148,6 +151,16 @@ img {
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center; }
+
+.media-bottom-desc {
+  font-size: 2.2rem;
+  font-weight: 500;
+  text-align: center;
+  color: #d100b9; }
+
+.media-bottom-overview {
+  font-size: 2rem;
+  color: #ededed; }
 
 .media-bottom-iframe {
   max-width: 85%;
@@ -193,14 +206,16 @@ img {
   cursor: pointer;
   transition: all 0.7s ease-in-out; }
   .favorites-btn:hover, .watchlist-btn:hover {
-    background-color: #ff05e2; }
+    background-color: #ff05e2;
+    color: #ededed; }
 
 .watchlist-btn {
   background-color: #5b009c;
   border-bottom: 2px #3d0069 solid;
   margin-right: 0; }
   .watchlist-btn:hover {
-    background-color: #7900cf; }
+    background-color: #7900cf;
+    color: #ededed; }
 
 @media (max-width: 425px) {
   .profile-buttons {
@@ -245,3 +260,46 @@ img {
 @media (min-width: 768px) {
   .landing-grid {
     grid-template-columns: repeat(5, 4fr); } }
+
+.genre-container {
+  max-width: 85%;
+  margin: 0 auto;
+  margin-bottom: 2rem; }
+
+.genicon {
+  color: #d100b9; }
+
+.genre-ul {
+  display: flex;
+  justify-content: center; }
+  .genre-ul li:not(:first-child) {
+    margin-left: 0.5rem; }
+
+@media (max-width: 425px) {
+  .genre-ul {
+    flex-direction: column;
+    text-align: center; }
+    .genre-ul li:not(:first-child) {
+      margin-left: 0; } }
+
+.providers-container {
+  max-width: 85%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.flatrate-container,
+.buy-container,
+.rent-container {
+  display: grid;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1.5rem; }
+
+.provider-logo {
+  max-width: 70px;
+  border-radius: 5px; }

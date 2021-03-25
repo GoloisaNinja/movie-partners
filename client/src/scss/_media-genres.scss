@@ -1,0 +1,24 @@
+.genre-container {
+	max-width: 85%;
+	margin: 0 auto;
+	margin-bottom: 2rem;
+}
+.genicon {
+	color: $secondary-button-color;
+}
+.genre-ul {
+	display: flex;
+	justify-content: center;
+	& li:not(:first-child) {
+		margin-left: 0.5rem;
+	}
+}
+@media (max-width: 425px) {
+	.genre-ul {
+		flex-direction: column;
+		text-align: center;
+		& li:not(:first-child) {
+			margin-left: 0;
+		}
+	}
+}
