@@ -9,7 +9,7 @@ const Media = ({ match, location }) => {
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const media_id = match.params.id;
 	const [media, setMedia] = useState({});
-	const [providers, setProviders] = useState({});
+
 	//const { watchlist, getWatchlist } = useContext(watchlistContext);
 	useEffect(() => {
 		const getMedia = async () => {
@@ -17,14 +17,9 @@ const Media = ({ match, location }) => {
 				const mediaResult = await axios.get(
 					`https://api.themoviedb.org/3/${type}/${media_id}?api_key=${apiKey}&language=en-US&append_to_response=videos`
 				);
-				const providerResult = await axios.get(
-					`https://api.themoviedb.org/3/${type}/${media_id}/watch/providers?api_key=${apiKey}&language=en-US&append_to_response=videos`
-				);
+
 				if (mediaResult) {
 					setMedia(mediaResult.data);
-				}
-				if (providerResult.data.results.US !== undefined) {
-					setProviders(providerResult.data);
 				}
 			} catch (error) {
 				console.error(error);
@@ -33,14 +28,12 @@ const Media = ({ match, location }) => {
 		getMedia();
 	}, [match.params.id, apiKey, media_id, type]);
 
-	return media === undefined ||
-		media.poster_path === undefined ||
-		providers.results === undefined ? (
+	return media === undefined || media.poster_path === undefined ? (
 		<div>Loading...</div>
 	) : (
 		<>
 			<MediaTop media={media} type={type} />
-			<MediaBottom media={media} providers={providers} />
+			<MediaBottom media={media} type={type} media_id={media_id} />
 		</>
 	);
 };

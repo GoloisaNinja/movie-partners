@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MediaButtons from './MediaButtons';
 import MediaGenres from './MediaGenres';
 import MediaServices from './MediaServices';
+import axios from 'axios';
 
-const MediaBottom = ({ media, providers }) => {
-	return (
+const MediaBottom = ({ media, type, media_id }) => {
+	const [providers, setProviders] = useState({});
+	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
+	useEffect(() => {
+		const getProviders = async () => {
+			try {
+				const providerResult = await axios.get(
+					`https://api.themoviedb.org/3/${type}/${media_id}/watch/providers?api_key=${apiKey}&language=en-US&append_to_response=videos`
+				);
+				if (Object.keys(providerResult.data.results).length !== 0) {
+					setProviders(providerResult.data);
+				} else {
+					setProviders({
+						results: 'none',
+					});
+				}
+			} catch (error) {
+				console.log(error.message);
+			}
+		};
+		getProviders();
+	}, [apiKey, media_id, type]);
+
+	return !providers.results ? (
+		<p>loading...</p>
+	) : (
 		<>
 			<div className='container'>
 				<div className='media-bottom-info'>
@@ -15,7 +40,7 @@ const MediaBottom = ({ media, providers }) => {
 					<p className='media-bottom-overview'>{media.overview}</p>
 				</div>
 				<MediaGenres genres={media.genres} />
-				{Object.keys(providers.results).length !== 0 && (
+				{providers.results !== 'none' && (
 					<MediaServices providers={providers} />
 				)}
 				<MediaButtons />
