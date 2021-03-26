@@ -64,22 +64,35 @@ img {
 .nav-logo {
   width: 50px; }
 
-.nav-login {
-  background-color: #5b009c;
-  border: none;
-  border-bottom: 2px #3d0069 solid;
-  border-radius: 5px;
+.nav-link {
   color: #fff;
   cursor: pointer;
   font-family: 'Darker Grotesque', sans-serif;
-  font-size: 1.6rem;
+  font-size: 2rem;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
   font-weight: 700;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 0.5rem;
   transition: all 0.5s ease-in-out; }
-  .nav-login:hover {
-    background-color: #7900cf; }
+  .nav-link:hover {
+    color: #7900cf; }
+
+.nav-search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  position: relative; }
+
+.nav-search__input {
+  font-size: 1.8rem;
+  padding: 0.6rem;
+  border-radius: 6px; }
+
+.search-btn {
+  color: #d100b9;
+  font-size: 2.5rem;
+  position: absolute;
+  top: 15%;
+  right: 1%; }
 
 .media-top-outer {
   position: relative; }
