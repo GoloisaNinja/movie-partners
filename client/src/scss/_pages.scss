@@ -1,0 +1,16 @@
+.pages-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2rem;
+}
+
+.chevNext {
+	color: $secondary-button-color;
+	font-size: 5rem;
+	margin-left: 3rem;
+}
+.chevBack {
+	color: $primary-button-color;
+	font-size: 5rem;
+}

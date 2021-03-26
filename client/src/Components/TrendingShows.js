@@ -6,8 +6,13 @@ const TrendingShows = ({ shows }) => {
 	return (
 		<>
 			<div className='container'>
-				<p style={{ fontSize: '3rem', fontWeight: '700' }}>
-					Trending Shows of the Week
+				<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+					Trending Shows of the Week{' '}
+					<span>
+						<Link to={{ pathname: '/pages/tv/2' }}>
+							<i className='more fas fa-arrow-circle-right'></i>
+						</Link>
+					</span>
 				</p>
 				<div className='landing-grid'>
 					{shows.map((show) => (

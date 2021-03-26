@@ -7,7 +7,12 @@ const TrendingMovies = ({ movies }) => {
 		<>
 			<div className='container'>
 				<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
-					Trending Movies of the Week
+					Trending Movies of the Week{' '}
+					<span>
+						<Link to={{ pathname: '/pages/movie/2' }}>
+							<i className='more fas fa-arrow-circle-right'></i>
+						</Link>
+					</span>
 				</p>
 				<div className='landing-grid'>
 					{movies.map((movie) => (

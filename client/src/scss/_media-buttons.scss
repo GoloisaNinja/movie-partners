@@ -1,4 +1,5 @@
-.profile-buttons {
+.profile-buttons,
+.pagination-buttons {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
@@ -7,6 +8,9 @@
 	max-width: 85%;
 	margin: 0 auto;
 	margin-bottom: 2.5rem;
+}
+.pagination-buttons {
+	margin-top: 2rem;
 }
 .favorites-btn {
 	background-color: $secondary-button-color;
@@ -37,7 +41,8 @@
 	}
 }
 @media (max-width: 425px) {
-	.profile-buttons {
+	.profile-buttons,
+	.pagination-buttons {
 		flex-direction: column;
 		margin-bottom: 0;
 		align-items: center;

@@ -26,8 +26,6 @@ const MediaBottom = ({ media, type, media_id }) => {
 		};
 		getProviders();
 	}, [apiKey, media_id, type]);
-	console.log(media);
-	console.log(providers);
 	return !providers.results ? (
 		<p>loading...</p>
 	) : (

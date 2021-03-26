@@ -4,6 +4,14 @@
 	grid-gap: 2rem;
 	margin-top: 2rem;
 }
+.more {
+	color: $secondary-button-color;
+	vertical-align: text-bottom;
+	margin-left: 0.25rem;
+	animation-name: Pulse;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
 @media (max-width: 425px) {
 	.landing-grid {
 		grid-template-columns: repeat(2, 10fr);
@@ -17,5 +25,16 @@
 @media (min-width: 768px) {
 	.landing-grid {
 		grid-template-columns: repeat(5, 4fr);
+	}
+}
+@keyframes Pulse {
+	0% {
+		color: $secondary-button-color;
+	}
+	80% {
+		color: lighten($secondary-button-color, 10%);
+	}
+	100% {
+		color: lighten($secondary-button-color, 15%);
 	}
 }

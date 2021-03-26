@@ -26,6 +26,15 @@ li {
 img {
   width: 100%; }
 
+.unBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none; }
+  .unBtn:disabled {
+    opacity: 45%;
+    cursor: default; }
+
 .btn {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -182,7 +191,8 @@ img {
   position: absolute;
   top: 0; }
 
-.profile-buttons {
+.profile-buttons,
+.pagination-buttons {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -191,6 +201,9 @@ img {
   max-width: 85%;
   margin: 0 auto;
   margin-bottom: 2.5rem; }
+
+.pagination-buttons {
+  margin-top: 2rem; }
 
 .favorites-btn, .watchlist-btn {
   background-color: #d100b9;
@@ -218,7 +231,8 @@ img {
     color: #ededed; }
 
 @media (max-width: 425px) {
-  .profile-buttons {
+  .profile-buttons,
+  .pagination-buttons {
     flex-direction: column;
     margin-bottom: 0;
     align-items: center; }
@@ -249,6 +263,14 @@ img {
   grid-gap: 2rem;
   margin-top: 2rem; }
 
+.more {
+  color: #d100b9;
+  vertical-align: text-bottom;
+  margin-left: 0.25rem;
+  animation-name: Pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite; }
+
 @media (max-width: 425px) {
   .landing-grid {
     grid-template-columns: repeat(2, 10fr); } }
@@ -260,6 +282,14 @@ img {
 @media (min-width: 768px) {
   .landing-grid {
     grid-template-columns: repeat(5, 4fr); } }
+
+@keyframes Pulse {
+  0% {
+    color: #d100b9; }
+  80% {
+    color: #ff05e2; }
+  100% {
+    color: #ff1fe5; } }
 
 .genre-container {
   max-width: 85%;
@@ -303,3 +333,18 @@ img {
 .provider-logo {
   max-width: 70px;
   border-radius: 5px; }
+
+.pages-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem; }
+
+.chevNext {
+  color: #d100b9;
+  font-size: 5rem;
+  margin-left: 3rem; }
+
+.chevBack {
+  color: #5b009c;
+  font-size: 5rem; }
