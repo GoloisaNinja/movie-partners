@@ -14,6 +14,7 @@ const TrendingMovies = ({ movies }) => {
 						</Link>
 					</span>
 				</p>
+
 				<div className='landing-grid'>
 					{movies.map((movie) => (
 						<Link

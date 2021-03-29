@@ -24,20 +24,17 @@ const Navbar = () => {
 
 	const handleHamburger = (e) => {
 		const overlay = document.getElementById('overlay');
-		const body = document.body;
-		const myHtml = document.querySelector('html');
+		const myBody = document.querySelector('body');
 		if (!menuOpen) {
 			e.target.classList.add('open');
 			setMenuOpen(true);
 			overlay.classList.add('active');
-			body.classList.add('noscroll');
-			myHtml.classList.add('noscroll');
+			myBody.classList.add('menu-isopen');
 		} else {
 			e.target.classList.remove('open');
 			setMenuOpen(false);
 			overlay.classList.remove('active');
-			body.classList.remove('noscroll');
-			myHtml.classList.remove('noscroll');
+			myBody.classList.remove('menu-isopen');
 		}
 	};
 
@@ -107,6 +104,7 @@ const Navbar = () => {
 					</div>
 				</div>
 			</nav>
+
 			{openSearch && (
 				<div className='nav-search'>
 					<input

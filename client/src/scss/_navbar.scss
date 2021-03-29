@@ -4,6 +4,7 @@
 	align-items: center;
 	justify-content: flex-start;
 	min-height: 50px;
+	z-index: 3;
 }
 .nav-start {
 	display: flex;
@@ -69,8 +70,9 @@
 	visibility: hidden;
 	transition: opacity 0.35s, width 0.6s ease, visibility 0.35s;
 }
-.noscroll {
-	overflow: hidden;
+.menu-isopen {
+	height: 100vh;
+	overflow-y: hidden;
 }
 // Navbar overlay menu active status
 .menu-overlay.active {
@@ -139,7 +141,7 @@
 }
 .menu-button__burger {
 	width: 30px;
-	height: 4px;
+	height: 2px;
 	background: $primary-text-color;
 	border-radius: 5px;
 	transition: all 0.5s ease-in-out;
@@ -150,17 +152,17 @@
 	content: '';
 	position: absolute;
 	width: 30px;
-	height: 4px;
+	height: 2px;
 	background: $primary-text-color;
 	border-radius: 5px;
 	transition: all 0.5s ease-in-out;
 	pointer-events: none;
 }
 .menu-button__burger::before {
-	transform: translateY(-10px);
+	transform: translateY(-7px);
 }
 .menu-button__burger::after {
-	transform: translateY(10px);
+	transform: translateY(7px);
 }
 
 // Navbar animation styles
