@@ -117,7 +117,7 @@ img {
 
 .menu-overlay.active {
   width: 100%;
-  opacity: 0.9;
+  opacity: 0.98;
   visibility: visible; }
 
 .menu-top,
