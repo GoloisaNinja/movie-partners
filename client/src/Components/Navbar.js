@@ -25,16 +25,19 @@ const Navbar = () => {
 	const handleHamburger = (e) => {
 		const overlay = document.getElementById('overlay');
 		const myBody = document.querySelector('body');
+		const myHtml = document.querySelector('html');
 		if (!menuOpen) {
 			e.target.classList.add('open');
 			setMenuOpen(true);
 			overlay.classList.add('active');
 			myBody.classList.add('menu-isopen');
+			myHtml.classList.add('menu-isopen');
 		} else {
 			e.target.classList.remove('open');
 			setMenuOpen(false);
 			overlay.classList.remove('active');
 			myBody.classList.remove('menu-isopen');
+			myHtml.classList.remove('menu-isopen');
 		}
 	};
 
