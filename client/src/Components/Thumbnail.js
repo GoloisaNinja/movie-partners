@@ -9,7 +9,7 @@ const Thumbnail = ({ media, type }) => {
 				alt='content poster'
 			/>
 			<small className='thumbnail-title'>
-				{type === 'movie' ? media.original_title : media.name}
+				{type === 'movie' ? media.title : media.name}
 			</small>
 		</div>
 	);

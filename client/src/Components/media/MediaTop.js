@@ -21,7 +21,7 @@ const MediaTop = ({ media, type }) => {
 					</div>
 					<div className='info'>
 						<p className='info-title'>
-							{type === 'movie' ? media.original_title : media.name}
+							{type === 'movie' ? media.title : media.name}
 						</p>
 						<ul>
 							<li>Status: {media.status}</li>

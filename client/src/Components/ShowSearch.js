@@ -11,7 +11,7 @@ const ShowSearch = ({ shows }) => {
 			<div className='landing-grid'>
 				{shows.map(
 					(show) =>
-						show.backdrop_path !== null && (
+						show.poster_path !== null && (
 							<Link
 								to={{ pathname: `/media/${show.id}`, state: { type: 'tv' } }}
 								key={show.id}>

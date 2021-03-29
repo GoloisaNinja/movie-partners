@@ -11,7 +11,7 @@ const MovieSearch = ({ movies }) => {
 			<div className='landing-grid'>
 				{movies.map(
 					(movie) =>
-						movie.backdrop_path !== null && (
+						movie.poster_path !== null && (
 							<Link
 								to={{
 									pathname: `/media/${movie.id}`,
