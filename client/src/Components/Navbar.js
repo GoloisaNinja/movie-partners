@@ -14,9 +14,13 @@ const Navbar = () => {
 		if (menuOpen) {
 			const overlay = document.getElementById('overlay');
 			const menuBtn = document.getElementById('menu-button');
+			const myBody = document.querySelector('body');
+			const myHtml = document.querySelector('html');
 			menuBtn.classList.remove('open');
 			setMenuOpen(false);
 			overlay.classList.remove('active');
+			myBody.classList.remove('menu-isopen');
+			myHtml.classList.remove('menu-isopen');
 		}
 		history.push(`/search/${search}`);
 		setSearch('');
