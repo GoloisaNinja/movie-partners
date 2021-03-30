@@ -70,7 +70,7 @@ img {
   cursor: pointer;
   font-family: 'Darker Grotesque', sans-serif;
   font-size: 2rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
   transition: all 0.5s ease-in-out; }
@@ -107,7 +107,7 @@ img {
   top: 0;
   right: 0;
   z-index: 3;
-  background: #cf00a5;
+  background: #272727;
   opacity: 0.2;
   overflow-y: scroll;
   visibility: hidden;
@@ -119,7 +119,7 @@ img {
 
 .menu-overlay.active {
   width: 100%;
-  opacity: 0.98;
+  opacity: 0.99;
   visibility: visible; }
 
 .menu-top,
@@ -135,10 +135,12 @@ img {
   margin-top: 1rem; }
 
 .menu-list {
+  display: flex;
+  flex-direction: column;
   text-align: center; }
 
 .menu-list li {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 2rem; }
 
@@ -487,3 +489,124 @@ img {
 .chevBack {
   color: #5b009c;
   font-size: 5rem; }
+
+.caticon {
+  color: #d100b9;
+  vertical-align: text-bottom; }
+
+.category-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem; }
+
+.category-genre {
+  color: #d100b9; }
+
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 4rem;
+  padding: 2rem; }
+
+.badge-div {
+  background-image: url("/assets/genres/actionGenreM.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20rem;
+  border-radius: 5px; }
+
+.Action-movie {
+  background-image: url("/assets/genres/actionGenreM.jpg"); }
+
+.Adventure-movie {
+  background-image: url("/assets/genres/adventureGenreM.jpg"); }
+
+.Animation-movie {
+  background-image: url("/assets/genres/animationGenreM.jpg"); }
+
+.Comedy-movie {
+  background-image: url("/assets/genres/comedyGenreM.jpg"); }
+
+.Crime-movie {
+  background-image: url("/assets/genres/crimeGenreM.jpg"); }
+
+.Documentary-movie {
+  background-image: url("/assets/genres/docoGenreM.jpg"); }
+
+.Drama-movie {
+  background-image: url("/assets/genres/dramaGenreM.jpg"); }
+
+.Family-movie {
+  background-image: url("/assets/genres/familyGenreM.jpg"); }
+
+.Fantasy-movie {
+  background-image: url("/assets/genres/fantasyGenreM.jpg"); }
+
+.History-movie {
+  background-image: url("/assets/genres/historyGenreM.jpg"); }
+
+.Horror-movie {
+  background-image: url("/assets/genres/horrorGenreM.jpg"); }
+
+.Music-movie {
+  background-image: url("/assets/genres/musicGenreM.jpg"); }
+
+.Mystery-movie {
+  background-image: url("/assets/genres/mysteryGenreM.jpg"); }
+
+.Romance-movie {
+  background-image: url("/assets/genres/romanceGenreM.jpg"); }
+
+.Fiction-movie {
+  background-image: url("/assets/genres/scienceGenreM.jpg"); }
+
+.Movie-movie {
+  background-image: url("/assets/genres/tvMovieGenreM.jpg"); }
+
+.Thriller-movie {
+  background-image: url("/assets/genres/thrillerGenreM.jpg"); }
+
+.War-movie {
+  background-image: url("/assets/genres/warGenreM.jpg"); }
+
+.Western-movie {
+  background-image: url("/assets/genres/westernGenreM.jpg"); }
+
+.badge-outer {
+  position: relative; }
+
+.badge-overlay {
+  background: #6b005f;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  transition: all 0.7s ease-in-out; }
+  .badge-overlay:hover {
+    background: #1f001b; }
+
+.badge-name {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ededed;
+  text-align: center;
+  transform: translate(-50%, -50%); }
+
+@media (max-width: 650px) {
+  .category-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem; }
+  .badge-name {
+    font-size: 2rem; } }

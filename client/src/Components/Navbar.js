@@ -26,18 +26,19 @@ const Navbar = () => {
 		setSearch('');
 	};
 
-	const handleHamburger = (e) => {
+	const handleHamburger = () => {
+		const menuBtn = document.getElementById('menu-button');
 		const overlay = document.getElementById('overlay');
 		const myBody = document.querySelector('body');
 		const myHtml = document.querySelector('html');
 		if (!menuOpen) {
-			e.target.classList.add('open');
+			menuBtn.classList.add('open');
 			setMenuOpen(true);
 			overlay.classList.add('active');
 			myBody.classList.add('menu-isopen');
 			myHtml.classList.add('menu-isopen');
 		} else {
-			e.target.classList.remove('open');
+			menuBtn.classList.remove('open');
 			setMenuOpen(false);
 			overlay.classList.remove('active');
 			myBody.classList.remove('menu-isopen');
@@ -61,7 +62,7 @@ const Navbar = () => {
 					<div
 						className='menu-button'
 						id='menu-button'
-						onClick={(e) => handleHamburger(e)}>
+						onClick={(e) => handleHamburger()}>
 						<div className='menu-button__burger' id='hamburger'></div>
 					</div>
 					<button
@@ -69,7 +70,10 @@ const Navbar = () => {
 						onClick={(e) => setOpenSeach(!openSearch)}>
 						Search
 					</button>
-					<button className='unBtn nav-link'>Categories</button>
+					<button className='unBtn nav-link'>Watchlists</button>
+					<Link to='/categories'>
+						<button className='unBtn nav-link'>Categories</button>
+					</Link>
 					<button className='unBtn nav-link'>Login</button>
 				</div>
 				<div className='menu-overlay' id='overlay'>
@@ -96,16 +100,28 @@ const Navbar = () => {
 					<div className='menu-bottom'>
 						<ul className='menu-list'>
 							<Link to='/'>
-								<li>Watchlist</li>
+								<button
+									className='unBtn'
+									style={{ color: '#ededed' }}
+									onClick={(e) => handleHamburger()}>
+									<li>Watchlists</li>
+								</button>
+							</Link>
+							<Link to='/categories'>
+								<button
+									className='unBtn'
+									style={{ color: '#ededed' }}
+									onClick={(e) => handleHamburger()}>
+									<li>Categories</li>
+								</button>
 							</Link>
 							<Link to='/'>
-								<li>Categories</li>
-							</Link>
-							<Link to='/'>
-								<li>Profile</li>
-							</Link>
-							<Link to='/'>
-								<li>Login</li>
+								<button
+									className='unBtn'
+									style={{ color: '#ededed' }}
+									onClick={(e) => handleHamburger()}>
+									<li>Logout</li>
+								</button>
 							</Link>
 						</ul>
 					</div>
