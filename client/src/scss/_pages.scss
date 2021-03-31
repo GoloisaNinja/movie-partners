@@ -11,6 +11,6 @@
 	margin-left: 3rem;
 }
 .chevBack {
-	color: $primary-button-color;
+	color: lighten($primary-button-color, 10%);
 	font-size: 5rem;
 }
