@@ -500,9 +500,9 @@ img {
   transition: all 0.7s ease-in-out;
   margin-top: 0.5rem; }
   .sortBtn.fire {
-    color: #5b009c; }
+    color: #7900cf; }
     .sortBtn.fire:hover {
-      color: #7900cf; }
+      color: #9603ff; }
   .sortBtn.star {
     margin-left: 2rem;
     color: #d100b9; }

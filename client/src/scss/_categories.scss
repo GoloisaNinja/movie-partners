@@ -9,9 +9,9 @@
 	transition: all 0.7s ease-in-out;
 	margin-top: 0.5rem;
 	&.fire {
-		color: $primary-button-color;
+		color: lighten($primary-button-color, 10%);
 		&:hover {
-			color: lighten($primary-button-color, 10%);
+			color: lighten($primary-button-color, 20%);
 		}
 	}
 	&.star {
