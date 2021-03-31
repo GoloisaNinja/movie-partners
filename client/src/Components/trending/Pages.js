@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Thumbnail from '../Thumbnail';
+import Spinner from '../Spinner';
 
 const Pages = ({ match, history }) => {
 	const [page, setPage] = useState(match.params.page);
@@ -16,7 +17,7 @@ const Pages = ({ match, history }) => {
 					`https://api.themoviedb.org/3/trending/${type}/week?page=${page}&api_key=${apiKey}`
 				);
 				if (result) {
-					setResults(result.data.results);
+					setResults(result.data);
 				}
 			} catch (error) {
 				console.log(error.message);
@@ -39,7 +40,7 @@ const Pages = ({ match, history }) => {
 	}, [match.params.page]);
 
 	return !results ? (
-		<div>Loading...</div>
+		<Spinner />
 	) : (
 		<div className='container'>
 			<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
@@ -48,7 +49,7 @@ const Pages = ({ match, history }) => {
 					: `Trending shows page ${page}`}
 			</p>
 			<div className='landing-grid'>
-				{results.map(
+				{results.results.map(
 					(item) =>
 						item.poster_path !== null &&
 						item.backdrop_path !== null && (
@@ -70,7 +71,7 @@ const Pages = ({ match, history }) => {
 
 				<button
 					className='unBtn'
-					disabled={match.params.page === '1000'}
+					disabled={parseInt(match.params.page) === results.total_results}
 					onClick={(e) => handlePage('+')}>
 					<i className='chevNext fas fa-chevron-circle-right'></i>
 				</button>

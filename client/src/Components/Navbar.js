@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import authContext from '../context/auth/authContext';
 
 const Navbar = () => {
 	const [search, setSearch] = useState('');
 	const [openSearch, setOpenSeach] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const history = useHistory();
+	const { isAuthenticated, user } = useContext(authContext);
 	const handleSearch = () => {
 		if (openSearch) {
 			setOpenSeach(false);
@@ -45,11 +47,160 @@ const Navbar = () => {
 			myHtml.classList.remove('menu-isopen');
 		}
 	};
+	const authLinks = (
+		<>
+			<div className='nav-start'>
+				<Link style={{ padding: '0', margin: '0', height: '50px' }} to='/'>
+					<img
+						className='nav-logo'
+						src='/assets/mp_logo.png'
+						alt='movie partners logo'
+					/>
+				</Link>
+			</div>
+			<div className='nav-end'>
+				<div
+					className='menu-button'
+					id='menu-button'
+					onClick={(e) => handleHamburger()}>
+					<div className='menu-button__burger' id='hamburger'></div>
+				</div>
+				<button
+					className='unBtn nav-link'
+					onClick={(e) => setOpenSeach(!openSearch)}>
+					Search
+				</button>
+				<button className='unBtn nav-link'>Watchlists</button>
+				<Link to='/categories'>
+					<button className='unBtn nav-link'>Categories</button>
+				</Link>
+				<Link to='/profile'>
+					<img
+						className='avatar nav-link'
+						src={user && user.avatar}
+						alt='avatar'
+					/>
+				</Link>
+			</div>
+			<div className='menu-overlay' id='overlay'>
+				<div className='menu-top'>
+					<div className='logo-container'>
+						<img src='/assets/mp_logo.png' alt='movie partners logo' />
+					</div>
 
+					<input
+						className='nav-search__input'
+						type='text'
+						maxLength='30'
+						id='search'
+						name='search'
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+					/>
+					<button className='menu-top__button' onClick={(e) => handleSearch()}>
+						Search
+					</button>
+				</div>
+				<div className='menu-bottom'>
+					<ul className='menu-list'>
+						<Link to='/'>
+							<button
+								className='unBtn'
+								style={{ color: '#ededed' }}
+								onClick={(e) => handleHamburger()}>
+								<li>Watchlists</li>
+							</button>
+						</Link>
+						<Link to='/categories'>
+							<button
+								className='unBtn'
+								style={{ color: '#ededed' }}
+								onClick={(e) => handleHamburger()}>
+								<li>Categories</li>
+							</button>
+						</Link>
+						<Link to='/'>
+							<button
+								className='unBtn'
+								style={{ color: '#ededed' }}
+								onClick={(e) => handleHamburger()}>
+								<li>Logout</li>
+							</button>
+						</Link>
+					</ul>
+				</div>
+			</div>
+		</>
+	);
+	const guestLinks = (
+		<>
+			<div className='nav-start'>
+				<Link style={{ padding: '0', margin: '0', height: '50px' }} to='/'>
+					<img
+						className='nav-logo'
+						src='/assets/mp_logo.png'
+						alt='movie partners logo'
+					/>
+				</Link>
+			</div>
+			<div className='nav-end'>
+				<div
+					className='menu-button'
+					id='menu-button'
+					onClick={(e) => handleHamburger()}>
+					<div className='menu-button__burger' id='hamburger'></div>
+				</div>
+				<button
+					className='unBtn nav-link'
+					onClick={(e) => setOpenSeach(!openSearch)}>
+					Search
+				</button>
+				<Link to='/landing'>
+					<button className='unBtn nav-link'>Trending</button>
+				</Link>
+				<Link to='/categories'>
+					<button className='unBtn nav-link'>Categories</button>
+				</Link>
+			</div>
+			<div className='menu-overlay' id='overlay'>
+				<div className='menu-top'>
+					<div className='logo-container'>
+						<img src='/assets/mp_logo.png' alt='movie partners logo' />
+					</div>
+
+					<input
+						className='nav-search__input'
+						type='text'
+						maxLength='30'
+						id='search'
+						name='search'
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+					/>
+					<button className='menu-top__button' onClick={(e) => handleSearch()}>
+						Search
+					</button>
+				</div>
+				<div className='menu-bottom'>
+					<ul className='menu-list'>
+						<Link to='/categories'>
+							<button
+								className='unBtn'
+								style={{ color: '#ededed' }}
+								onClick={(e) => handleHamburger()}>
+								<li>Categories</li>
+							</button>
+						</Link>
+					</ul>
+				</div>
+			</div>
+		</>
+	);
 	return (
 		<>
 			<nav className='navbar'>
-				<div className='nav-start'>
+				{isAuthenticated ? authLinks : guestLinks}
+				{/* <div className='nav-start'>
 					<Link style={{ padding: '0', margin: '0', height: '50px' }} to='/'>
 						<img
 							className='nav-logo'
@@ -74,7 +225,6 @@ const Navbar = () => {
 					<Link to='/categories'>
 						<button className='unBtn nav-link'>Categories</button>
 					</Link>
-					<button className='unBtn nav-link'>Login</button>
 				</div>
 				<div className='menu-overlay' id='overlay'>
 					<div className='menu-top'>
@@ -125,7 +275,7 @@ const Navbar = () => {
 							</Link>
 						</ul>
 					</div>
-				</div>
+				</div> */}
 			</nav>
 
 			{openSearch && (

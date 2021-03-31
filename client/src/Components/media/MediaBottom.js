@@ -32,9 +32,14 @@ const MediaBottom = ({ media, type, media_id }) => {
 		<>
 			<div className='container'>
 				<div className='media-bottom-info'>
-					<p className='media-bottom-tag'>
-						{media.tagline !== '' && media.tagline}
-					</p>
+					{media.tagline !== '' && (
+						<p className='media-bottom-tag'>
+							<i className='tagQuote-left fas fa-quote-left'></i>{' '}
+							{media.tagline}{' '}
+							<i className='tagQuote-right fas fa-quote-right'></i>
+						</p>
+					)}
+
 					<p className='media-bottom-desc'>Plot Overview</p>
 					<p className='media-bottom-overview'>{media.overview}</p>
 				</div>

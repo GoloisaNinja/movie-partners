@@ -3,6 +3,7 @@ import axios from 'axios';
 //import watchlistContext from '../../context/watchlist/watchlistContext';
 import MediaTop from './MediaTop';
 import MediaBottom from './MediaBottom';
+import Spinner from '../Spinner';
 
 const Media = ({ match, location }) => {
 	const { type } = location.state;
@@ -29,7 +30,7 @@ const Media = ({ match, location }) => {
 	}, [match.params.id, apiKey, media_id, type]);
 
 	return media === undefined || media.poster_path === undefined ? (
-		<div>Loading...</div>
+		<Spinner />
 	) : (
 		<>
 			<MediaTop media={media} type={type} />

@@ -4,7 +4,7 @@
 	align-items: center;
 	justify-content: flex-start;
 	min-height: 50px;
-	z-index: 3;
+	z-index: 10;
 }
 .nav-start {
 	display: flex;
@@ -20,17 +20,22 @@
 	width: 50px;
 }
 .nav-link {
-	color: $primary-text-color;
+	color: $secondary-text-color;
 	cursor: pointer;
-	font-family: 'Darker Grotesque', sans-serif;
-	font-size: 2rem;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1.7rem;
 	margin-left: 2rem;
 	margin-bottom: 0.5rem;
 	font-weight: 700;
 	transition: all 0.5s ease-in-out;
 	&:hover {
-		color: lighten($primary-button-color, 10%);
+		color: lighten($primary-text-color, 50%);
 	}
+}
+.avatar {
+	width: 35px;
+	border-radius: 50%;
+	margin-left: 2rem;
 }
 .nav-search {
 	display: flex;
@@ -63,7 +68,7 @@
 	position: fixed;
 	top: 0;
 	right: 0;
-	z-index: 3;
+	z-index: 11;
 	//background: #cf00a5;
 	background: lighten($primary-bg-color, 1%);
 	opacity: 0.2;
@@ -140,7 +145,7 @@
 	cursor: pointer;
 	transition: all 0.5s ease-in-out;
 	margin-bottom: 0.25rem;
-	z-index: 4;
+	z-index: 12;
 }
 .menu-button__burger {
 	width: 30px;

@@ -83,12 +83,11 @@ UserSchema.methods.getAvatar = async function () {
 };
 
 UserSchema.methods.generateAuthToken = async function () {
-	console.log(JWT_SECRET);
 	const user = this;
+	console.log(user);
 	const token = jwt.sign({ _id: user._id.toString() }, JWT_SECRET);
 
 	user.tokens = user.tokens.concat({ token });
-	user.loginCount += 1;
 	await user.save();
 	return token;
 };

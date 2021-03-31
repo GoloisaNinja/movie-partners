@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Thumbnail from '../Thumbnail';
+import Spinner from '../Spinner';
 
 const Category = ({ match, history }) => {
 	useEffect(() => {
-		console.log('i set local storage to pop');
 		if (localStorage.getItem('sortBy') === null) {
 			localStorage.setItem('sortBy', 'popularity.desc');
 			setSortBy(localStorage.getItem('sortBy'));
@@ -15,7 +15,6 @@ const Category = ({ match, history }) => {
 	const [page, setPage] = useState(match.params.page);
 	const [results, setResults] = useState();
 	const [sortBy, setSortBy] = useState(localStorage.getItem('sortBy'));
-	console.log('state should be set to pop');
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const type = match.params.media_id;
 	const genreId = match.params.genre_id;
@@ -28,14 +27,13 @@ const Category = ({ match, history }) => {
 					`https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&language=en-US&sort_by=${sortBy}&include_adult=false&include_video=false&page=${page}&with_genres=${genreId}`
 				);
 				if (result) {
-					setResults(result.data.results);
+					setResults(result.data);
 				}
 			} catch (error) {
 				console.log(error.message);
 			}
 		};
 		getResults();
-		console.log('i ran query with pop as sort by');
 	}, [page, apiKey, type, genreId, sortBy]);
 
 	const handlePage = (dir) => {
@@ -59,7 +57,7 @@ const Category = ({ match, history }) => {
 	}, [match.params.page]);
 
 	return !results ? (
-		<div>Loading...</div>
+		<Spinner />
 	) : (
 		<div className='container'>
 			<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
@@ -85,14 +83,14 @@ const Category = ({ match, history }) => {
 					</button>
 					<button
 						className='unBtn sortBtn star'
-						onClick={(e) => handleSort('vote_average.desc&vote_count.gte=500')}>
+						onClick={(e) => handleSort('vote_average.desc&vote_count.gte=50')}>
 						<i className='fas fa-star'></i>
 					</button>
 				</div>
 			</div>
 
 			<div className='landing-grid'>
-				{results.map(
+				{results.results.map(
 					(item) =>
 						item.poster_path !== null &&
 						item.backdrop_path !== null && (
@@ -114,7 +112,7 @@ const Category = ({ match, history }) => {
 
 				<button
 					className='unBtn'
-					disabled={match.params.page === '500'}
+					disabled={parseInt(match.params.page) === results.total_pages}
 					onClick={(e) => handlePage('+')}>
 					<i className='chevNext fas fa-chevron-circle-right'></i>
 				</button>
