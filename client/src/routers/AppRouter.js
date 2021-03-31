@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Landing from '../Components/Landing';
+import Landing from '../Components/trending/Landing';
 import Media from '../Components/media/Media';
 import Navbar from '../Components/Navbar';
 import WatchlistState from '../context/watchlist/WatchlistState';
-import Pages from '../Components/Pages';
-import Search from '../Components/Search';
-import Categories from '../Components/Categories';
-import Category from '../Components/Category';
+import Pages from '../Components/trending/Pages';
+import Search from '../Components/search/Search';
+import Categories from '../Components/categories/Categories';
+import Category from '../Components/categories/Category';
 
 const AppRouter = () => {
 	return (

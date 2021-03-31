@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Thumbnail from './Thumbnail';
+import Thumbnail from '../Thumbnail';
 
 const ShowSearch = ({ shows }) => {
 	return (
@@ -11,7 +11,8 @@ const ShowSearch = ({ shows }) => {
 			<div className='landing-grid'>
 				{shows.map(
 					(show) =>
-						show.poster_path !== null && (
+						show.poster_path !== null &&
+						show.backdrop_path !== null && (
 							<Link
 								to={{ pathname: `/media/${show.id}`, state: { type: 'tv' } }}
 								key={show.id}>

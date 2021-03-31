@@ -30,6 +30,12 @@ const Landing = () => {
 		getTrending();
 	}, [setMovieTrending, apiKey]);
 
+	useEffect(() => {
+		if (localStorage.getItem('sortBy') === null) {
+			localStorage.setItem('sortBy', 'popularity.desc');
+		}
+	}, []);
+
 	return (
 		movieTrending !== undefined &&
 		showTrending !== undefined && (

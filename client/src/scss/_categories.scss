@@ -1,3 +1,30 @@
+// Category Component
+.sortButtons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.sortBtn {
+	font-size: 3.5rem;
+	transition: all 0.7s ease-in-out;
+	margin-top: 0.5rem;
+	&.fire {
+		color: $primary-button-color;
+		&:hover {
+			color: lighten($primary-button-color, 10%);
+		}
+	}
+	&.star {
+		margin-left: 2rem;
+		color: $secondary-button-color;
+		&:hover {
+			color: lighten($secondary-button-color, 10%);
+		}
+	}
+}
+
+// Categories Component
+
 .caticon {
 	color: $secondary-button-color;
 	vertical-align: text-bottom;

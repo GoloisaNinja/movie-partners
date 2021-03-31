@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Thumbnail from './Thumbnail';
+import Thumbnail from '../Thumbnail';
 
 const MovieSearch = ({ movies }) => {
 	return (
@@ -11,7 +11,8 @@ const MovieSearch = ({ movies }) => {
 			<div className='landing-grid'>
 				{movies.map(
 					(movie) =>
-						movie.poster_path !== null && (
+						movie.poster_path !== null &&
+						movie.backdrop_path !== null && (
 							<Link
 								to={{
 									pathname: `/media/${movie.id}`,

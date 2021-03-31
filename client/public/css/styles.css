@@ -490,6 +490,25 @@ img {
   color: #5b009c;
   font-size: 5rem; }
 
+.sortButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.sortBtn {
+  font-size: 3.5rem;
+  transition: all 0.7s ease-in-out;
+  margin-top: 0.5rem; }
+  .sortBtn.fire {
+    color: #5b009c; }
+    .sortBtn.fire:hover {
+      color: #7900cf; }
+  .sortBtn.star {
+    margin-left: 2rem;
+    color: #d100b9; }
+    .sortBtn.star:hover {
+      color: #ff05e2; }
+
 .caticon {
   color: #d100b9;
   vertical-align: text-bottom; }

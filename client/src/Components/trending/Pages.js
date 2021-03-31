@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Thumbnail from './Thumbnail';
+import Thumbnail from '../Thumbnail';
 
 const Pages = ({ match, history }) => {
 	const [page, setPage] = useState(match.params.page);
@@ -48,13 +48,17 @@ const Pages = ({ match, history }) => {
 					: `Trending shows page ${page}`}
 			</p>
 			<div className='landing-grid'>
-				{results.map((item) => (
-					<Link
-						to={{ pathname: `/media/${item.id}`, state: { type: type } }}
-						key={item.id}>
-						<Thumbnail media={item} type={type} />
-					</Link>
-				))}
+				{results.map(
+					(item) =>
+						item.poster_path !== null &&
+						item.backdrop_path !== null && (
+							<Link
+								to={{ pathname: `/media/${item.id}`, state: { type: type } }}
+								key={item.id}>
+								<Thumbnail media={item} type={type} />
+							</Link>
+						)
+				)}
 			</div>
 			<div className='pages-buttons'>
 				<button

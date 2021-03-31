@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Thumbnail from './Thumbnail';
+import Thumbnail from '../Thumbnail';
 
 const TrendingShows = ({ shows }) => {
 	return (
@@ -15,13 +15,17 @@ const TrendingShows = ({ shows }) => {
 					</span>
 				</p>
 				<div className='landing-grid'>
-					{shows.map((show) => (
-						<Link
-							to={{ pathname: `/media/${show.id}`, state: { type: 'tv' } }}
-							key={show.id}>
-							<Thumbnail media={show} type={'tv'} />
-						</Link>
-					))}
+					{shows.map(
+						(show) =>
+							show.poster_path !== null &&
+							show.backdrop_path !== null && (
+								<Link
+									to={{ pathname: `/media/${show.id}`, state: { type: 'tv' } }}
+									key={show.id}>
+									<Thumbnail media={show} type={'tv'} />
+								</Link>
+							)
+					)}
 				</div>
 			</div>
 		</>
