@@ -44,14 +44,18 @@ const Categories = () => {
 				))}
 			</div>
 
-			{/* <p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+			<p style={{ fontSize: '2.5rem', fontWeight: '700', marginTop: '2.5rem' }}>
 				Show Categories <i className='caticon fas fa-tv'></i>
 			</p>
 			<div className='category-grid'>
 				{tvGenres.map((genre) => (
-					<CategoryBadge key={genre.id} name={genre.name} />
+					<div key={genre.id}>
+						<Link to={`/categories/tv/${genre.id}/${genre.name}/1`}>
+							<CategoryBadge key={genre.id} name={genre.name} type={'tv'} />
+						</Link>
+					</div>
 				))}
-			</div> */}
+			</div>
 		</div>
 	) : (
 		<div className='container'>Loading...</div>

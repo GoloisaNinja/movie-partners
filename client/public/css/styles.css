@@ -578,6 +578,54 @@ img {
 .Western-movie {
   background-image: url("/assets/genres/westernGenreM.jpg"); }
 
+.Adventure-tv {
+  background-image: url("/assets/genres/actionGenreT.jpg"); }
+
+.Animation-tv {
+  background-image: url("/assets/genres/animationGenreT.jpg"); }
+
+.Comedy-tv {
+  background-image: url("/assets/genres/comedyGenreT.jpg"); }
+
+.Crime-tv {
+  background-image: url("/assets/genres/crimeGenreT.jpg"); }
+
+.Documentary-tv {
+  background-image: url("/assets/genres/docoGenreT.jpg"); }
+
+.Drama-tv {
+  background-image: url("/assets/genres/dramaGenreT.jpg"); }
+
+.Family-tv {
+  background-image: url("/assets/genres/familyGenreT.jpg"); }
+
+.Kids-tv {
+  background-image: url("/assets/genres/kidsGenreT.jpg"); }
+
+.Mystery-tv {
+  background-image: url("/assets/genres/mysteryGenreT.jpg"); }
+
+.News-tv {
+  background-image: url("/assets/genres/newsGenreT.jpg"); }
+
+.Reality-tv {
+  background-image: url("/assets/genres/realityGenreT.jpg"); }
+
+.Fantasy-tv {
+  background-image: url("/assets/genres/scifiGenreT.jpg"); }
+
+.Soap-tv {
+  background-image: url("/assets/genres/soapGenreT.jpg"); }
+
+.Talk-tv {
+  background-image: url("/assets/genres/talkGenreT.jpg"); }
+
+.Politics-tv {
+  background-image: url("/assets/genres/warGenreT.jpg"); }
+
+.Western-tv {
+  background-image: url("/assets/genres/westernGenreT.jpg"); }
+
 .badge-outer {
   position: relative; }
 
