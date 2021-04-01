@@ -111,6 +111,14 @@ const Navbar = () => {
 								<li>Watchlists</li>
 							</button>
 						</Link>
+						<Link to='/landing'>
+							<button
+								className='unBtn'
+								style={{ color: '#ededed' }}
+								onClick={(e) => handleHamburger()}>
+								<li>Trending</li>
+							</button>
+						</Link>
 						<Link to='/categories'>
 							<button
 								className='unBtn'
@@ -183,6 +191,14 @@ const Navbar = () => {
 				</div>
 				<div className='menu-bottom'>
 					<ul className='menu-list'>
+						<Link to='/landing'>
+							<button
+								className='unBtn'
+								style={{ color: '#ededed' }}
+								onClick={(e) => handleHamburger()}>
+								<li>Trending</li>
+							</button>
+						</Link>
 						<Link to='/categories'>
 							<button
 								className='unBtn'
