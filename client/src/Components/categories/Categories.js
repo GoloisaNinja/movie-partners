@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import CategoryBadge from './CategoryBadge';
-import Spinner from '../Spinner';
 
 const Categories = () => {
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
@@ -59,7 +58,16 @@ const Categories = () => {
 			</div>
 		</div>
 	) : (
-		<Spinner />
+		<div
+			style={{
+				minHeight: '100vh',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				textAlign: 'center',
+			}}>
+			...
+		</div>
 	);
 };
 

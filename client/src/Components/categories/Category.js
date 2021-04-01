@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Thumbnail from '../Thumbnail';
-import Spinner from '../Spinner';
 
 const Category = ({ match, history }) => {
 	useEffect(() => {
@@ -57,7 +56,16 @@ const Category = ({ match, history }) => {
 	}, [match.params.page]);
 
 	return !results ? (
-		<Spinner />
+		<div
+			style={{
+				minHeight: '100vh',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				textAlign: 'center',
+			}}>
+			...
+		</div>
 	) : (
 		<div className='container'>
 			<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>

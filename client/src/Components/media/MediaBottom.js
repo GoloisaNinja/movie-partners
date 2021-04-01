@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import MediaButtons from './MediaButtons';
 import MediaGenres from './MediaGenres';
 import MediaServices from './MediaServices';
-import Spinner from '../Spinner';
 import axios from 'axios';
 
 const MediaBottom = ({ media, type, media_id }) => {
@@ -28,7 +27,16 @@ const MediaBottom = ({ media, type, media_id }) => {
 		getProviders();
 	}, [apiKey, media_id, type]);
 	return !providers.results ? (
-		<Spinner />
+		<div
+			style={{
+				minHeight: '100vh',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				textAlign: 'center',
+			}}>
+			...
+		</div>
 	) : (
 		<>
 			<div className='container'>

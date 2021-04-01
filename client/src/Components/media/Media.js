@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-//import watchlistContext from '../../context/watchlist/watchlistContext';
 import MediaTop from './MediaTop';
 import MediaBottom from './MediaBottom';
-import Spinner from '../Spinner';
 
 const Media = ({ match, location }) => {
 	const { type } = location.state;
@@ -11,7 +9,6 @@ const Media = ({ match, location }) => {
 	const media_id = match.params.id;
 	const [media, setMedia] = useState({});
 
-	//const { watchlist, getWatchlist } = useContext(watchlistContext);
 	useEffect(() => {
 		const getMedia = async () => {
 			try {
@@ -30,7 +27,16 @@ const Media = ({ match, location }) => {
 	}, [match.params.id, apiKey, media_id, type]);
 
 	return media === undefined || media.poster_path === undefined ? (
-		<Spinner />
+		<div
+			style={{
+				minHeight: '100vh',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				textAlign: 'center',
+			}}>
+			...
+		</div>
 	) : (
 		<>
 			<MediaTop media={media} type={type} />
