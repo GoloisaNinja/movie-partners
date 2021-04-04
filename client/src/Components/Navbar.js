@@ -37,14 +37,16 @@ const Navbar = () => {
 			menuBtn.classList.add('open');
 			setMenuOpen(true);
 			overlay.classList.add('active');
-			myBody.classList.add('menu-isopen');
-			myHtml.classList.add('menu-isopen');
+			setTimeout(() => {
+				myBody.classList.add('menu-isopen');
+				myHtml.classList.add('menu-isopen');
+			}, 600);
 		} else {
+			myBody.classList.remove('menu-isopen');
+			myHtml.classList.remove('menu-isopen');
 			menuBtn.classList.remove('open');
 			setMenuOpen(false);
 			overlay.classList.remove('active');
-			myBody.classList.remove('menu-isopen');
-			myHtml.classList.remove('menu-isopen');
 		}
 	};
 
