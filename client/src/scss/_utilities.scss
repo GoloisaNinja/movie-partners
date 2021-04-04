@@ -1,6 +1,8 @@
 // A completely unstyled button for icon use
 .unBtn {
-	background: none;
+	padding: 0;
+	margin: 0;
+	background: transparent;
 	border: none;
 	cursor: pointer;
 	outline: none;
@@ -13,8 +15,6 @@
 .btn {
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	display: inline-block;
-	vertical-align: middle;
 }
 
 .container {

@@ -12,6 +12,7 @@ const MediaTop = ({ media, type }) => {
 					/>
 					<div className='overlay'></div>
 				</div>
+
 				<div className='media-top-poster-info'>
 					<div className='poster'>
 						<img
@@ -21,7 +22,10 @@ const MediaTop = ({ media, type }) => {
 					</div>
 					<div className='info'>
 						<p className='info-title'>
-							{type === 'movie' ? media.title : media.name}
+							{type === 'movie' ? media.title : media.name}{' '}
+							<button className='unBtn'>
+								<i className='myEyeUnSeen fas fa-eye-slash'></i>
+							</button>
 						</p>
 						<ul>
 							<li>Status: {media.status}</li>

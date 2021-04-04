@@ -13,20 +13,37 @@ const WatchlistSchema = new mongoose.Schema(
 		},
 		titles: [
 			{
-				title_id: {
-					type: String,
-					required: true,
-				},
 				tmdb_id: {
 					type: Number,
 					required: true,
 				},
+				poster_path: {
+					type: String,
+					required: true,
+				},
+				name: {
+					type: String,
+					required: true,
+				},
+				media_type: {
+					type: String,
+					required: true,
+				},
 			},
 		],
-		partners: {
-			type: [String],
-			default: undefined,
-		},
+		partners: [
+			{
+				partner_id: {
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'User',
+					required: true,
+				},
+				partern_name: {
+					type: String,
+					required: true,
+				},
+			},
+		],
 	},
 	{
 		timestamps: true,

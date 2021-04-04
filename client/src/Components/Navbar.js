@@ -8,7 +8,7 @@ const Navbar = () => {
 	const [openSearch, setOpenSeach] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const history = useHistory();
-	const { isAuthenticated, user } = useContext(authContext);
+	const { isAuthenticated, user, logoutUser } = useContext(authContext);
 	const handleSearch = () => {
 		if (openSearch) {
 			setOpenSeach(false);
@@ -47,10 +47,17 @@ const Navbar = () => {
 			myHtml.classList.remove('menu-isopen');
 		}
 	};
+
+	const handleLogout = () => {
+		handleHamburger();
+		logoutUser(history);
+	};
 	const authLinks = (
 		<>
 			<div className='nav-start'>
-				<Link style={{ padding: '0', margin: '0', height: '50px' }} to='/'>
+				<Link
+					style={{ padding: '0', margin: '0', height: '50px' }}
+					to='/trending'>
 					<img
 						className='nav-logo'
 						src='/assets/mp_logo.png'
@@ -70,16 +77,14 @@ const Navbar = () => {
 					onClick={(e) => setOpenSeach(!openSearch)}>
 					Search
 				</button>
-				<button className='unBtn nav-link'>Watchlists</button>
+				<Link to='/'>
+					<button className='unBtn nav-link'>Watchlists</button>
+				</Link>
 				<Link to='/categories'>
 					<button className='unBtn nav-link'>Categories</button>
 				</Link>
-				<Link to='/profile'>
-					<img
-						className='avatar nav-link'
-						src={user && user.avatar}
-						alt='avatar'
-					/>
+				<Link style={{ marginTop: '.3rem' }} to='/profile'>
+					<img className='avatar' src={user && user.avatar} alt='avatar' />
 				</Link>
 			</div>
 			<div className='menu-overlay' id='overlay'>
@@ -111,7 +116,7 @@ const Navbar = () => {
 								<li>Watchlists</li>
 							</button>
 						</Link>
-						<Link to='/landing'>
+						<Link to='/trending'>
 							<button
 								className='unBtn'
 								style={{ color: '#ededed' }}
@@ -127,14 +132,13 @@ const Navbar = () => {
 								<li>Categories</li>
 							</button>
 						</Link>
-						<Link to='/'>
-							<button
-								className='unBtn'
-								style={{ color: '#ededed' }}
-								onClick={(e) => handleHamburger()}>
-								<li>Logout</li>
-							</button>
-						</Link>
+
+						<button
+							className='unBtn'
+							style={{ color: '#ededed' }}
+							onClick={(e) => handleLogout()}>
+							<li>Logout</li>
+						</button>
 					</ul>
 				</div>
 			</div>
@@ -163,11 +167,14 @@ const Navbar = () => {
 					onClick={(e) => setOpenSeach(!openSearch)}>
 					Search
 				</button>
-				<Link to='/landing'>
+				<Link to='/trending'>
 					<button className='unBtn nav-link'>Trending</button>
 				</Link>
 				<Link to='/categories'>
 					<button className='unBtn nav-link'>Categories</button>
+				</Link>
+				<Link to='/'>
+					<button className='unBtn nav-link'>Login</button>
 				</Link>
 			</div>
 			<div className='menu-overlay' id='overlay'>
@@ -191,7 +198,7 @@ const Navbar = () => {
 				</div>
 				<div className='menu-bottom'>
 					<ul className='menu-list'>
-						<Link to='/landing'>
+						<Link to='/trending'>
 							<button
 								className='unBtn'
 								style={{ color: '#ededed' }}
@@ -205,6 +212,14 @@ const Navbar = () => {
 								style={{ color: '#ededed' }}
 								onClick={(e) => handleHamburger()}>
 								<li>Categories</li>
+							</button>
+						</Link>
+						<Link to='/'>
+							<button
+								className='unBtn'
+								style={{ color: '#ededed' }}
+								onClick={(e) => handleHamburger()}>
+								<li>Login</li>
 							</button>
 						</Link>
 					</ul>

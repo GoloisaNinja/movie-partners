@@ -31,28 +31,11 @@ router.post('/', auth, async (req, res) => {
 	const user = await req.user;
 	const _id = user._id;
 	let profileFields = {};
-	const { bio, genres, favorites, partners, watchlists } = req.body;
+	const { bio, genres } = req.body;
 	profileFields.user = _id;
 	profileFields.bio = bio || '';
-	if (genres) {
-		profileFields.genres = genres
-			.split(',')
-			.map((genre) => parseInt(genre.trim()));
-	}
-	if (favorites) {
-		profileFields.favorites = favorites
-			.split(',')
-			.map((favorite) => favorite.trim());
-	}
-	if (partners) {
-		profileFields.partners = partners
-			.split(',')
-			.map((partner) => partner.trim());
-	}
-	if (watchlists) {
-		profileFields.watchlists = watchlists
-			.split(',')
-			.map((watchlist) => watchlist.trim());
+	if (genres.length > 0) {
+		profileFields.genres = genres;
 	}
 	try {
 		let profile = await Profile.findOne({ user: _id });

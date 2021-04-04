@@ -57,11 +57,12 @@ router.post('/login', async (req, res) => {
 // Logout a User
 
 router.post('/logout', auth, async (req, res) => {
+	const user = await req.user;
 	try {
-		req.user.tokens = req.user.tokens.filter((token) => {
+		user.tokens = user.tokens.filter((token) => {
 			return token.token !== req.token;
 		});
-		await req.user.save();
+		await user.save();
 		res.status(200).send({ message: 'User logged out' });
 	} catch (e) {
 		res.status(400).send({ message: e.message });

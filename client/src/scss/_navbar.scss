@@ -8,29 +8,28 @@
 }
 .nav-start {
 	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 	flex: 1;
 }
 .nav-end {
-	display: flex;
+	display: inline-flex;
+	justify-content: center;
 	align-items: center;
-	justify-content: space-around;
 	margin-right: 1rem;
+	margin-bottom: 0.2rem;
 }
 .nav-logo {
 	width: 50px;
 }
 .nav-link {
-	color: $secondary-text-color;
+	color: $primary-text-color;
 	cursor: pointer;
 	font-family: 'Quicksand', sans-serif;
-	font-size: 1.7rem;
+	font-size: 1.5rem;
 	margin-left: 2rem;
 	margin-bottom: 0.5rem;
 	font-weight: 700;
-	transition: all 0.5s ease-in-out;
-	&:hover {
-		color: lighten($primary-text-color, 50%);
-	}
 }
 .avatar {
 	width: 35px;
@@ -186,6 +185,9 @@
 }
 @media (max-width: 425px) {
 	.nav-link {
+		display: none;
+	}
+	.avatar {
 		display: none;
 	}
 }

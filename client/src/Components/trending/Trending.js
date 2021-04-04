@@ -3,7 +3,7 @@ import axios from 'axios';
 import TrendingMovies from './TrendingMovies';
 import TrendingShows from './TrendingShows';
 
-const Landing = () => {
+const Trending = () => {
 	const [movieTrending, setMovieTrending] = useState();
 	const [showTrending, setShowTrending] = useState();
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
@@ -47,4 +47,4 @@ const Landing = () => {
 	);
 };
 
-export default Landing;
+export default Trending;

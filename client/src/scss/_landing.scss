@@ -6,7 +6,8 @@
 }
 .more {
 	color: $secondary-button-color;
-	vertical-align: text-bottom;
+	font-size: 3rem;
+	vertical-align: sub;
 	margin-left: 0.25rem;
 	animation-name: Pulse;
 	animation-duration: 2s;
@@ -31,10 +32,13 @@
 	0% {
 		color: $secondary-button-color;
 	}
+	50% {
+		color: lighten($secondary-button-color, 15%);
+	}
 	80% {
-		color: lighten($secondary-button-color, 10%);
+		color: lighten($secondary-button-color, 20%);
 	}
 	100% {
-		color: lighten($secondary-button-color, 15%);
+		color: lighten($secondary-button-color, 25%);
 	}
 }
