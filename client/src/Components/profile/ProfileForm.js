@@ -92,6 +92,8 @@ const ProfileForm = () => {
 				<label className='profile-label' htmlFor='bio'>
 					Short Bio: Tell us about yourself...
 				</label>
+			</div>
+			<div className='profile-form-group'>
 				<textarea
 					className='form-input'
 					required
