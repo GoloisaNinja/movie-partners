@@ -200,7 +200,16 @@ const ProfileForm = () => {
 			/>
 		</form>
 	) : (
-		<p>No results from API</p>
+		<div
+			style={{
+				minHeight: '100vh',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				textAlign: 'center',
+			}}>
+			...
+		</div>
 	);
 };
 
