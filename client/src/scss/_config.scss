@@ -42,3 +42,15 @@ li {
 img {
 	width: 100%;
 }
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: $primary-button-color;
+	color: $secondary-text-color;
+}
+input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}

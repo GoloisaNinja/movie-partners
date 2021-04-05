@@ -1,0 +1,136 @@
+.profile-branding {
+	width: 85%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin: 0 auto;
+}
+.profile-avatar-container {
+	background: $secondary-button-color;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 85%;
+	margin: 0 auto;
+	padding: 2rem;
+	margin-top: 2rem;
+}
+.profile-avatar {
+	width: 45%;
+	border-radius: 50%;
+	margin-bottom: 1.5rem;
+}
+.profile-logout {
+	background-color: $primary-button-color;
+	color: $primary-text-color;
+	padding: 1rem 2rem;
+	border: none;
+	border-radius: 5px;
+	border-bottom: 2px darken($primary-button-color, 10%) solid;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1.8rem;
+	font-weight: 700;
+	width: 50%;
+	margin-top: 1rem;
+	cursor: pointer;
+}
+.no-profile-container {
+	width: 85%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	margin-top: 2rem;
+}
+.benefits-ul {
+	display: flex;
+	flex-direction: column;
+	margin-top: 2rem;
+	& li {
+		font-size: 1.4rem;
+	}
+}
+.profile-details-container {
+	width: 85%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	margin-top: 2rem;
+}
+.profile-bio {
+	margin-bottom: 2rem;
+}
+.profile-bio-desc {
+	@extend .media-bottom-desc;
+}
+.profile-genres {
+	margin-bottom: 2rem;
+}
+.profile-buttons-div {
+	width: 100%;
+	text-align: center;
+}
+.profBtn {
+	width: 85%;
+	margin: 0 auto;
+	margin-bottom: 2rem;
+}
+.profile-form-btn {
+	@extend .favorites-btn;
+	margin-top: 2rem;
+	margin-right: 0;
+	width: 50%;
+	margin-bottom: 0;
+}
+
+// Profile form stylings
+
+.profile-form {
+	display: flex;
+	flex-direction: column;
+	margin-top: 2rem;
+	width: 85%;
+}
+.profile-form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1.5rem;
+}
+.profile-label {
+	color: $auxiliary-text-color;
+	font-size: 2rem;
+}
+.form-input {
+	background: lighten($primary-bg-color, 1%);
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1.6rem;
+	padding: 0.5rem;
+	color: $secondary-text-color;
+}
+.form-select {
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1.6rem;
+	padding: 0.5rem;
+	margin-bottom: 0.5rem;
+	cursor: pointer;
+}
+.profile-submit-btn {
+	@extend .favorites-btn;
+	width: 100%;
+}
+@media (max-width: 600px) {
+	.profile-logout,
+	.profile-form-btn {
+		width: 80%;
+	}
+	.profile-form {
+		width: 100%;
+	}
+}

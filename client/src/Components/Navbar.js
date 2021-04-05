@@ -92,7 +92,14 @@ const Navbar = () => {
 			<div className='menu-overlay' id='overlay'>
 				<div className='menu-top'>
 					<div className='logo-container'>
-						<img src='/assets/mp_logo.png' alt='movie partners logo' />
+						<Link to='/profile'>
+							<button className='unBtn' onClick={(e) => handleHamburger()}>
+								<img
+									src={user ? user.avatar : '/assets/mp_logo.png'}
+									alt='avatar'
+								/>
+							</button>
+						</Link>
 					</div>
 
 					<input

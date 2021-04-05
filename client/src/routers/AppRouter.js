@@ -4,12 +4,14 @@ import Trending from '../Components/trending/Trending';
 import Media from '../Components/media/Media';
 import Navbar from '../Components/Navbar';
 import WatchlistState from '../context/watchlist/WatchlistState';
+import ProfileState from '../context/profile/ProfileState';
 //import AuthState from '../context/auth/AuthState';
 import Pages from '../Components/trending/Pages';
 import Search from '../Components/search/Search';
 import Categories from '../Components/categories/Categories';
 import Category from '../Components/categories/Category';
 import Home from '../Components/Home';
+import Profile from '../Components/profile/Profile';
 import axios from 'axios';
 import SetAuthToken from '../utils/SetAuthToken';
 
@@ -23,7 +25,6 @@ import {
 	LOGIN_USER,
 	LOGOUT_USER,
 } from '../context/auth/authActions';
-
 const AppRouter = () => {
 	const initialState = {
 		loading: true,
@@ -77,6 +78,7 @@ const AppRouter = () => {
 					type: LOGIN_USER,
 					payload: res.data,
 				});
+
 				SetAuthToken(res.data.token);
 			}
 		} catch (e) {
@@ -161,6 +163,9 @@ const AppRouter = () => {
 								path='/categories/:media_id/:genre_id/:genre_name/:page'
 								component={Category}
 							/>
+							<ProfileState>
+								<Route exact path='/profile' component={Profile} />
+							</ProfileState>
 						</WatchlistState>
 					</Switch>
 				</>

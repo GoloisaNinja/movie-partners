@@ -1,11 +1,11 @@
 import React from 'react';
 
-const MediaButtons = () => {
+const MediaButtons = ({ values }) => {
 	return (
 		<div className='profile-buttons'>
-			<button className='btn favorites-btn'>+ Favorites</button>
-			<button className='btn watchlist-btn'>+ Watchlist</button>
-			<button className='btn watched-btn'>+ Watched</button>
+			<button className='btn favorites-btn'>{values.fave}</button>
+			<button className='btn watchlist-btn'>{values.list}</button>
+			<button className='btn watched-btn'>{values.watch}</button>
 		</div>
 	);
 };

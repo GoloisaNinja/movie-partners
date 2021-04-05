@@ -51,7 +51,7 @@
 		color: $secondary-text-color;
 	}
 }
-@media (max-width: 425px) {
+@media (max-width: 600px) {
 	.profile-buttons,
 	.pagination-buttons {
 		flex-direction: column;

@@ -54,7 +54,13 @@ const MediaBottom = ({ media, type, media_id }) => {
 				</div>
 				<MediaGenres genres={media.genres} />
 				{providers.results.US && <MediaServices providers={providers} />}
-				<MediaButtons />
+				<MediaButtons
+					values={{
+						fave: '+ Favorites',
+						list: '+ Watchlist',
+						watch: '+ Watched',
+					}}
+				/>
 				{media.videos.results.length !== 0 && (
 					<div className='media-bottom-iframe'>
 						<iframe

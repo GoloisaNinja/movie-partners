@@ -29,6 +29,18 @@ li {
 img {
   width: 100%; }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #5b009c;
+  color: #ededed; }
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
 .unBtn {
   padding: 0;
   margin: 0;
@@ -317,7 +329,7 @@ img {
   text-align: center;
   margin-bottom: 2rem; }
 
-.media-bottom-desc {
+.media-bottom-desc, .profile-bio-desc {
   font-size: 2rem;
   font-weight: 500;
   text-align: center;
@@ -367,7 +379,7 @@ img {
 .pagination-buttons {
   margin-top: 2rem; }
 
-.favorites-btn, .watchlist-btn, .watched-btn {
+.favorites-btn, .watchlist-btn, .watched-btn, .profile-form-btn, .profile-submit-btn {
   background-color: #d100b9;
   color: #fff;
   padding: 1.65rem 2rem;
@@ -381,7 +393,7 @@ img {
   width: 50%;
   cursor: pointer;
   transition: all 0.7s ease-in-out; }
-  .favorites-btn:hover, .watchlist-btn:hover, .watched-btn:hover {
+  .favorites-btn:hover, .watchlist-btn:hover, .watched-btn:hover, .profile-form-btn:hover, .profile-submit-btn:hover {
     background-color: #ff05e2;
     color: #ededed; }
 
@@ -401,17 +413,17 @@ img {
     background-color: #00b39b;
     color: #ededed; }
 
-@media (max-width: 425px) {
+@media (max-width: 600px) {
   .profile-buttons,
   .pagination-buttons {
     flex-direction: column;
     margin-bottom: 0;
     align-items: center; }
-  .favorites-btn, .watchlist-btn, .watched-btn,
+  .favorites-btn, .watchlist-btn, .watched-btn, .profile-form-btn, .profile-submit-btn,
   .watchlist-btn,
   .watched-btn {
     width: 100%; }
-  .favorites-btn, .watchlist-btn, .watched-btn {
+  .favorites-btn, .watchlist-btn, .watched-btn, .profile-form-btn, .profile-submit-btn {
     margin-bottom: 2.5rem;
     margin-right: 0; }
   .watched-btn {
@@ -881,3 +893,128 @@ img {
     left: 8%; }
   .btn-formsub {
     width: 85%; } }
+
+.profile-branding {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto; }
+
+.profile-avatar-container {
+  background: #d100b9;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-top: 2rem; }
+
+.profile-avatar {
+  width: 45%;
+  border-radius: 50%;
+  margin-bottom: 1.5rem; }
+
+.profile-logout {
+  background-color: #5b009c;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  border-bottom: 2px #3d0069 solid;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  width: 50%;
+  margin-top: 1rem;
+  cursor: pointer; }
+
+.no-profile-container {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 2rem; }
+
+.benefits-ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem; }
+  .benefits-ul li {
+    font-size: 1.4rem; }
+
+.profile-details-container {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 2rem; }
+
+.profile-bio {
+  margin-bottom: 2rem; }
+
+.profile-genres {
+  margin-bottom: 2rem; }
+
+.profile-buttons-div {
+  width: 100%;
+  text-align: center; }
+
+.profBtn {
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 2rem; }
+
+.profile-form-btn {
+  margin-top: 2rem;
+  margin-right: 0;
+  width: 50%;
+  margin-bottom: 0; }
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 85%; }
+
+.profile-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem; }
+
+.profile-label {
+  color: #d100b9;
+  font-size: 2rem; }
+
+.form-input {
+  background: #272727;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.6rem;
+  padding: 0.5rem;
+  color: #ededed; }
+
+.form-select {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.6rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer; }
+
+.profile-submit-btn {
+  width: 100%; }
+
+@media (max-width: 600px) {
+  .profile-logout,
+  .profile-form-btn {
+    width: 80%; }
+  .profile-form {
+    width: 100%; } }
