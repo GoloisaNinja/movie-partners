@@ -21,8 +21,8 @@ const NoProfile = () => {
 					share them!
 				</li>
 				<li>
-					<i className='genicon fas fa-check-circle'></i>
-					{''}Add Titles to your Watched Collection
+					<i className='genicon fas fa-check-circle'></i> Add Titles to your
+					Watched Collection
 				</li>
 			</ul>
 			<button
