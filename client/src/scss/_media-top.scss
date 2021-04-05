@@ -19,15 +19,7 @@
 	opacity: 0.3;
 	display: block;
 }
-.myEyeUnSeen,
-.myEyeSeen {
-	font-size: 3rem;
-	color: $secondary-button-color;
-	transition: all 0.7s ease-in-out;
-	&:hover {
-		color: lighten($secondary-button-color, 10%);
-	}
-}
+
 .media-top-poster-info {
 	position: absolute;
 	z-index: 1;

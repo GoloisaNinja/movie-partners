@@ -255,15 +255,6 @@ img {
   opacity: 0.3;
   display: block; }
 
-.myEyeUnSeen,
-.myEyeSeen {
-  font-size: 3rem;
-  color: #d100b9;
-  transition: all 0.7s ease-in-out; }
-  .myEyeUnSeen:hover,
-  .myEyeSeen:hover {
-    color: #ff05e2; }
-
 .media-top-poster-info {
   position: absolute;
   z-index: 1;
@@ -376,7 +367,7 @@ img {
 .pagination-buttons {
   margin-top: 2rem; }
 
-.favorites-btn, .watchlist-btn {
+.favorites-btn, .watchlist-btn, .watched-btn {
   background-color: #d100b9;
   color: #fff;
   padding: 1.65rem 2rem;
@@ -390,16 +381,24 @@ img {
   width: 50%;
   cursor: pointer;
   transition: all 0.7s ease-in-out; }
-  .favorites-btn:hover, .watchlist-btn:hover {
+  .favorites-btn:hover, .watchlist-btn:hover, .watched-btn:hover {
     background-color: #ff05e2;
     color: #ededed; }
 
 .watchlist-btn {
   background-color: #5b009c;
   border-bottom: 2px #3d0069 solid;
-  margin-right: 0; }
+  margin-right: 2rem; }
   .watchlist-btn:hover {
     background-color: #7900cf;
+    color: #ededed; }
+
+.watched-btn {
+  background-color: #009985;
+  border-bottom: 2px #006659 solid;
+  margin-right: 0; }
+  .watched-btn:hover {
+    background-color: #00b39b;
     color: #ededed; }
 
 @media (max-width: 425px) {
@@ -408,13 +407,14 @@ img {
     flex-direction: column;
     margin-bottom: 0;
     align-items: center; }
-  .favorites-btn, .watchlist-btn,
-  .watchlist-btn {
+  .favorites-btn, .watchlist-btn, .watched-btn,
+  .watchlist-btn,
+  .watched-btn {
     width: 100%; }
-  .favorites-btn, .watchlist-btn {
+  .favorites-btn, .watchlist-btn, .watched-btn {
     margin-bottom: 2.5rem;
     margin-right: 0; }
-  .watchlist-btn {
+  .watched-btn {
     margin-bottom: 0; }
   .button-outer-container {
     justify-content: center;

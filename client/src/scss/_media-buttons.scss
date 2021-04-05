@@ -35,9 +35,19 @@
 	@extend .favorites-btn;
 	background-color: $primary-button-color;
 	border-bottom: 2px darken($primary-button-color, 10%) solid;
-	margin-right: 0;
+	margin-right: 2rem;
 	&:hover {
 		background-color: lighten($primary-button-color, 10%);
+		color: $secondary-text-color;
+	}
+}
+.watched-btn {
+	@extend .favorites-btn;
+	background-color: $auxiliary-button-color;
+	border-bottom: 2px darken($auxiliary-button-color, 10%) solid;
+	margin-right: 0;
+	&:hover {
+		background-color: lighten($auxiliary-button-color, 5%);
 		color: $secondary-text-color;
 	}
 }
@@ -49,7 +59,8 @@
 		align-items: center;
 	}
 	.favorites-btn,
-	.watchlist-btn {
+	.watchlist-btn,
+	.watched-btn {
 		width: 100%;
 	}
 
@@ -57,7 +68,7 @@
 		margin-bottom: 2.5rem;
 		margin-right: 0;
 	}
-	.watchlist-btn {
+	.watched-btn {
 		margin-bottom: 0;
 	}
 	.button-outer-container {

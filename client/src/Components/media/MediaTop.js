@@ -22,10 +22,7 @@ const MediaTop = ({ media, type }) => {
 					</div>
 					<div className='info'>
 						<p className='info-title'>
-							{type === 'movie' ? media.title : media.name}{' '}
-							<button className='unBtn'>
-								<i className='myEyeUnSeen fas fa-eye-slash'></i>
-							</button>
+							{type === 'movie' ? media.title : media.name}
 						</p>
 						<ul>
 							<li>Status: {media.status}</li>
