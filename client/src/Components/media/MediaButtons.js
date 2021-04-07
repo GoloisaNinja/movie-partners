@@ -95,14 +95,12 @@ const MediaButtons = ({ media, type }) => {
 			<button className='btn watchlist-btn'>+ Watchlist</button>
 			{isWatched ? (
 				<button
-					className='btn favorites-btn'
+					className='btn watched-btn'
 					onClick={(e) => handleRemoveWatched()}>
 					<i className='fas fa-minus-square'></i> Watched
 				</button>
 			) : (
-				<button
-					className='btn favorites-btn'
-					onClick={(e) => handleAddWatched()}>
+				<button className='btn watched-btn' onClick={(e) => handleAddWatched()}>
 					<i className='fas fa-plus-square'></i> Watched
 				</button>
 			)}
