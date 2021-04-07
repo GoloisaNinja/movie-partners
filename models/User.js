@@ -37,11 +37,7 @@ const UserSchema = new mongoose.Schema(
 				}
 			},
 		},
-		discoverable: {
-			type: Boolean,
-			required: true,
-			default: false,
-		},
+
 		tokens: [
 			{
 				token: {

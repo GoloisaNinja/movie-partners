@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import favoriteContext from '../../context/favorite/favoriteContext';
+import watchedContext from '../../context/watched/watchedContext';
 import MediaTop from './MediaTop';
 import MediaBottom from './MediaBottom';
 
@@ -8,7 +10,8 @@ const Media = ({ match, location }) => {
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const media_id = match.params.id;
 	const [media, setMedia] = useState({});
-
+	const { getFavorites } = useContext(favoriteContext);
+	const { getWatched } = useContext(watchedContext);
 	useEffect(() => {
 		const getMedia = async () => {
 			try {
@@ -26,6 +29,10 @@ const Media = ({ match, location }) => {
 		getMedia();
 	}, [match.params.id, apiKey, media_id, type]);
 
+	useEffect(() => {
+		getFavorites();
+		getWatched();
+	}, [match.params.id]);
 	return media === undefined || media.poster_path === undefined ? (
 		<div
 			style={{

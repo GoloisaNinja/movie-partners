@@ -5,6 +5,8 @@ import connectDB from './db/db.js';
 import user from './routes/user.js';
 import profile from './routes/profile.js';
 import watchlist from './routes/watchlist.js';
+import favorite from './routes/favorite.js';
+import watched from './routes/watched.js';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 
@@ -24,6 +26,8 @@ app.use(express.json({ extended: false }));
 app.use('/api/user', user);
 app.use('/api/profile', profile);
 app.use('/api/watchlist', watchlist);
+app.use('/api/favorite', favorite);
+app.use('/api/watched', watched);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));

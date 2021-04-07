@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 const ProfileTop = ({ user, logout, clear }) => {
 	const history = useHistory();
 	const handleLogout = () => {
 		logout(history);
-	};
-	useEffect(() => {
 		clear();
-	}, [logout]);
-
+	};
 	return (
 		<>
 			<div className='profile-branding'>

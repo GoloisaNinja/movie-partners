@@ -10,6 +10,11 @@ const ProfileSchema = new mongoose.Schema(
 		bio: {
 			type: String,
 		},
+		discoverable: {
+			type: Boolean,
+			required: true,
+			default: false,
+		},
 		genres: [
 			{
 				genre_id: {
@@ -26,56 +31,6 @@ const ProfileSchema = new mongoose.Schema(
 				},
 			},
 		],
-		favorites: [
-			{
-				title_id: {
-					type: mongoose.Schema.Types.ObjectId,
-					ref: 'Title',
-					required: true,
-				},
-				tmdb_id: {
-					type: Number,
-					required: true,
-				},
-				name: {
-					type: String,
-					required: true,
-				},
-				poster_path: {
-					type: String,
-					required: true,
-				},
-				media_type: {
-					type: String,
-					required: true,
-				},
-			},
-		],
-		watched: [
-			{
-				title_id: {
-					type: mongoose.Schema.Types.ObjectId,
-					ref: 'Title',
-					required: true,
-				},
-				tmdb_id: {
-					type: Number,
-					required: true,
-				},
-				name: {
-					type: String,
-					required: true,
-				},
-				poster_path: {
-					type: String,
-					required: true,
-				},
-				media_type: {
-					type: String,
-					required: true,
-				},
-			},
-		],
 		watchlists: [
 			{
 				name: {
@@ -87,6 +42,9 @@ const ProfileSchema = new mongoose.Schema(
 					ref: 'Watchlist',
 					required: true,
 				},
+			},
+			{
+				timestamps: true,
 			},
 		],
 		invites: [
@@ -108,6 +66,9 @@ const ProfileSchema = new mongoose.Schema(
 				invite_text: {
 					type: String,
 				},
+			},
+			{
+				timestamps: true,
 			},
 		],
 	},

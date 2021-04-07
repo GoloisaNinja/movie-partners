@@ -125,6 +125,41 @@
 	@extend .favorites-btn;
 	width: 100%;
 }
+.switch-field {
+	display: flex;
+	margin-bottom: 2rem;
+	overflow: hidden;
+}
+.switch-field input {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+.switch-field label {
+	background-color: $secondary-button-color;
+	color: $primary-text-color;
+	font-size: 1.2rem;
+	text-align: center;
+	padding: 1rem 2rem;
+	border: 1px solid $primary-bg-color;
+}
+.switch-field label:hover {
+	cursor: pointer;
+}
+.switch-field input:checked + label {
+	background-color: $primary-button-color;
+	box-shadow: none;
+	font-weight: 700;
+}
+.switch-field label:first-of-type {
+	border-radius: 4px 0 0 4px;
+}
+.switch-field label:last-of-type {
+	border-radius: 0 4px 4px 0;
+}
 @media (max-width: 600px) {
 	.profile-logout,
 	.profile-form-btn {

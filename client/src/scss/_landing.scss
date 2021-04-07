@@ -13,6 +13,11 @@
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
 }
+.favCrown {
+	@extend .more;
+	color: $primary-button-color;
+	vertical-align: baseline;
+}
 @media (max-width: 425px) {
 	.landing-grid {
 		grid-template-columns: repeat(2, 10fr);

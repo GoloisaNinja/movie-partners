@@ -3,6 +3,7 @@ import ProfileForm from './ProfileForm';
 
 const NoProfile = () => {
 	const [formOpen, setFormOpen] = useState(false);
+
 	return (
 		<div className='no-profile-container'>
 			<p style={{ marginBottom: '1.5rem' }} className='profile-bio-desc'>
@@ -28,7 +29,7 @@ const NoProfile = () => {
 			<button
 				className='btn profile-form-btn'
 				onClick={(e) => setFormOpen(!formOpen)}>
-				Make Profile!
+				Profile Form
 			</button>
 			{formOpen && <ProfileForm />}
 		</div>

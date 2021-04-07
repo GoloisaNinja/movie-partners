@@ -31,9 +31,10 @@ router.post('/', auth, async (req, res) => {
 	const user = await req.user;
 	const _id = user._id;
 	let profileFields = {};
-	const { bio, genres } = req.body;
+	const { bio, genres, discoverable } = req.body;
 	profileFields.user = _id;
 	profileFields.bio = bio || '';
+	profileFields.discoverable = discoverable;
 	if (genres.length > 0) {
 		profileFields.genres = genres;
 	}

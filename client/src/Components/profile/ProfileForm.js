@@ -4,8 +4,8 @@ import axios from 'axios';
 
 const ProfileForm = () => {
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
-
 	const [bio, setBio] = useState('');
+	const [discoverable, setDiscoverable] = useState(true);
 	const [genres, setGenres] = useState({
 		gen1M: { name: '' },
 		gen2M: { name: '' },
@@ -61,6 +61,7 @@ const ProfileForm = () => {
 		const profileFormData = {
 			bio,
 			genres: [gen1M, gen2M, gen3M, gen1T, gen2T, gen3T],
+			discoverable,
 		};
 		const movGensArr = profileFormData.genres.slice(0, 3);
 		const tvGensArr = profileFormData.genres.slice(-3);
@@ -86,8 +87,17 @@ const ProfileForm = () => {
 			createProfile(profileFormData);
 		}
 	};
+	useEffect(() => {
+		if (movieGenres && tvGenres) {
+			const position = document.getElementById('form-position');
+			position.scrollIntoView();
+		}
+	}, [movieGenres, tvGenres]);
 	return movieGenres && tvGenres ? (
-		<form className='profile-form' onSubmit={(e) => handleSubmit(e)}>
+		<form
+			className='profile-form'
+			id='form-position'
+			onSubmit={(e) => handleSubmit(e)}>
 			<div className='profile-form-group'>
 				<label className='profile-label' htmlFor='bio'>
 					Short Bio: Tell us about yourself...
@@ -194,6 +204,30 @@ const ProfileForm = () => {
 						</option>
 					))}
 				</select>
+			</div>
+			<div className='profile-form-group'>
+				<label className='profile-label' htmlFor='bio'>
+					Allow profile discovery for watchlist invites!
+				</label>
+			</div>
+			<div className='switch-field'>
+				<input
+					type='radio'
+					id='radio-one'
+					defaultChecked
+					name='switch-one'
+					value={discoverable}
+					onClick={(e) => setDiscoverable(true)}
+				/>
+				<label htmlFor='radio-one'>Yes</label>
+				<input
+					type='radio'
+					id='radio-two'
+					name='switch-one'
+					value={discoverable}
+					onClick={(e) => setDiscoverable(false)}
+				/>
+				<label htmlFor='radio-two'>No</label>
 			</div>
 			<input
 				className='btn profile-submit-btn'

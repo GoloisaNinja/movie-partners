@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import authContext from '../context/auth/authContext';
+import profileContext from '../context/profile/profileContext';
 
 const Navbar = () => {
 	const [search, setSearch] = useState('');
@@ -9,6 +10,7 @@ const Navbar = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const history = useHistory();
 	const { isAuthenticated, user, logoutUser } = useContext(authContext);
+	const { clearProfile } = useContext(profileContext);
 	const handleSearch = () => {
 		if (openSearch) {
 			setOpenSeach(false);
@@ -53,6 +55,7 @@ const Navbar = () => {
 	const handleLogout = () => {
 		handleHamburger();
 		logoutUser(history);
+		clearProfile();
 	};
 	const authLinks = (
 		<>

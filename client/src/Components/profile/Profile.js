@@ -10,7 +10,7 @@ const Profile = () => {
 	const { profile, getProfile, clearProfile } = useContext(profileContext);
 	useEffect(() => {
 		getProfile();
-	}, [profile]);
+	}, []);
 	return (
 		<div className='container'>
 			<ProfileTop user={user} logout={logoutUser} clear={clearProfile} />

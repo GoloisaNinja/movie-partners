@@ -13,7 +13,7 @@ const profileReducer = (state, action) => {
 		case CLEAR_PROFILE:
 			return {
 				...state,
-				loading: true,
+				loading: false,
 				profile: null,
 			};
 		default:

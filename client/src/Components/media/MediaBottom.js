@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import MediaButtons from './MediaButtons';
 import MediaGenres from './MediaGenres';
 import MediaServices from './MediaServices';
+import profileContext from '../../context/profile/profileContext';
 import axios from 'axios';
 
 const MediaBottom = ({ media, type, media_id }) => {
 	const [providers, setProviders] = useState({});
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
+	const { profile, getProfile } = useContext(profileContext);
+	useEffect(() => {
+		getProfile();
+	}, []);
 	useEffect(() => {
 		const getProviders = async () => {
 			try {
@@ -54,13 +59,7 @@ const MediaBottom = ({ media, type, media_id }) => {
 				</div>
 				<MediaGenres genres={media.genres} />
 				{providers.results.US && <MediaServices providers={providers} />}
-				<MediaButtons
-					values={{
-						fave: '+ Favorites',
-						list: '+ Watchlist',
-						watch: '+ Watched',
-					}}
-				/>
+				{profile && <MediaButtons media={media} type={type} />}
 				{media.videos.results.length !== 0 && (
 					<div className='media-bottom-iframe'>
 						<iframe
