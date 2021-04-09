@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import authContext from '../context/auth/authContext';
 import profileContext from '../context/profile/profileContext';
+import watchlistContext from '../context/watchlist/watchlistContext';
 
 const Navbar = () => {
 	const [search, setSearch] = useState('');
@@ -10,7 +11,15 @@ const Navbar = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const history = useHistory();
 	const { isAuthenticated, user, logoutUser } = useContext(authContext);
+	const { activateWatchlist } = useContext(watchlistContext);
 	const { clearProfile } = useContext(profileContext);
+
+	useEffect(() => {
+		if (localStorage.getItem('activatedWatchlist')) {
+			activateWatchlist(localStorage.getItem('activatedWatchlist'));
+		}
+	}, []);
+
 	const handleSearch = () => {
 		if (openSearch) {
 			setOpenSeach(false);

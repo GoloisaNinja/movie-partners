@@ -24,7 +24,7 @@ const Watchlist = ({ match }) => {
 					}}>
 					...
 				</div>
-			) : watchlist.titles.length > 0 ? (
+			) : watchlist !== null && watchlist.titles.length > 0 ? (
 				<div className='container'>
 					<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
 						{watchlist.wl_name} <i className='favCrown fas fa-list'></i>
