@@ -1,13 +1,12 @@
 import React, { useReducer, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// Routing Needs - Private Route
+import PrivateRoute from '../Components/routing/PrivateRoute';
+
+// Components
 import Trending from '../Components/trending/Trending';
 import Media from '../Components/media/Media';
 import Navbar from '../Components/Navbar';
-import WatchlistState from '../context/watchlist/WatchlistState';
-import ProfileState from '../context/profile/ProfileState';
-import FavoriteState from '../context/favorite/FavoriteState';
-import WatchedState from '../context/watched/WatchedState';
-//import AuthState from '../context/auth/AuthState';
 import Pages from '../Components/trending/Pages';
 import Search from '../Components/search/Search';
 import Categories from '../Components/categories/Categories';
@@ -16,8 +15,19 @@ import Home from '../Components/Home';
 import Profile from '../Components/profile/Profile';
 import Favorites from '../Components/favorites/Favorites';
 import Watched from '../Components/watched/Watched';
+import Watchlists from '../Components/watchlists/Watchlists';
+import Watchlist from '../Components/watchlists/Watchlist';
+
+// Contexts and States
+import WatchlistState from '../context/watchlist/WatchlistState';
+import ProfileState from '../context/profile/ProfileState';
+import FavoriteState from '../context/favorite/FavoriteState';
+import WatchedState from '../context/watched/WatchedState';
+
+// Utils
 import axios from 'axios';
 import SetAuthToken from '../utils/SetAuthToken';
+
 // Imports for initial User state
 import AuthContext from '../context/auth/authContext';
 import authReducer from '../context/auth/authReducer';
@@ -25,7 +35,9 @@ import {
 	REGISTER_FAILURE,
 	REGISTER_SUCCESS,
 	LOAD_USER,
+	LOAD_FAILURE,
 	LOGIN_USER,
+	LOGIN_FAILURE,
 	LOGOUT_USER,
 } from '../context/auth/authActions';
 const AppRouter = () => {
@@ -85,7 +97,11 @@ const AppRouter = () => {
 				SetAuthToken(res.data.token);
 			}
 		} catch (e) {
+			dispatch({
+				type: LOGIN_FAILURE,
+			});
 			console.log(e.message);
+			alert(e.message);
 		}
 	};
 
@@ -129,6 +145,9 @@ const AppRouter = () => {
 			}
 		} catch (e) {
 			console.log(e.message);
+			dispatch({
+				type: LOAD_FAILURE,
+			});
 		}
 	};
 
@@ -154,9 +173,9 @@ const AppRouter = () => {
 			<Router>
 				<>
 					<ProfileState>
-						<Navbar />
-						<Switch>
-							<WatchlistState>
+						<WatchlistState>
+							<Navbar />
+							<Switch>
 								<Route exact path='/' component={Home} />
 								<Route path='/trending' component={Trending} />
 
@@ -167,16 +186,26 @@ const AppRouter = () => {
 									path='/categories/:media_id/:genre_id/:genre_name/:page'
 									component={Category}
 								/>
+
 								<FavoriteState>
 									<WatchedState>
 										<Route path='/media/:id' component={Media} />
-										<Route exact path='/profile' component={Profile} />
-										<Route path='/favorites' component={Favorites} />
-										<Route path='/watched' component={Watched} />
+										<PrivateRoute exact path='/profile' component={Profile} />
+										<PrivateRoute path='/favorites' component={Favorites} />
+										<PrivateRoute path='/watched' component={Watched} />
+										<PrivateRoute
+											exact
+											path='/watchlists'
+											component={Watchlists}
+										/>
+										<PrivateRoute
+											path='/watchlists/:watchlist_id'
+											component={Watchlist}
+										/>
 									</WatchedState>
 								</FavoriteState>
-							</WatchlistState>
-						</Switch>
+							</Switch>
+						</WatchlistState>
 					</ProfileState>
 				</>
 			</Router>

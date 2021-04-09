@@ -3,26 +3,122 @@ import WatchlistContext from './watchlistContext';
 import watchlistReducer from './watchlistReducer';
 import axios from 'axios';
 
-import { GET_WATCHLIST, ADD_TITLE } from './watchlistActions';
+import {
+	GET_WATCHLIST,
+	GET_ALL_WATCHLISTS,
+	ADD_WATCHLIST_TITLE,
+	REMOVE_WATCHLIST_TITLE,
+	CREATE_WATCHLIST,
+	CREATE_FAILURE,
+	DELETE_WATCHLIST,
+	ACTIVATE_WATCHLIST,
+} from './watchlistActions';
 
 const WatchlistState = ({ children }) => {
 	const initialState = {
-		watchlist: {},
+		loading: true,
+		activatedWatchlist: null,
+		watchlist: null,
 		watchlists: [],
 	};
 	const [state, dispatch] = useReducer(watchlistReducer, initialState);
 
 	// Watchlist Functions
 
+	// Create a new Watchlist
+
+	const createWatchlist = async (name) => {
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: token,
+			},
+		};
+		const body = JSON.stringify({ name });
+		console.log(body);
+		try {
+			const res = await axios.post(`/api/watchlist/create`, body, config);
+			if (res.status === 201) {
+				dispatch({
+					type: CREATE_WATCHLIST,
+					payload: res.data,
+				});
+
+				dispatch({
+					type: ACTIVATE_WATCHLIST,
+					payload: res.data,
+				});
+				localStorage.setItem('activatedWatchlist', res.data._id);
+			}
+		} catch (e) {
+			alert(e.message);
+			dispatch({
+				type: CREATE_FAILURE,
+			});
+			console.log(e.message);
+		}
+	};
+
+	// Get all Watchlists by User
+
+	const getAllWatchlists = async () => {
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: token,
+			},
+		};
+		try {
+			const res = await axios.get(`/api/watchlist/allwatchlists`, config);
+			dispatch({
+				type: GET_ALL_WATCHLISTS,
+				payload: res.data,
+			});
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+
 	// Get a Watchlist
 
 	const getWatchlist = async (watchlist_id) => {
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: token,
+			},
+		};
 		try {
-			const res = await axios.get(`/api/watchlist/get/${watchlist_id}`);
+			const res = await axios.get(`/api/watchlist/get/${watchlist_id}`, config);
 			dispatch({
 				type: GET_WATCHLIST,
 				payload: res.data,
 			});
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+
+	// Activate a Watchlist
+
+	const activateWatchlist = async (watchlist_id) => {
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: token,
+			},
+		};
+		try {
+			const res = await axios.get(`/api/watchlist/get/${watchlist_id}`, config);
+			dispatch({
+				type: ACTIVATE_WATCHLIST,
+				payload: res.data,
+			});
+			localStorage.setItem('activatedWatchlist', res.data._id);
 		} catch (e) {
 			console.log(e.message);
 		}
@@ -45,12 +141,35 @@ const WatchlistState = ({ children }) => {
 				body,
 				config
 			);
+			if (res.status === 200) {
+				dispatch({
+					type: ADD_WATCHLIST_TITLE,
+					payload: title,
+				});
+			}
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+
+	// Remove a Title from Watchlist
+
+	const removeTitle = async (watchlist_id, title_id) => {
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: token,
+			},
+		};
+		try {
+			const res = await axios.delete(
+				`/api/watchlist/remove/${watchlist_id}/${title_id}`,
+				config
+			);
 			dispatch({
-				type: ADD_TITLE,
-				payload: {
-					title: res.data,
-					watchlist: watchlist_id,
-				},
+				type: REMOVE_WATCHLIST_TITLE,
+				payload: title_id,
 			});
 		} catch (e) {
 			console.log(e.message);
@@ -60,10 +179,16 @@ const WatchlistState = ({ children }) => {
 	return (
 		<WatchlistContext.Provider
 			value={{
+				loading: state.loading,
+				activatedWatchlist: state.activatedWatchlist,
 				watchlist: state.watchlist,
 				watchlists: state.watchlists,
 				addTitle,
+				removeTitle,
 				getWatchlist,
+				getAllWatchlists,
+				activateWatchlist,
+				createWatchlist,
 			}}>
 			{children}
 		</WatchlistContext.Provider>

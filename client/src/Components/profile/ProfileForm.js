@@ -59,7 +59,7 @@ const ProfileForm = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const profileFormData = {
-			bio,
+			bio: bio.trim(),
 			genres: [gen1M, gen2M, gen3M, gen1T, gen2T, gen3T],
 			discoverable,
 		};

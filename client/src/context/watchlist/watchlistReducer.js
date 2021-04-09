@@ -1,21 +1,67 @@
-import { GET_WATCHLIST, ADD_TITLE } from './watchlistActions';
+import {
+	GET_WATCHLIST,
+	GET_ALL_WATCHLISTS,
+	ADD_WATCHLIST_TITLE,
+	REMOVE_WATCHLIST_TITLE,
+	CREATE_WATCHLIST,
+	CREATE_FAILURE,
+	DELETE_WATCHLIST,
+	ACTIVATE_WATCHLIST,
+} from './watchlistActions';
 
 const watchlistReducer = (state, action) => {
 	const { type, payload } = action;
 	switch (type) {
+		case CREATE_WATCHLIST:
+			return {
+				...state,
+				loading: false,
+				watchlists: [payload, ...state.watchlists],
+			};
+		case CREATE_FAILURE:
+			return {
+				...state,
+				loading: false,
+			};
 		case GET_WATCHLIST:
 			return {
 				...state,
+				loading: false,
 				watchlist: payload,
 			};
-		case ADD_TITLE:
+		case ACTIVATE_WATCHLIST:
 			return {
 				...state,
-				watchlists: state.watchlists.map((watchlist) =>
-					watchlist._id === payload.watchlist_id
-						? { ...watchlist, titles: [payload.title, ...watchlist.titles] }
-						: watchlist
-				),
+				loading: false,
+				activatedWatchlist: payload,
+			};
+		case GET_ALL_WATCHLISTS:
+			return {
+				...state,
+				loading: false,
+				watchlists: payload,
+			};
+		case ADD_WATCHLIST_TITLE:
+			return {
+				...state,
+				loading: false,
+				activatedWatchlist: {
+					...state.activatedWatchlist,
+					titles: [payload, ...state.activatedWatchlist.titles],
+				},
+			};
+		case REMOVE_WATCHLIST_TITLE:
+			return {
+				...state,
+				loading: false,
+				activatedWatchlist: {
+					...state.activatedWatchlist,
+					titles: [
+						...state.activatedWatchlist.titles.filter(
+							(title) => title.tmdb_id !== payload
+						),
+					],
+				},
 			};
 		default:
 			return state;

@@ -3,9 +3,19 @@ import mongoose from 'mongoose';
 const WatchlistSchema = new mongoose.Schema(
 	{
 		user: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'User',
-			required: true,
+			_id: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'User',
+				required: true,
+			},
+			name: {
+				type: String,
+				required: true,
+			},
+			avatar: {
+				type: String,
+				required: true,
+			},
 		},
 		wl_name: {
 			type: String,
@@ -38,7 +48,7 @@ const WatchlistSchema = new mongoose.Schema(
 					ref: 'User',
 					required: true,
 				},
-				partern_name: {
+				partner_name: {
 					type: String,
 					required: true,
 				},

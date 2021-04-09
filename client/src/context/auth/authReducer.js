@@ -4,6 +4,8 @@ import {
 	LOGIN_USER,
 	LOGOUT_USER,
 	LOAD_USER,
+	LOAD_FAILURE,
+	LOGIN_FAILURE,
 } from './authActions';
 
 const authReducer = (state, action) => {
@@ -26,6 +28,8 @@ const authReducer = (state, action) => {
 			};
 		case REGISTER_FAILURE:
 		case LOGOUT_USER:
+		case LOAD_FAILURE:
+		case LOGIN_FAILURE:
 			return {
 				...state,
 				loading: false,
