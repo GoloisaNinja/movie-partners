@@ -40,6 +40,10 @@
 		background-color: lighten($primary-button-color, 10%);
 		color: $secondary-text-color;
 	}
+	&:disabled {
+		cursor: default;
+		opacity: 0.5;
+	}
 }
 .watched-btn {
 	@extend .favorites-btn;

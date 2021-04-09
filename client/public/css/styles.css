@@ -405,6 +405,9 @@ input {
   .watchlist-btn:hover {
     background-color: #7900cf;
     color: #ededed; }
+  .watchlist-btn:disabled {
+    cursor: default;
+    opacity: 0.5; }
 
 .watched-btn {
   background-color: #009985;

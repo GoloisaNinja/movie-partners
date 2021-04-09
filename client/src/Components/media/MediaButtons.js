@@ -102,17 +102,19 @@ const MediaButtons = ({ media, type }) => {
 	}, [setIsWatched, watched, media.id]);
 	useEffect(() => {
 		const checkInWatchlist = () => {
-			for (let i = 0; i < activatedWatchlist.titles.length; i++) {
-				if (
-					activatedWatchlist.titles[i]['tmdb_id'] === media.id &&
-					activatedWatchlist.titles[i]['media_type'] === type
-				) {
-					setInActiveWatchlist(true);
+			if (activatedWatchlist !== null) {
+				for (let i = 0; i < activatedWatchlist.titles.length; i++) {
+					if (
+						activatedWatchlist.titles[i]['tmdb_id'] === media.id &&
+						activatedWatchlist.titles[i]['media_type'] === type
+					) {
+						setInActiveWatchlist(true);
+					}
 				}
 			}
 		};
 		checkInWatchlist();
-	}, [setInActiveWatchlist, activatedWatchlist.titles, media.id]);
+	}, [setInActiveWatchlist, activatedWatchlist, media.id]);
 	return (
 		<div className='profile-buttons'>
 			{isFavorite ? (
@@ -133,7 +135,10 @@ const MediaButtons = ({ media, type }) => {
 					<i className='fas fa-minus-square'></i> Watchlist
 				</button>
 			) : (
-				<button className='btn watchlist-btn' onClick={(e) => handleAddTitle()}>
+				<button
+					className='btn watchlist-btn'
+					disabled={activatedWatchlist === null}
+					onClick={(e) => handleAddTitle()}>
 					<i className='fas fa-plus-square'></i> Watchlist
 				</button>
 			)}
