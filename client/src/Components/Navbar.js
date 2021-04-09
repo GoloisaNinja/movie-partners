@@ -82,7 +82,7 @@ const Navbar = () => {
 					onClick={(e) => setOpenSeach(!openSearch)}>
 					Search
 				</button>
-				<Link to='/'>
+				<Link to='/watchlists'>
 					<button className='unBtn nav-link'>Watchlists</button>
 				</Link>
 				<Link to='/categories'>
@@ -120,7 +120,7 @@ const Navbar = () => {
 				</div>
 				<div className='menu-bottom'>
 					<ul className='menu-list'>
-						<Link to='/'>
+						<Link to='/watchlists'>
 							<button
 								className='unBtn'
 								style={{ color: '#ededed' }}
