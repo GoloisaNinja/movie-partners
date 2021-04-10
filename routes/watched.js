@@ -34,9 +34,18 @@ router.post('/add', auth, async (req, res) => {
 	try {
 		let watched = await Watched.findOne({ user: _id });
 		if (watched) {
-			watched.watched.unshift(watchedFields);
-			await watched.save();
-			return res.status(200).json(watched.watched[0]);
+			const match = watched.watched.filter(
+				(title) => title.tmdb_id === tmdb_id && title.media_type === media_type
+			);
+			if (match.length > 0) {
+				return res
+					.status(400)
+					.send({ message: 'Title is already in watched...' });
+			} else {
+				watched.watched.unshift(watchedFields);
+				await watched.save();
+				return res.status(200).json(watched.watched[0]);
+			}
 		}
 		watched = new Watched({ user: _id, watched: watchedFields });
 		await watched.save();

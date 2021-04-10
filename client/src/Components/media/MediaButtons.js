@@ -11,6 +11,8 @@ const MediaButtons = ({ media, type }) => {
 	const { activatedWatchlist, addTitle, removeTitle } = useContext(
 		watchlistContext
 	);
+	const [favoriteId, setFavoriteId] = useState();
+	const [watchedId, setWatchedId] = useState();
 	const [isFavorite, setIsFavorite] = useState();
 	const [isWatched, setIsWatched] = useState();
 	const [inActiveWatchlist, setInActiveWatchlist] = useState();
@@ -30,7 +32,7 @@ const MediaButtons = ({ media, type }) => {
 		addFavorite(mediaObj);
 	};
 	const handleRemoveFav = () => {
-		removeFavorite(media.id);
+		removeFavorite(favoriteId);
 		setIsFavorite(false);
 	};
 
@@ -50,7 +52,7 @@ const MediaButtons = ({ media, type }) => {
 		addWatched(mediaObj);
 	};
 	const handleRemoveWatched = () => {
-		removeWatched(media.id);
+		removeWatched(watchedId);
 		setIsWatched(false);
 	};
 
@@ -81,6 +83,7 @@ const MediaButtons = ({ media, type }) => {
 					favorites[i]['tmdb_id'] === media.id &&
 					favorites[i]['media_type'] === type
 				) {
+					setFavoriteId(favorites[i]['_id']);
 					setIsFavorite(true);
 				}
 			}
@@ -94,6 +97,7 @@ const MediaButtons = ({ media, type }) => {
 					watched[i]['tmdb_id'] === media.id &&
 					watched[i]['media_type'] === type
 				) {
+					setWatchedId(watched[i]['_id']);
 					setIsWatched(true);
 				}
 			}

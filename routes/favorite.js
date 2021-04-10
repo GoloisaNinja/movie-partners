@@ -34,9 +34,19 @@ router.post('/add', auth, async (req, res) => {
 	try {
 		let favorite = await Favorite.findOne({ user: _id });
 		if (favorite) {
-			favorite.favorites.unshift(favoriteFields);
-			await favorite.save();
-			return res.status(200).json(favorite.favorites[0]);
+			const match = favorite.favorites.filter(
+				(favorite) =>
+					favorite.tmdb_id === tmdb_id && favorite.media_type === media_type
+			);
+			if (match.length > 0) {
+				return res
+					.status(400)
+					.send({ message: 'Title already in favorites...' });
+			} else {
+				favorite.favorites.unshift(favoriteFields);
+				await favorite.save();
+				return res.status(200).json(favorite.favorites[0]);
+			}
 		}
 		favorite = new Favorite({ user: _id, favorites: favoriteFields });
 		await favorite.save();
