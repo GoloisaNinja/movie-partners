@@ -1102,7 +1102,8 @@ input {
 
 .watch-activate,
 .watch-share,
-.watch-create {
+.watch-create,
+.watch-delete {
   border: none;
   outline: none;
   border-radius: 5px;
@@ -1122,6 +1123,12 @@ input {
   margin-right: 1rem;
   background: #d100b9; }
 
+.watch-share {
+  margin-right: 1rem; }
+
+.watch-delete {
+  background: #009985; }
+
 @media (max-width: 500px) {
   .watchlist-grid {
     grid-template-columns: 1fr; } }
@@ -1129,3 +1136,69 @@ input {
 @media (min-width: 1024px) {
   .watchlist-grid {
     grid-template-columns: 1fr 1fr 1fr; } }
+
+.modalStyle {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  max-width: 90%;
+  z-index: 1010;
+  background-color: #272727;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  text-align: center; }
+
+.modalOverlay {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0a0a0a;
+  opacity: 90%; }
+
+.modalButton1, .modalButton2, .modalDismissButton1 {
+  background-color: #d100b9;
+  color: #fff;
+  padding: 1rem;
+  border: none;
+  border-radius: 3px;
+  width: 80px;
+  max-width: 100%;
+  border-bottom: 2px solid #9e008c;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out; }
+  .modalButton1:hover, .modalButton2:hover, .modalDismissButton1:hover {
+    background-color: #eb00d0;
+    border-bottom: 2px solid #d100b9; }
+
+.modalButton2 {
+  background-color: #5b009c;
+  border-bottom: 2px solid #3d0069; }
+  .modalButton2:hover {
+    background-color: #7900cf;
+    border-bottom: 2px solid #5b009c; }
+
+.modalDismissButton1 {
+  background-color: #0e1013;
+  border-bottom: #030404;
+  width: 100px; }
+  .modalDismissButton1:hover {
+    background-color: #39414e;
+    border-bottom: #0e1013; }
+
+.buttonDiv {
+  display: flex;
+  justify-content: space-evenly; }
+
+.modal-icon {
+  width: 80px;
+  height: 80px; }

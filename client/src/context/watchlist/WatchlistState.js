@@ -60,6 +60,32 @@ const WatchlistState = ({ children }) => {
 		}
 	};
 
+	// Delete a Watchlist
+
+	const deleteWatchlist = async (watchlist_id) => {
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: token,
+			},
+		};
+		try {
+			const res = await axios.delete(
+				`/api/watchlist/delete/${watchlist_id}`,
+				config
+			);
+			if (res.status === 200) {
+				dispatch({
+					type: DELETE_WATCHLIST,
+					payload: watchlist_id,
+				});
+			}
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+
 	// Get all Watchlists by User
 
 	const getAllWatchlists = async () => {
@@ -167,10 +193,12 @@ const WatchlistState = ({ children }) => {
 				`/api/watchlist/remove/${watchlist_id}/${title_id}`,
 				config
 			);
-			dispatch({
-				type: REMOVE_WATCHLIST_TITLE,
-				payload: title_id,
-			});
+			if (res.status === 200) {
+				dispatch({
+					type: REMOVE_WATCHLIST_TITLE,
+					payload: title_id,
+				});
+			}
 		} catch (e) {
 			console.log(e.message);
 		}
@@ -189,6 +217,7 @@ const WatchlistState = ({ children }) => {
 				getAllWatchlists,
 				activateWatchlist,
 				createWatchlist,
+				deleteWatchlist,
 			}}>
 			{children}
 		</WatchlistContext.Provider>

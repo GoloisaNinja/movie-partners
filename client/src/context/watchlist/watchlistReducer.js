@@ -23,6 +23,14 @@ const watchlistReducer = (state, action) => {
 				...state,
 				loading: false,
 			};
+		case DELETE_WATCHLIST:
+			return {
+				...state,
+				loading: false,
+				watchlists: [
+					...state.watchlists.filter((watchlist) => watchlist._id !== payload),
+				],
+			};
 		case GET_WATCHLIST:
 			return {
 				...state,

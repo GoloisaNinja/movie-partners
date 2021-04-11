@@ -56,7 +56,6 @@ router.post('/create', auth, async (req, res) => {
 	const user = await req.user;
 	const _id = user._id;
 	const wl_name = req.body.name;
-	console.log(wl_name);
 	try {
 		const profile = await Profile.findOne({ user: _id });
 		if (!profile) {
@@ -65,13 +64,14 @@ router.post('/create', auth, async (req, res) => {
 				.send({ message: 'Request could not be completed...' });
 		}
 		if (profile.watchlists.length > 0) {
-			profile.watchlists.forEach(
-				(list) =>
-					list.name === wl_name &&
-					res
-						.status(400)
-						.send({ message: 'Watchlist with that name already exists...' })
+			const match = profile.watchlists.filter(
+				(watchlist) => watchlist.name === wl_name
 			);
+			if (match.length > 0) {
+				return res
+					.status(400)
+					.send({ message: 'Watchlist with that name already exists...' });
+			}
 		}
 		const watchlist = new Watchlist({
 			user: {
@@ -85,6 +85,47 @@ router.post('/create', auth, async (req, res) => {
 		profile.watchlists.unshift({ name: wl_name, wl_id: watchlist._id });
 		await profile.save();
 		res.status(201).send(watchlist);
+	} catch (e) {
+		console.error(e);
+		res.status(400).send({ message: e.message });
+	}
+});
+
+// Delete a Watchlist
+
+router.delete('/delete/:id', auth, async (req, res) => {
+	const user = await req.user;
+	const _id = req.params.id;
+	try {
+		if (!user) {
+			return res.status(401).send({ message: 'Please authenticate...' });
+		}
+		const profile = await Profile.findOne({ user: user._id });
+		if (!profile) {
+			return res
+				.status(404)
+				.send({ message: 'Request could not be completed...' });
+		}
+		const index = profile.watchlists.findIndex(
+			(watchlist) => watchlist.wl_id.toString() === _id
+		);
+		if (index === -1) {
+			return res
+				.status(404)
+				.send({ message: 'Could not find watchlist in profile...' });
+		}
+		const watchlist = await Watchlist.findById({ _id });
+		if (!watchlist) {
+			return res.status(404).send({ message: 'Could not find watchlist...' });
+		}
+		if (watchlist.user._id.toString() === user._id.toString()) {
+			watchlist.delete();
+			profile.watchlists.splice(index, 1);
+			await profile.save();
+			return res.status(200).send({ message: 'Watchlist deleted' });
+		} else {
+			return res.status(401).send({ message: 'Unauthorized' });
+		}
 	} catch (e) {
 		console.error(e);
 		res.status(400).send({ message: e.message });

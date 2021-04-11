@@ -40,7 +40,8 @@
 
 .watch-activate,
 .watch-share,
-.watch-create {
+.watch-create,
+.watch-delete {
 	border: none;
 	outline: none;
 	border-radius: 5px;
@@ -59,6 +60,12 @@
 .watch-activate {
 	margin-right: 1rem;
 	background: $secondary-button-color;
+}
+.watch-share {
+	margin-right: 1rem;
+}
+.watch-delete {
+	background: $auxiliary-button-color;
 }
 @media (max-width: 500px) {
 	.watchlist-grid {
