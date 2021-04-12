@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 import auth from '../middleware/auth.js';
 import Watched from '../models/Watched.js';
+import Profile from '../models/Profile.js';
 
 // Get Watched Array
 
@@ -32,6 +33,7 @@ router.post('/add', auth, async (req, res) => {
 	watchedFields.poster_path = poster_path;
 	watchedFields.media_type = media_type;
 	try {
+		const profile = await Profile.findOne({ user: _id });
 		let watched = await Watched.findOne({ user: _id });
 		if (watched) {
 			const match = watched.watched.filter(
@@ -49,6 +51,8 @@ router.post('/add', auth, async (req, res) => {
 		}
 		watched = new Watched({ user: _id, watched: watchedFields });
 		await watched.save();
+		profile.watched = watched._id;
+		await profile.save();
 		res.status(201).json(watched.watched[0]);
 	} catch (e) {
 		console.error(e);

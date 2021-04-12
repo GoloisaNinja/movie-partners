@@ -25,6 +25,29 @@ router.get('/me', auth, async (req, res) => {
 	}
 });
 
+// Get All User Profiles whom are discoverable
+
+router.get('/all', auth, async (req, res) => {
+	const user = await req.user;
+	try {
+		if (!user) {
+			return res.status(401).send({ message: 'Please authenticate...' });
+		}
+		const profiles = await Profile.find()
+			.populate('user', ['name', 'avatar'])
+			.populate('favorites', 'favorites')
+			.populate('watched', 'watched')
+			.where({ discoverable: true });
+		if (!profiles) {
+			return res.status(404).json({ message: 'No share profiles...' });
+		}
+		res.status(200).json(profiles);
+	} catch (e) {
+		console.error(e);
+		res.status(500).send(e.message);
+	}
+});
+
 // Create new Profile
 
 router.post('/', auth, async (req, res) => {

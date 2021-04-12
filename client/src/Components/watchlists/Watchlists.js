@@ -30,7 +30,10 @@ const Watchlists = () => {
 		<div className='container'>
 			<div className='profile-branding'>
 				<h2>
-					MOVIE <span className='pink-span'>PARTNERS </span>WATCHLISTS
+					Movie <span className='pink-span'>Partners </span>Watchlists{' '}
+					<span className='pink-span'>
+						<i className='fas fa-couch'></i>
+					</span>
 				</h2>
 			</div>
 			<div>

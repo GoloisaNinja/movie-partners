@@ -47,11 +47,27 @@ const ProfileSchema = new mongoose.Schema(
 				timestamps: true,
 			},
 		],
+		favorites: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Favorite',
+		},
+		watched: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Watched',
+		},
 		invites: [
 			{
 				sender_id: {
 					type: mongoose.Schema.Types.ObjectId,
 					ref: 'User',
+					required: true,
+				},
+				sender_name: {
+					type: String,
+					required: true,
+				},
+				sender_avatar: {
+					type: String,
 					required: true,
 				},
 				watchlist_id: {

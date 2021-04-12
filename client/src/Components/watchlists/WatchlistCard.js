@@ -75,7 +75,14 @@ const WatchlistCard = ({ watchlist }) => {
 								Activate
 							</button>
 						)}
-						<button className='btn watch-share'>Share</button>
+						<Link
+							to={{
+								pathname: '/people',
+								state: { id: watchlist._id, wl_name: watchlist.wl_name },
+							}}>
+							<button className='btn watch-share'>Share</button>
+						</Link>
+
 						<button className='btn watch-delete' onClick={(e) => setShow(true)}>
 							<i className='fas fa-trash-alt'></i>
 						</button>

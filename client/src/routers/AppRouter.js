@@ -17,6 +17,7 @@ import Favorites from '../Components/favorites/Favorites';
 import Watched from '../Components/watched/Watched';
 import Watchlists from '../Components/watchlists/Watchlists';
 import Watchlist from '../Components/watchlists/Watchlist';
+import People from '../Components/people/People';
 
 // Contexts and States
 import WatchlistState from '../context/watchlist/WatchlistState';
@@ -202,6 +203,7 @@ const AppRouter = () => {
 											path='/watchlists/:watchlist_id'
 											component={Watchlist}
 										/>
+										<PrivateRoute path='/people' component={People} />
 									</WatchedState>
 								</FavoriteState>
 							</Switch>

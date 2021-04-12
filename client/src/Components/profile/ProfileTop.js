@@ -11,7 +11,14 @@ const ProfileTop = ({ user, logout, clear }) => {
 		<>
 			<div className='profile-branding'>
 				<h2>
-					MOVIE <span className='pink-span'>PARTNERS </span>PROFILE
+					Movie{' '}
+					<span className='pink-span'>
+						<strong>Partners</strong>{' '}
+					</span>
+					Profile{' '}
+					<span className='pink-span'>
+						<i className='fas fa-user'></i>
+					</span>
 				</h2>
 			</div>
 			<div className='profile-avatar-container'>

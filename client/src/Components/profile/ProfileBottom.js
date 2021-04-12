@@ -53,6 +53,20 @@ const ProfileBottom = ({ profile }) => {
 					<button className='btn profBtn watched-btn'>Watched</button>
 				</Link>
 			</div>
+			{profile.invites.length > 0 && (
+				<>
+					<p style={{ marginBottom: '1.5rem' }} className='profile-bio-desc'>
+						You have invites!
+					</p>
+					<div className='profile-buttons-div'>
+						<Link to='/invites'>
+							<button className='btn profBtn invite-btn'>
+								Invites ({profile.invites.length})
+							</button>
+						</Link>
+					</div>
+				</>
+			)}
 		</div>
 	);
 };

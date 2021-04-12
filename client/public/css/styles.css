@@ -380,7 +380,7 @@ input {
 .pagination-buttons {
   margin-top: 2rem; }
 
-.favorites-btn, .watchlist-btn, .watched-btn, .profile-form-btn, .profile-submit-btn {
+.favorites-btn, .watchlist-btn, .watched-btn, .invite-btn, .profile-form-btn, .profile-submit-btn {
   background-color: #d100b9;
   color: #fff;
   padding: 1.65rem 2rem;
@@ -394,7 +394,7 @@ input {
   width: 50%;
   cursor: pointer;
   transition: all 0.7s ease-in-out; }
-  .favorites-btn:hover, .watchlist-btn:hover, .watched-btn:hover, .profile-form-btn:hover, .profile-submit-btn:hover {
+  .favorites-btn:hover, .watchlist-btn:hover, .watched-btn:hover, .invite-btn:hover, .profile-form-btn:hover, .profile-submit-btn:hover {
     background-color: #ff05e2;
     color: #ededed; }
 
@@ -417,17 +417,25 @@ input {
     background-color: #00b39b;
     color: #ededed; }
 
+.invite-btn {
+  background-color: #1c15d6;
+  border-bottom: 2px #1610a8 solid;
+  margin-right: 0; }
+  .invite-btn:hover {
+    background-color: #231ce9;
+    color: #ededed; }
+
 @media (max-width: 600px) {
   .profile-buttons,
   .pagination-buttons {
     flex-direction: column;
     margin-bottom: 0;
     align-items: center; }
-  .favorites-btn, .watchlist-btn, .watched-btn, .profile-form-btn, .profile-submit-btn,
+  .favorites-btn, .watchlist-btn, .watched-btn, .invite-btn, .profile-form-btn, .profile-submit-btn,
   .watchlist-btn,
   .watched-btn {
     width: 100%; }
-  .favorites-btn, .watchlist-btn, .watched-btn, .profile-form-btn, .profile-submit-btn {
+  .favorites-btn, .watchlist-btn, .watched-btn, .invite-btn, .profile-form-btn, .profile-submit-btn {
     margin-bottom: 2.5rem;
     margin-right: 0; }
   .watched-btn {
@@ -1109,7 +1117,6 @@ input {
   border-radius: 5px;
   padding: 1rem;
   color: #fff;
-  max-width: 50%;
   background: #5b009c;
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
@@ -1188,12 +1195,12 @@ input {
     border-bottom: 2px solid #5b009c; }
 
 .modalDismissButton1 {
-  background-color: #0e1013;
-  border-bottom: #030404;
+  background-color: #009985;
+  border-bottom: #00806f;
   width: 100px; }
   .modalDismissButton1:hover {
-    background-color: #39414e;
-    border-bottom: #0e1013; }
+    background-color: #00b39b;
+    border-bottom: #009985; }
 
 .buttonDiv {
   display: flex;
@@ -1202,3 +1209,52 @@ input {
 .modal-icon {
   width: 80px;
   height: 80px; }
+
+.people-table {
+  margin: 0 auto;
+  margin-top: 2rem;
+  width: 95%; }
+
+th {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #d100b9;
+  padding: 0.75rem;
+  border-bottom: 1px solid #d100b9; }
+
+td {
+  font-weight: 400;
+  font-size: 1.2rem;
+  padding: 0.75rem;
+  color: #fff;
+  text-align: center;
+  border-bottom: 1px solid #d100b9; }
+
+tr:nth-child(even) {
+  background: #272727; }
+
+.people-invite-btn {
+  background-color: #5b009c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  border-bottom: 2px #3d0069 solid;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.7s ease-in-out; }
+  .people-invite-btn:hover {
+    background-color: #7900cf;
+    color: #ededed; }
+
+.people-table-avatar {
+  border-radius: 50%;
+  width: 50px; }
+
+.peopleWatched {
+  color: #5b009c; }
+
+.peopleFave {
+  color: #009985; }

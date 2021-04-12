@@ -53,12 +53,12 @@
 }
 .modalDismissButton1 {
 	@extend .modalButton1;
-	background-color: #0e1013;
-	border-bottom: darken(#0e1013, 5%);
+	background-color: $auxiliary-button-color;
+	border-bottom: darken($auxiliary-button-color, 5%);
 	width: 100px;
 	&:hover {
-		background-color: lighten(#0e1013, 20%);
-		border-bottom: #0e1013;
+		background-color: lighten($auxiliary-button-color, 5%);
+		border-bottom: $auxiliary-button-color;
 	}
 }
 .buttonDiv {

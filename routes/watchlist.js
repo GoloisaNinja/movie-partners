@@ -50,6 +50,48 @@ router.get('/get/:id', auth, async (req, res) => {
 	}
 });
 
+// Invite a Watchlist
+
+router.post('/invite/:watchlist_id/:user_id', auth, async (req, res) => {
+	const user = await req.user;
+	const _id = user._id;
+	const watchlist_id = req.params.watchlist_id;
+	const watchlist_name = req.body.watchlist_name;
+	const inviteUser = req.params.user_id;
+	const invite = {
+		sender_id: _id,
+		sender_name: user.name,
+		sender_avatar: user.avatar,
+		watchlist_id: watchlist_id,
+		watchlist_name,
+	};
+	try {
+		if (!user) {
+			return res.status(401).send({ message: 'Please authenticate...' });
+		}
+		const profile = await Profile.findOne({ user: inviteUser });
+		if (!profile) {
+			return res
+				.status(404)
+				.send({ message: 'Request could not be completed...' });
+		}
+		const match = profile.watchlists.filter(
+			(watchlist) => watchlist._id.toString() === watchlist_id
+		);
+		if (match.length > 0) {
+			return res
+				.status(400)
+				.send({ message: 'User already has access to watchlist...' });
+		}
+		profile.invites.unshift(invite);
+		await profile.save();
+		res.status(201).send({ message: 'Invite successful...' });
+	} catch (e) {
+		console.error(e);
+		res.status(400).send({ message: e.message });
+	}
+});
+
 // Create new Watchlist
 
 router.post('/create', auth, async (req, res) => {

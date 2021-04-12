@@ -55,6 +55,16 @@
 		color: $secondary-text-color;
 	}
 }
+.invite-btn {
+	@extend .favorites-btn;
+	background-color: #1c15d6;
+	border-bottom: 2px darken(#1c15d6, 10%) solid;
+	margin-right: 0;
+	&:hover {
+		background-color: lighten(#1c15d6, 5%);
+		color: $secondary-text-color;
+	}
+}
 @media (max-width: 600px) {
 	.profile-buttons,
 	.pagination-buttons {

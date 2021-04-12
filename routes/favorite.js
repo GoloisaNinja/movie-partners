@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 import auth from '../middleware/auth.js';
 import Favorite from '../models/Favorite.js';
+import Profile from '../models/Profile.js';
 
 // Get Favorites Array
 
@@ -32,6 +33,7 @@ router.post('/add', auth, async (req, res) => {
 	favoriteFields.poster_path = poster_path;
 	favoriteFields.media_type = media_type;
 	try {
+		const profile = await Profile.findOne({ user: _id });
 		let favorite = await Favorite.findOne({ user: _id });
 		if (favorite) {
 			const match = favorite.favorites.filter(
@@ -50,6 +52,8 @@ router.post('/add', auth, async (req, res) => {
 		}
 		favorite = new Favorite({ user: _id, favorites: favoriteFields });
 		await favorite.save();
+		profile.favorites = favorite._id;
+		await profile.save();
 		res.status(201).json(favorite.favorites[0]);
 	} catch (e) {
 		console.error(e);

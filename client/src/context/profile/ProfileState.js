@@ -3,12 +3,19 @@ import ProfileContext from './profileContext';
 import profileReducer from './profileReducer';
 import axios from 'axios';
 
-import { CREATE_PROFILE, GET_PROFILE, CLEAR_PROFILE } from './profileActions';
+import {
+	CREATE_PROFILE,
+	GET_PROFILE,
+	CLEAR_PROFILE,
+	GET_ALL_PROFILES,
+	INVITE_PROFILE_TO_WATCHLIST,
+} from './profileActions';
 
 const ProfileState = ({ children }) => {
 	const initialState = {
 		loading: true,
 		profile: null,
+		profiles: [],
 	};
 	const [state, dispatch] = useReducer(profileReducer, initialState);
 
@@ -30,6 +37,55 @@ const ProfileState = ({ children }) => {
 				type: GET_PROFILE,
 				payload: res.data,
 			});
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+
+	// Get all Profiles
+
+	const getAllProfiles = async () => {
+		const token = localStorage.getItem('token');
+		try {
+			const config = {
+				headers: {
+					'Content-type': 'applicaiton/json',
+					Authorization: token,
+				},
+			};
+			const res = await axios.get(`/api/profile/all`, config);
+			dispatch({
+				type: GET_ALL_PROFILES,
+				payload: res.data,
+			});
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+
+	// Invite Watchlist
+
+	const inviteWatchlist = async (watchlist_id, user_id, watchlist_name) => {
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: token,
+			},
+		};
+		const body = JSON.stringify({ watchlist_name });
+		try {
+			const res = await axios.post(
+				`/api/watchlist/invite/${watchlist_id}/${user_id}`,
+				body,
+				config
+			);
+			if (res.status === 201) {
+				dispatch({
+					type: INVITE_PROFILE_TO_WATCHLIST,
+					payload: user_id,
+				});
+			}
 		} catch (e) {
 			console.log(e.message);
 		}
@@ -70,9 +126,12 @@ const ProfileState = ({ children }) => {
 			value={{
 				loading: state.loading,
 				profile: state.profile,
+				profiles: state.profiles,
 				getProfile,
 				createProfile,
 				clearProfile,
+				getAllProfiles,
+				inviteWatchlist,
 			}}>
 			{children}
 		</ProfileContext.Provider>
