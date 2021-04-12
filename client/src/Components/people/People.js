@@ -47,8 +47,8 @@ const People = ({ location }) => {
 						/>
 					</td>
 					<td>{profile.user.name}</td>
-					<td>{profile.watched.watched.length}</td>
-					<td>{profile.favorites.favorites.length}</td>
+					<td>{profile.watched ? profile.watched.watched.length : 0}</td>
+					<td>{profile.favorites ? profile.favorites.favorites.length : 0}</td>
 					<td>
 						<button
 							className='btn people-invite-btn'
