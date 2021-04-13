@@ -272,12 +272,17 @@ router.post('/add/:id', auth, async (req, res) => {
 		const validPartner = watchlist.partners.filter(
 			(partner) => partner.partner_id.toString() === _id.toString()
 		);
-		if (validPartner.length === 0 && watchlist.user._id !== _id) {
+		if (
+			validPartner.length === 0 &&
+			watchlist.user._id.toString() !== _id.toString()
+		) {
 			return res.status(401).send({ message: 'Unauthorized...' });
 		}
 		if (watchlist.titles.length > 0) {
 			const check = watchlist.titles.filter(
-				(title) => title.tmdb_id === tmdb_id && title.media_type === media_type
+				(title) =>
+					title.tmdb_id.toString() === tmdb_id &&
+					title.media_type === media_type
 			);
 			if (check.length > 0) {
 				return res
@@ -319,7 +324,10 @@ router.delete('/remove/:watchlist_id/:title_id', auth, async (req, res) => {
 		const validPartner = watchlist.partners.filter(
 			(partner) => partner.partner_id.toString() === _id.toString()
 		);
-		if (validPartner.length === 0 && watchlist.user._id !== _id) {
+		if (
+			validPartner.length === 0 &&
+			watchlist.user._id.toString() !== _id.toString()
+		) {
 			return res.status(401).send({ message: 'Unauthorized...' });
 		}
 		const index = watchlist.titles.findIndex(
