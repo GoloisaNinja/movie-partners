@@ -12,7 +12,7 @@ const Navbar = () => {
 	const history = useHistory();
 	const { isAuthenticated, user, logoutUser } = useContext(authContext);
 	const { activateWatchlist } = useContext(watchlistContext);
-	const { clearProfile } = useContext(profileContext);
+	const { clearProfile, getProfile, profile } = useContext(profileContext);
 
 	useEffect(() => {
 		if (localStorage.getItem('activatedWatchlist')) {
@@ -66,6 +66,15 @@ const Navbar = () => {
 		logoutUser(history);
 		clearProfile();
 	};
+
+	useEffect(() => {
+		const checkForProfile = async () => {
+			await isAuthenticated;
+			getProfile();
+		};
+		checkForProfile();
+	}, [isAuthenticated]);
+
 	const authLinks = (
 		<>
 			<div className='nav-start'>
@@ -91,9 +100,14 @@ const Navbar = () => {
 					onClick={(e) => setOpenSeach(!openSearch)}>
 					Search
 				</button>
-				<Link to='/watchlists'>
-					<button className='unBtn nav-link'>Watchlists</button>
-				</Link>
+				{profile !== null
+					? profile.watchlists.length !== 0 && (
+							<Link to='/watchlists'>
+								<button className='unBtn nav-link'>Watchlists</button>
+							</Link>
+					  )
+					: null}
+
 				<Link to='/categories'>
 					<button className='unBtn nav-link'>Categories</button>
 				</Link>
@@ -129,14 +143,19 @@ const Navbar = () => {
 				</div>
 				<div className='menu-bottom'>
 					<ul className='menu-list'>
-						<Link to='/watchlists'>
-							<button
-								className='unBtn'
-								style={{ color: '#ededed' }}
-								onClick={(e) => handleHamburger()}>
-								<li>Watchlists</li>
-							</button>
-						</Link>
+						{profile !== null
+							? profile.watchlists.length !== 0 && (
+									<Link to='/watchlists'>
+										<button
+											className='unBtn'
+											style={{ color: '#ededed' }}
+											onClick={(e) => handleHamburger()}>
+											<li>Watchlists</li>
+										</button>
+									</Link>
+							  )
+							: null}
+
 						<Link to='/trending'>
 							<button
 								className='unBtn'
