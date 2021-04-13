@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import watchlistContext from '../../context/watchlist/watchlistContext';
+import authContext from '../../context/auth/authContext';
 import Modal from '../Modal';
 
 const WatchlistCard = ({ watchlist }) => {
 	const { activatedWatchlist, activateWatchlist, deleteWatchlist } = useContext(
 		watchlistContext
 	);
+	const { user } = useContext(authContext);
 	const handleActivate = () => {
 		activateWatchlist(watchlist._id);
 	};
@@ -59,7 +61,9 @@ const WatchlistCard = ({ watchlist }) => {
 						<span className='pink-span'>
 							{watchlist.partners.length > 0 ? (
 								<strong>
-									{watchlist.partners.map((partner) => partner.name).toString()}
+									{watchlist.partners
+										.map((partner) => partner.partner_name)
+										.toString()}
 								</strong>
 							) : (
 								<strong>none...</strong>
@@ -83,9 +87,13 @@ const WatchlistCard = ({ watchlist }) => {
 							<button className='btn watch-share'>Share</button>
 						</Link>
 
-						<button className='btn watch-delete' onClick={(e) => setShow(true)}>
-							<i className='fas fa-trash-alt'></i>
-						</button>
+						{user._id === watchlist.user._id && (
+							<button
+								className='btn watch-delete'
+								onClick={(e) => setShow(true)}>
+								<i className='fas fa-trash-alt'></i>
+							</button>
+						)}
 					</div>
 				</div>
 			</div>

@@ -92,6 +92,79 @@ router.post('/invite/:watchlist_id/:user_id', auth, async (req, res) => {
 	}
 });
 
+// Decline Invite to Watchlist
+
+router.post('/decline/:invite_id', auth, async (req, res) => {
+	const user = await req.user;
+	const _id = user._id;
+	const invite_id = req.params.invite_id;
+	try {
+		if (!user) {
+			return res.status(401).send({ message: 'Please authenticate...' });
+		}
+		const profile = await Profile.findOne({ user: _id });
+		if (!profile) {
+			return res
+				.status(404)
+				.send({ message: 'Request could not be completed...' });
+		}
+		const index = profile.invites.findIndex(
+			(invite) => invite._id.toString() === invite_id
+		);
+		if (index === -1) {
+			return res.status(404).send({ message: 'Could not find invite...' });
+		}
+		profile.invites.splice(index, 1);
+		await profile.save();
+		res.status(200).send({ message: 'Invite declined...' });
+	} catch (e) {
+		console.error(e);
+		res.status(400).send({ message: e.message });
+	}
+});
+
+// Accept Invite to Watchlist
+
+router.post('/accept/:invite_id/:watchlist_id', auth, async (req, res) => {
+	const user = await req.user;
+	const _id = user._id;
+	const invite_id = req.params.invite_id;
+	const watchlist_id = req.params.watchlist_id;
+	try {
+		if (!user) {
+			return res.status(401).send({ message: 'Please authenticate...' });
+		}
+		const watchlist = await Watchlist.findById(watchlist_id);
+		if (!watchlist) {
+			return res.status(404).send({ message: 'Could not find watchlist...' });
+		}
+		const profile = await Profile.findOne({ user: _id });
+		if (!profile) {
+			return res
+				.status(404)
+				.send({ message: 'Request could not be completed...' });
+		}
+		const index = profile.invites.findIndex(
+			(invite) => invite._id.toString() === invite_id
+		);
+		if (index === -1) {
+			return res.status(404).send({ message: 'Could not find invite...' });
+		}
+		profile.watchlists.unshift({
+			name: watchlist.wl_name,
+			wl_id: watchlist._id,
+		});
+		profile.invites.splice(index, 1);
+		await profile.save();
+		watchlist.partners.unshift({ partner_id: _id, partner_name: user.name });
+		await watchlist.save();
+		res.status(200).send({ message: 'Invite accepted...' });
+	} catch (e) {
+		console.error(e);
+		res.status(400).send({ message: e.message });
+	}
+});
+
 // Create new Watchlist
 
 router.post('/create', auth, async (req, res) => {
@@ -189,13 +262,18 @@ router.post('/add/:id', auth, async (req, res) => {
 				.send({ message: 'Request could not be completed...' });
 		}
 		const watchlist = await Watchlist.findOne({
-			'user._id': _id,
 			_id: watchlist_id,
 		});
 		if (!watchlist) {
 			return res
 				.status(400)
 				.send({ message: 'Request could not be completed...' });
+		}
+		const validPartner = watchlist.partners.filter(
+			(partner) => partner.partner_id.toString() === _id.toString()
+		);
+		if (validPartner.length === 0 && watchlist.user._id !== _id) {
+			return res.status(401).send({ message: 'Unauthorized...' });
 		}
 		if (watchlist.titles.length > 0) {
 			const check = watchlist.titles.filter(
@@ -231,13 +309,18 @@ router.delete('/remove/:watchlist_id/:title_id', auth, async (req, res) => {
 				.send({ message: 'Request could not be completed...' });
 		}
 		const watchlist = await Watchlist.findOne({
-			'user._id': _id,
 			_id: watchlist_id,
 		});
 		if (!watchlist) {
 			return res
 				.status(400)
 				.send({ message: 'Request could not be completed...' });
+		}
+		const validPartner = watchlist.partners.filter(
+			(partner) => partner.partner_id.toString() === _id.toString()
+		);
+		if (validPartner.length === 0 && watchlist.user._id !== _id) {
+			return res.status(401).send({ message: 'Unauthorized...' });
 		}
 		const index = watchlist.titles.findIndex(
 			(title) => title.tmdb_id.toString() === title_id

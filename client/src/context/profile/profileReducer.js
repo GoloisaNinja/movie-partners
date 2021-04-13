@@ -4,6 +4,8 @@ import {
 	CLEAR_PROFILE,
 	GET_ALL_PROFILES,
 	INVITE_PROFILE_TO_WATCHLIST,
+	DECLINE_INVITE,
+	ACCEPT_INVITE,
 } from './profileActions';
 
 const profileReducer = (state, action) => {
@@ -29,6 +31,18 @@ const profileReducer = (state, action) => {
 				profiles: [
 					...state.profiles.filter((profile) => profile.user._id !== payload),
 				],
+			};
+		case DECLINE_INVITE:
+		case ACCEPT_INVITE:
+			return {
+				...state,
+				loading: false,
+				profile: {
+					...state.profile,
+					invites: [
+						...state.profile.invites.filter((invite) => invite._id !== payload),
+					],
+				},
 			};
 		case CLEAR_PROFILE:
 			return {

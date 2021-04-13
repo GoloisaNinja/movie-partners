@@ -39,6 +39,13 @@ tr:nth-child(even) {
 		color: $secondary-text-color;
 	}
 }
+.accept {
+	background-color: $secondary-button-color;
+	&:hover {
+		background-color: lighten($secondary-button-color, 5%);
+	}
+}
+
 .people-table-avatar {
 	border-radius: 50%;
 	width: 50px;
@@ -48,4 +55,9 @@ tr:nth-child(even) {
 }
 .peopleFave {
 	color: $auxiliary-button-color;
+}
+@media (max-width: 425px) {
+	#hide-sm {
+		display: none;
+	}
 }

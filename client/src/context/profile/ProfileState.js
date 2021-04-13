@@ -9,6 +9,8 @@ import {
 	CLEAR_PROFILE,
 	GET_ALL_PROFILES,
 	INVITE_PROFILE_TO_WATCHLIST,
+	DECLINE_INVITE,
+	ACCEPT_INVITE,
 } from './profileActions';
 
 const ProfileState = ({ children }) => {
@@ -91,6 +93,58 @@ const ProfileState = ({ children }) => {
 		}
 	};
 
+	// Decline Invite to Watchlist
+
+	const declineInvite = async (invite_id) => {
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: token,
+			},
+		};
+		try {
+			const res = await axios.post(
+				`/api/watchlist/decline/${invite_id}`,
+				config
+			);
+			if (res.status === 200) {
+				dispatch({
+					type: DECLINE_INVITE,
+					payload: invite_id,
+				});
+			}
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+
+	// Accept Invite to Watchlist
+
+	const acceptInvite = async (invite_id, watchlist_id) => {
+		const token = localStorage.getItem('token');
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: token,
+			},
+		};
+		try {
+			const res = await axios.post(
+				`/api/watchlist/accept/${invite_id}/${watchlist_id}`,
+				config
+			);
+			if (res.status === 200) {
+				dispatch({
+					type: ACCEPT_INVITE,
+					payload: invite_id,
+				});
+			}
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+
 	// Create a new Profile
 
 	const createProfile = async (formData) => {
@@ -132,6 +186,8 @@ const ProfileState = ({ children }) => {
 				clearProfile,
 				getAllProfiles,
 				inviteWatchlist,
+				declineInvite,
+				acceptInvite,
 			}}>
 			{children}
 		</ProfileContext.Provider>

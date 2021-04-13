@@ -67,7 +67,7 @@ const People = ({ location }) => {
 		<div className='container'>
 			<div className='profile-branding'>
 				<h2>
-					Movie <span className='pink-span'>Partners </span>Invites{' '}
+					Movie <span className='pink-span'>Partners </span>Invite{' '}
 					<span className='pink-span'>
 						<i className='fas fa-share-square'></i>
 					</span>

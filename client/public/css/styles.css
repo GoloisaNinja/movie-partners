@@ -1249,6 +1249,11 @@ tr:nth-child(even) {
     background-color: #7900cf;
     color: #ededed; }
 
+.accept {
+  background-color: #d100b9; }
+  .accept:hover {
+    background-color: #eb00d0; }
+
 .people-table-avatar {
   border-radius: 50%;
   width: 50px; }
@@ -1258,3 +1263,7 @@ tr:nth-child(even) {
 
 .peopleFave {
   color: #009985; }
+
+@media (max-width: 425px) {
+  #hide-sm {
+    display: none; } }

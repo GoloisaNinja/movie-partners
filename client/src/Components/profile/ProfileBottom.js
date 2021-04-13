@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ProfileInvites from './ProfileInvites';
 
 const ProfileBottom = ({ profile }) => {
+	const [showInvites, setShowInvites] = useState(false);
 	return (
 		<div className='profile-details-container'>
 			<div className='profile-bio'>
@@ -59,12 +61,13 @@ const ProfileBottom = ({ profile }) => {
 						You have invites!
 					</p>
 					<div className='profile-buttons-div'>
-						<Link to='/invites'>
-							<button className='btn profBtn invite-btn'>
-								Invites ({profile.invites.length})
-							</button>
-						</Link>
+						<button
+							className='btn profBtn invite-btn'
+							onClick={(e) => setShowInvites(!showInvites)}>
+							Invites ({profile.invites.length})
+						</button>
 					</div>
+					{showInvites && <ProfileInvites invites={profile.invites} />}
 				</>
 			)}
 		</div>
