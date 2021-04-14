@@ -190,7 +190,7 @@ const AppRouter = () => {
 
 								<FavoriteState>
 									<WatchedState>
-										<Route path='/media/:id' component={Media} />
+										<Route path='/media/:type/:id' component={Media} />
 										<PrivateRoute exact path='/profile' component={Profile} />
 										<PrivateRoute path='/favorites' component={Favorites} />
 										<PrivateRoute path='/watched' component={Watched} />

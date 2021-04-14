@@ -6,7 +6,8 @@ import MediaTop from './MediaTop';
 import MediaBottom from './MediaBottom';
 
 const Media = ({ match, location }) => {
-	const { type } = location.state;
+	//const { type } = location.state;
+	const type = match.params.type;
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const media_id = match.params.id;
 	const [media, setMedia] = useState({});

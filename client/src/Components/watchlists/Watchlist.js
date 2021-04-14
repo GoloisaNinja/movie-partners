@@ -33,7 +33,7 @@ const Watchlist = ({ match }) => {
 						{watchlist.titles.map((title) => (
 							<Link
 								to={{
-									pathname: `/media/${title.tmdb_id}`,
+									pathname: `/media/${title.media_type}/${title.tmdb_id}`,
 									state: { type: title.media_type },
 								}}
 								key={title._id}>

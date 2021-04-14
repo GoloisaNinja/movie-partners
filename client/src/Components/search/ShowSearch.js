@@ -14,7 +14,7 @@ const ShowSearch = ({ shows }) => {
 						show.poster_path !== null &&
 						show.backdrop_path !== null && (
 							<Link
-								to={{ pathname: `/media/${show.id}`, state: { type: 'tv' } }}
+								to={{ pathname: `/media/tv/${show.id}`, state: { type: 'tv' } }}
 								key={show.id}>
 								<Thumbnail media={show} type={'tv'} />
 							</Link>

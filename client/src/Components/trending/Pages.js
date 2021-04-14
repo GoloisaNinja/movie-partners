@@ -62,7 +62,10 @@ const Pages = ({ match, history }) => {
 						item.poster_path !== null &&
 						item.backdrop_path !== null && (
 							<Link
-								to={{ pathname: `/media/${item.id}`, state: { type: type } }}
+								to={{
+									pathname: `/media/${type}/${item.id}`,
+									state: { type: type },
+								}}
 								key={item.id}>
 								<Thumbnail media={item} type={type} />
 							</Link>

@@ -22,7 +22,7 @@ const TrendingMovies = ({ movies }) => {
 							movie.backdrop_path !== null && (
 								<Link
 									to={{
-										pathname: `/media/${movie.id}`,
+										pathname: `/media/movie/${movie.id}`,
 										state: { type: 'movie' },
 									}}
 									key={movie.id}>
