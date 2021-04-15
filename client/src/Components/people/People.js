@@ -33,10 +33,17 @@ const People = ({ location }) => {
 		setShow(true);
 	};
 	const profileEntries = profiles.map((profile) => {
-		const match = profile.invites.filter(
+		const inviteMatch = profile.invites.filter(
 			(invite) => invite.watchlist_id === wlId
 		);
-		if (profile.user._id !== user._id && match.length === 0) {
+		const watchlistMatch = profile.watchlists.filter(
+			(watchlist) => watchlist.wl_id === wlId
+		);
+		if (
+			profile.user._id !== user._id &&
+			inviteMatch.length === 0 &&
+			watchlistMatch.length === 0
+		) {
 			return (
 				<tr key={profile._id}>
 					<td>
@@ -62,7 +69,6 @@ const People = ({ location }) => {
 			);
 		}
 	});
-
 	return profiles.length > 0 ? (
 		<div className='container'>
 			<div className='profile-branding'>
