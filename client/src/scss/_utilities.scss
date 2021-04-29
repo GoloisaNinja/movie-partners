@@ -19,7 +19,12 @@
 
 .container {
 	margin: 2rem;
+	margin-bottom: 4rem;
+	min-height: 100vh;
 }
 .pink-span {
 	color: $auxiliary-text-color;
+}
+.green-span {
+	color: $green-text-color;
 }

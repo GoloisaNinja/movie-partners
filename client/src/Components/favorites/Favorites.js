@@ -19,7 +19,7 @@ const Favorites = () => {
 						{favorites.map((favorite) => (
 							<Link
 								to={{
-									pathname: `/media/${favorite.tmdb_id}`,
+									pathname: `/media/${favorite.media_type}/${favorite.tmdb_id}`,
 									state: { type: favorite.media_type },
 								}}
 								key={favorite._id}>

@@ -20,7 +20,8 @@ const Navbar = () => {
 		}
 	}, []);
 
-	const handleSearch = () => {
+	const handleSearch = (e) => {
+		e.preventDefault();
 		if (openSearch) {
 			setOpenSeach(false);
 		}
@@ -121,9 +122,11 @@ const Navbar = () => {
 						<Link to='/profile'>
 							<button className='unBtn' onClick={(e) => handleHamburger()}>
 								<img
+									style={{ borderRadius: '50%' }}
 									src={user ? user.avatar : '/assets/mp_logo.png'}
 									alt='avatar'
 								/>
+								<figcaption style={{ color: '#fff' }}>Go to Profile</figcaption>
 							</button>
 						</Link>
 					</div>
@@ -134,6 +137,7 @@ const Navbar = () => {
 						maxLength='30'
 						id='search'
 						name='search'
+						placeholder='Search for titles...'
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 					/>
@@ -273,18 +277,21 @@ const Navbar = () => {
 
 			{openSearch && (
 				<div className='nav-search'>
-					<input
-						className='nav-search__input'
-						type='text'
-						maxLength='30'
-						id='search'
-						name='search'
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-					/>
-					<button className='unBtn' onClick={(e) => handleSearch()}>
-						<i className='search-btn fas fa-search'></i>
-					</button>
+					<form style={{ width: '100%' }} onSubmit={(e) => handleSearch(e)}>
+						<input
+							className='nav-search__input'
+							type='text'
+							maxLength='30'
+							id='search'
+							name='search'
+							placeholder='Search for titles...'
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+						/>
+						<button className='unBtn' type='submit' htmlFor='search'>
+							<i className='search-btn fas fa-search'></i>
+						</button>
+					</form>
 				</div>
 			)}
 		</>

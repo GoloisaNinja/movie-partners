@@ -19,14 +19,14 @@
 	border: none;
 	border-radius: 5px;
 	border-bottom: 2px darken($secondary-button-color, 10%) solid;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Darker Grotesque', sans-serif;
 	font-size: 1.8rem;
 	font-weight: 700;
 	margin-right: 2rem;
 	width: 50%;
 	cursor: pointer;
 	transition: all 0.7s ease-in-out;
-	&:hover {
+	&:hover:not([disabled]) {
 		background-color: lighten($secondary-button-color, 10%);
 		color: $secondary-text-color;
 	}
@@ -36,13 +36,13 @@
 	background-color: $primary-button-color;
 	border-bottom: 2px darken($primary-button-color, 10%) solid;
 	margin-right: 2rem;
-	&:hover {
-		background-color: lighten($primary-button-color, 10%);
-		color: $secondary-text-color;
-	}
 	&:disabled {
 		cursor: default;
 		opacity: 0.5;
+	}
+	&:hover:not(:disabled) {
+		background-color: lighten($primary-button-color, 10%);
+		color: $secondary-text-color;
 	}
 }
 .watched-btn {
@@ -50,7 +50,7 @@
 	background-color: $auxiliary-button-color;
 	border-bottom: 2px darken($auxiliary-button-color, 10%) solid;
 	margin-right: 0;
-	&:hover {
+	&:hover:not([disabled]) {
 		background-color: lighten($auxiliary-button-color, 5%);
 		color: $secondary-text-color;
 	}

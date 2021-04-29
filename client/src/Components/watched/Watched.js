@@ -19,7 +19,7 @@ const Watched = () => {
 						{watched.map((watched) => (
 							<Link
 								to={{
-									pathname: `/media/${watched.tmdb_id}`,
+									pathname: `/media/${watched.media_type}/${watched.tmdb_id}`,
 									state: { type: watched.media_type },
 								}}
 								key={watched._id}>

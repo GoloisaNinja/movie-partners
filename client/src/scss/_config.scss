@@ -10,6 +10,7 @@ $auxiliary-button-color: #009985;
 $primary-text-color: #fff;
 $secondary-text-color: #ededed;
 $auxiliary-text-color: #d100b9;
+$green-text-color: #009985;
 
 * {
 	padding: 0;
@@ -19,14 +20,18 @@ $auxiliary-text-color: #d100b9;
 html {
 	font-size: 62.5%;
 	scroll-behavior: smooth;
+	height: 100%;
 }
 body {
 	background-color: $primary-bg-color;
 	color: $primary-text-color;
+	display: flex;
+	flex-direction: column;
 	font-family: 'Quicksand', sans-serif;
 	font-size: 1.6rem;
 	font-weight: 200;
 	line-height: 1.6;
+	min-height: 100vh;
 }
 a {
 	text-decoration: none;

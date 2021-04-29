@@ -7,6 +7,7 @@ import PrivateRoute from '../Components/routing/PrivateRoute';
 import Trending from '../Components/trending/Trending';
 import Media from '../Components/media/Media';
 import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 import Pages from '../Components/trending/Pages';
 import Search from '../Components/search/Search';
 import Categories from '../Components/categories/Categories';
@@ -207,6 +208,7 @@ const AppRouter = () => {
 									</WatchedState>
 								</FavoriteState>
 							</Switch>
+							<Footer />
 						</WatchlistState>
 					</ProfileState>
 				</>

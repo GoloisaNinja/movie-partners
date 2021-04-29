@@ -31,13 +31,42 @@
 .lead-text {
 	font-size: 3rem;
 	font-weight: 500;
-	letter-spacing: 4px;
+	letter-spacing: 5px;
 	text-transform: uppercase;
 	text-align: center;
 	z-index: 4;
 	color: $secondary-text-color;
 	margin-top: 5rem;
 	margin-bottom: 4rem;
+	animation-name: leadFadeSpread;
+	animation-duration: 0.8s;
+	animation-timing-function: ease-in;
+}
+@keyframes leadFadeSpread {
+	0% {
+		opacity: 0;
+		letter-spacing: 0px;
+		transform: translateY(-0.5rem);
+	}
+	50% {
+		opacity: 0.25;
+	}
+	65% {
+		letter-spacing: 1px;
+	}
+	80% {
+		opacity: 0.5;
+		letter-spacing: 2px;
+		transform: translateY(0.5rem);
+	}
+	90% {
+		letter-spacing: 3.5px;
+	}
+	100% {
+		opacity: 1;
+		letter-spacing: 5px;
+		transform: translateY(0);
+	}
 }
 .lead-overlay {
 	background: darken($primary-button-color, 15%);
@@ -113,6 +142,8 @@
 .btn-formsub {
 	background: $secondary-button-color;
 	font-size: 1.8rem;
+	font-family: 'Darker Grotesque', sans-serif;
+	font-weight: 900;
 	color: $secondary-text-color;
 	cursor: pointer;
 	padding: 1rem;
