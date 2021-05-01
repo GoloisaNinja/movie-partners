@@ -14,6 +14,7 @@ const Media = ({ match, location }) => {
 	const { getFavorites } = useContext(favoriteContext);
 	const { getWatched } = useContext(watchedContext);
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		const getMedia = async () => {
 			try {
 				const mediaResult = await axios.get(
