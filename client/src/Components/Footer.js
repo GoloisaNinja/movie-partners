@@ -13,6 +13,7 @@ const Footer = () => {
 							className='pink-span'
 							style={{
 								fontFamily: 'sans-serif',
+								fontSize: '1rem',
 								fontWeight: 900,
 							}}>
 							<strong>Jon Collins</strong>
@@ -33,6 +34,7 @@ const Footer = () => {
 						className='green-span'
 						style={{
 							fontFamily: 'sans-serif',
+							fontSize: '1rem',
 							fontWeight: 900,
 						}}>
 						{' '}
