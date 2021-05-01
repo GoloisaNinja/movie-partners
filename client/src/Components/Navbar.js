@@ -233,6 +233,7 @@ const Navbar = () => {
 						maxLength='30'
 						id='search'
 						name='search'
+						placeholder='Search for titles...'
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 					/>
