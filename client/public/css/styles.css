@@ -293,9 +293,6 @@ input {
 .media-top-outer {
   position: relative; }
 
-.media-top-backdrop {
-  position: relative; }
-
 .backdrop {
   z-index: 2;
   opacity: 0.5;
@@ -320,8 +317,22 @@ input {
   left: 5%;
   padding: 1rem; }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-1rem); }
+  50% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
 .poster {
-  width: 20%; }
+  width: 20%;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: backwards; }
 
 .info {
   margin-left: 2rem;
