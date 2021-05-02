@@ -130,20 +130,21 @@ const Navbar = () => {
 							</button>
 						</Link>
 					</div>
-
-					<input
-						className='nav-search__input'
-						type='text'
-						maxLength='30'
-						id='search'
-						name='search'
-						placeholder='Search for titles...'
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-					/>
-					<button className='menu-top__button' onClick={(e) => handleSearch()}>
-						Search
-					</button>
+					<form style={{ width: '100%' }} onSubmit={(e) => handleSearch(e)}>
+						<input
+							className='nav-search__input'
+							type='text'
+							maxLength='30'
+							id='search'
+							name='search'
+							placeholder='Search for titles...'
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+						/>
+						<button className='menu-top__button' type='submit' htmlFor='search'>
+							Search
+						</button>
+					</form>
 				</div>
 				<div className='menu-bottom'>
 					<ul className='menu-list'>
@@ -226,20 +227,21 @@ const Navbar = () => {
 					<div className='logo-container'>
 						<img src='/assets/mp_logo.png' alt='movie partners logo' />
 					</div>
-
-					<input
-						className='nav-search__input'
-						type='text'
-						maxLength='30'
-						id='search'
-						name='search'
-						placeholder='Search for titles...'
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-					/>
-					<button className='menu-top__button' onClick={(e) => handleSearch()}>
-						Search
-					</button>
+					<form style={{ width: '100%' }} onSubmit={(e) => handleSearch(e)}>
+						<input
+							className='nav-search__input'
+							type='text'
+							maxLength='30'
+							id='search'
+							name='search'
+							placeholder='Search for titles...'
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+						/>
+						<button className='menu-top__button' type='submit' htmlFor='search'>
+							Search
+						</button>
+					</form>
 				</div>
 				<div className='menu-bottom'>
 					<ul className='menu-list'>
