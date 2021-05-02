@@ -335,11 +335,22 @@ input {
   animation-timing-function: ease-in;
   animation-fill-mode: backwards; }
 
+@keyframes pauseDelay {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
 .info {
   margin-left: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center; }
+  justify-content: center;
+  animation-name: pauseDelay;
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: backwards; }
   .info li {
     font-weight: 500;
     line-height: 1.2; }
