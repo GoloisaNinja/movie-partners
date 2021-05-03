@@ -11,7 +11,8 @@ const Watchlists = () => {
 	useEffect(() => {
 		getAllWatchlists();
 	}, []);
-	const handleCreateList = () => {
+	const handleCreateList = (e) => {
+		e.preventDefault();
 		createWatchlist(listName.trim());
 		setListName('');
 	};
@@ -43,19 +44,21 @@ const Watchlists = () => {
 			</div>
 			{addForm && (
 				<div className='nav-search'>
-					<input
-						className='nav-search__input'
-						type='text'
-						maxLength='30'
-						placeholder='name your watchlist'
-						id='listName'
-						name='listName'
-						value={listName}
-						onChange={(e) => setListName(e.target.value)}
-					/>
-					<button className='unBtn' onClick={(e) => handleCreateList()}>
-						<i className='search-btn fas fa-plus-square'></i>
-					</button>
+					<form style={{ width: '100%' }} onSubmit={(e) => handleCreateList(e)}>
+						<input
+							className='nav-search__input'
+							type='text'
+							maxLength='30'
+							placeholder='name your watchlist'
+							id='listName'
+							name='listName'
+							value={listName}
+							onChange={(e) => setListName(e.target.value)}
+						/>
+						<button className='unBtn' type='submit' htmlFor='listName'>
+							<i className='search-btn fas fa-plus-square'></i>
+						</button>
+					</form>
 				</div>
 			)}
 			{watchlists.length > 0 ? (

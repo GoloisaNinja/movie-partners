@@ -52,9 +52,13 @@ const WatchlistCard = ({ watchlist }) => {
 					</p>
 					<p>
 						List titles:{' '}
-						<span className='pink-span'>
-							<strong>{watchlist.titles.length}</strong>
-						</span>
+						<Link
+							style={{ fontSize: '1.6rem' }}
+							to={`/watchlists/${watchlist._id}`}>
+							<span className='pink-span'>
+								<strong>{watchlist.titles.length}</strong>
+							</span>
+						</Link>
 					</p>
 					<p>
 						List partners:{' '}
