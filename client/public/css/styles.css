@@ -525,7 +525,7 @@ input {
 
 .thumbnail-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   animation-name: blurFade;
   animation-duration: 1.5s;
   animation-timing-function: ease-in; }

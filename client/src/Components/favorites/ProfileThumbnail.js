@@ -6,8 +6,8 @@ const ProfileThumbnail = ({ item }) => {
 			<img
 				className='thumbnail-img'
 				src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-				width='1450px'
-				height='2170.5px'
+				width='2000'
+				height='3000'
 				alt='content poster'
 			/>
 			<small className='thumbnail-title'>{item.name}</small>
