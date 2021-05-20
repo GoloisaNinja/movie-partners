@@ -6,8 +6,8 @@ const Thumbnail = ({ media, type }) => {
 			<img
 				className='thumbnail-img'
 				src={`https://image.tmdb.org/t/p/original/${media.poster_path}`}
-				width='2000'
-				height='3000'
+				width='20'
+				height='30'
 				alt='content poster'
 			/>
 
