@@ -525,22 +525,7 @@ input {
 
 .thumbnail-img {
   width: 100%;
-  height: auto;
-  animation-name: blurFade;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-in; }
-
-@keyframes blurFade {
-  0% {
-    opacity: 0; }
-  50% {
-    opacity: 0.5;
-    filter: blur(8px); }
-  80% {
-    opacity: 0.75;
-    filter: blur(2px); }
-  100% {
-    opacity: 1; } }
+  height: auto; }
 
 .landing-grid {
   display: grid;
