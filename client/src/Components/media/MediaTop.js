@@ -8,6 +8,8 @@ const MediaTop = ({ media, type }) => {
 					<img
 						className='backdrop'
 						src={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
+						width='384'
+						height='216'
 						alt='backdrop'
 					/>
 					<div className='overlay'></div>
