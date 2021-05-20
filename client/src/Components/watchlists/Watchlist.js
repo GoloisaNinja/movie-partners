@@ -4,9 +4,8 @@ import ProfileThumbnail from '../favorites/ProfileThumbnail';
 import watchlistContext from '../../context/watchlist/watchlistContext';
 
 const Watchlist = ({ match }) => {
-	const { activateWatchlist, getWatchlist, watchlist, loading } = useContext(
-		watchlistContext
-	);
+	const { activateWatchlist, getWatchlist, watchlist, loading } =
+		useContext(watchlistContext);
 	useEffect(() => {
 		getWatchlist(match.params.watchlist_id);
 		activateWatchlist(match.params.watchlist_id);
@@ -26,7 +25,12 @@ const Watchlist = ({ match }) => {
 				</div>
 			) : watchlist !== null && watchlist.titles.length > 0 ? (
 				<div className='container'>
-					<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+					<p
+						style={{
+							fontSize: '2.5rem',
+							fontWeight: '700',
+							fontFamily: "'Inter', sans-serif",
+						}}>
 						{watchlist.wl_name} <i className='favCrown fas fa-list'></i>
 					</p>
 					<div className='landing-grid'>

@@ -6,7 +6,10 @@
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
-  height: 100%; }
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
 
 body {
   background-color: #242424;
@@ -519,6 +522,25 @@ input {
 .thumbnail-title {
   font-weight: 700;
   font-size: 1.1rem; }
+
+.thumbnail-img {
+  width: 100%;
+  height: auto;
+  animation-name: blurFade;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in; }
+
+@keyframes blurFade {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0.5;
+    filter: blur(8px); }
+  80% {
+    opacity: 0.75;
+    filter: blur(2px); }
+  100% {
+    opacity: 1; } }
 
 .landing-grid {
   display: grid;

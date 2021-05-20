@@ -11,7 +11,12 @@ const Watched = () => {
 	return (
 		<>
 			<div className='container'>
-				<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+				<p
+					style={{
+						fontSize: '2.5rem',
+						fontWeight: '700',
+						fontFamily: "'Inter', sans-serif",
+					}}>
 					Watched Collection <i className='favCrown fas fa-eye'></i>
 				</p>
 				{watched.length > 0 ? (

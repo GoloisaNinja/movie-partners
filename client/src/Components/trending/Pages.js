@@ -51,7 +51,12 @@ const Pages = ({ match, history }) => {
 		</div>
 	) : (
 		<div className='container'>
-			<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+			<p
+				style={{
+					fontSize: '2.5rem',
+					fontWeight: '700',
+					fontFamily: "'Inter', sans-serif",
+				}}>
 				{type === 'movie'
 					? `Trending movies page ${page}`
 					: `Trending shows page ${page}`}

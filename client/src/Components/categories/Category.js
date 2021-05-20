@@ -68,7 +68,12 @@ const Category = ({ match, history }) => {
 		</div>
 	) : (
 		<div className='container'>
-			<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+			<p
+				style={{
+					fontSize: '2.5rem',
+					fontWeight: '700',
+					fontFamily: "'Inter', sans-serif",
+				}}>
 				{type === 'movie'
 					? `${genreName} movies page ${page}`
 					: `${genreName} shows page ${page}`}

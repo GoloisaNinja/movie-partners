@@ -11,7 +11,12 @@ const Favorites = () => {
 	return (
 		<>
 			<div className='container'>
-				<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+				<p
+					style={{
+						fontSize: '2.5rem',
+						fontWeight: '700',
+						fontFamily: "'Inter', sans-serif",
+					}}>
 					Favorites Collection <i className='favCrown fas fa-crown'></i>
 				</p>
 				{favorites.length > 0 ? (

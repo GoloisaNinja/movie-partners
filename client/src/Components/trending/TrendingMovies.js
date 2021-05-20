@@ -6,7 +6,12 @@ const TrendingMovies = ({ movies }) => {
 	return (
 		<>
 			<div className='container'>
-				<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+				<p
+					style={{
+						fontSize: '2.5rem',
+						fontWeight: '700',
+						fontFamily: "'Inter', sans-serif",
+					}}>
 					Trending Movies of the Week{' '}
 					<span>
 						<Link to={{ pathname: '/pages/movie/2' }}>

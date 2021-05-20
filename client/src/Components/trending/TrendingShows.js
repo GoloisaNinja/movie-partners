@@ -6,7 +6,12 @@ const TrendingShows = ({ shows }) => {
 	return (
 		<>
 			<div className='container'>
-				<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+				<p
+					style={{
+						fontSize: '2.5rem',
+						fontWeight: '700',
+						fontFamily: "'Inter', sans-serif",
+					}}>
 					Trending Shows of the Week{' '}
 					<span>
 						<Link to={{ pathname: '/pages/tv/2' }}>

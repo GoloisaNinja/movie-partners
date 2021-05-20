@@ -21,6 +21,9 @@ html {
 	font-size: 62.5%;
 	scroll-behavior: smooth;
 	height: 100%;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
 }
 body {
 	background-color: $primary-bg-color;

@@ -30,7 +30,12 @@ const Categories = () => {
 	}, [apiKey]);
 	return movieGenres.length > 0 && tvGenres.length > 0 ? (
 		<div className='container'>
-			<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+			<p
+				style={{
+					fontSize: '2.5rem',
+					fontWeight: '700',
+					fontFamily: "'Inter', sans-serif",
+				}}>
 				Movie Categories <i className='caticon fas fa-film'></i>
 			</p>
 
@@ -44,7 +49,13 @@ const Categories = () => {
 				))}
 			</div>
 
-			<p style={{ fontSize: '2.5rem', fontWeight: '700', marginTop: '2.5rem' }}>
+			<p
+				style={{
+					fontSize: '2.5rem',
+					fontWeight: '700',
+					fontFamily: "'Inter', sans-serif",
+					marginTop: '2.5rem',
+				}}>
 				Show Categories <i className='caticon fas fa-tv'></i>
 			</p>
 			<div className='category-grid'>
