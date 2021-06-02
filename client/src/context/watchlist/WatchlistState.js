@@ -109,7 +109,7 @@ const WatchlistState = ({ children }) => {
 
 	// Get a Watchlist
 
-	const getWatchlist = async (watchlist_id) => {
+	const getWatchlist = async (watchlist_id, page) => {
 		const token = localStorage.getItem('token');
 		const config = {
 			headers: {
@@ -118,10 +118,17 @@ const WatchlistState = ({ children }) => {
 			},
 		};
 		try {
-			const res = await axios.get(`/api/watchlist/get/${watchlist_id}`, config);
+			const res = await axios.get(
+				`/api/watchlist/get/${watchlist_id}?page=${page}`,
+				config
+			);
 			dispatch({
 				type: GET_WATCHLIST,
-				payload: res.data,
+				payload: {
+					titles: res.data.titles,
+					pages: res.data.pages,
+					name: res.data.name,
+				},
 			});
 		} catch (e) {
 			console.log(e.message);
@@ -139,7 +146,10 @@ const WatchlistState = ({ children }) => {
 			},
 		};
 		try {
-			const res = await axios.get(`/api/watchlist/get/${watchlist_id}`, config);
+			const res = await axios.get(
+				`/api/watchlist/activateWatchlist/${watchlist_id}`,
+				config
+			);
 			dispatch({
 				type: ACTIVATE_WATCHLIST,
 				payload: res.data,

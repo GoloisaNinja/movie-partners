@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProfileThumbnail from '../favorites/ProfileThumbnail';
 import watchlistContext from '../../context/watchlist/watchlistContext';
@@ -6,14 +6,27 @@ import WatchlistFilters from './WatchlistFilters';
 import getVisibleWatchlistTitles from '../../selectors/watchlist';
 import filtersContext from '../../context/filters/filtersContext';
 
-const Watchlist = ({ match }) => {
+const Watchlist = ({ match, history }) => {
 	const { activateWatchlist, getWatchlist, watchlist, loading } =
 		useContext(watchlistContext);
 	const { watchlist: myWatchlist } = useContext(filtersContext);
+	const [page, setPage] = useState('1');
+	const handlePage = (direction) => {
+		let newPage;
+		if (direction === '+') {
+			newPage = parseInt(page) + 1;
+		} else {
+			newPage = parseInt(page) - 1;
+		}
+		history.push(`/watchlists/${match.params.watchlist_id}/${newPage}`);
+	};
 	useEffect(() => {
-		getWatchlist(match.params.watchlist_id);
+		getWatchlist(match.params.watchlist_id, match.params.page);
 		activateWatchlist(match.params.watchlist_id);
-	}, []);
+	}, [page]);
+	useEffect(() => {
+		setPage(match.params.page);
+	}, [match.params.page]);
 	return (
 		<>
 			{loading ? (
@@ -27,7 +40,7 @@ const Watchlist = ({ match }) => {
 					}}>
 					...
 				</div>
-			) : watchlist !== null && watchlist.titles.length > 0 ? (
+			) : watchlist !== null && watchlist.titles?.length > 0 ? (
 				<div className='container'>
 					<p
 						style={{
@@ -52,6 +65,21 @@ const Watchlist = ({ match }) => {
 								<ProfileThumbnail key={title._id} item={title} />
 							</Link>
 						))}
+					</div>
+					<div className='pages-buttons'>
+						<button
+							className='unBtn'
+							disabled={page === '1'}
+							onClick={(e) => handlePage('-')}>
+							<i className='chevBack fas fa-chevron-circle-left'></i>
+						</button>
+
+						<button
+							className='unBtn'
+							disabled={parseInt(match.params.page) === watchlist.pages}
+							onClick={(e) => handlePage('+')}>
+							<i className='chevNext fas fa-chevron-circle-right'></i>
+						</button>
 					</div>
 				</div>
 			) : (

@@ -30,20 +30,66 @@ router.get('/allwatchlists', auth, async (req, res) => {
 	}
 });
 
-// Get Watchlist by ID
+// Get Watchlist by ID - full list return for adding titles and activated watchlist state
 
-router.get('/get/:id', auth, async (req, res) => {
+router.get('/activateWatchlist/:id', auth, async (req, res) => {
 	const user = await req.user;
+	const userId = user._id;
 	const _id = req.params.id;
 	try {
 		if (!user) {
 			return res.status(401).send({ message: 'Please authenticate...' });
 		}
-		const watchlist = await Watchlist.findById({ _id });
+		//const watchlist = await Watchlist.findById({ _id });
+		const watchlist = await Watchlist.findById({ _id }).where({
+			$or: [
+				{ 'user._id': userId },
+				{ 'partners[partner_id]': { $elemMatch: { userId } } },
+			],
+		});
 		if (!watchlist) {
 			return res.status(404).send({ message: 'Could not find watchlist...' });
 		}
 		res.status(200).send(watchlist);
+	} catch (e) {
+		console.error(e);
+		res.status(400).send({ message: e.message });
+	}
+});
+
+// Get Watchlist by ID - pagination for list display
+
+router.get('/get/:id', auth, async (req, res) => {
+	const user = await req.user;
+	const userId = user._id;
+	const _id = req.params.id;
+	const page = await parseInt(req.query.page);
+	const pageSize = 80;
+	const skip = (page - 1) * pageSize;
+	const indexUpTo = pageSize + skip;
+
+	try {
+		if (!user) {
+			return res.status(401).send({ message: 'Please authenticate...' });
+		}
+		const watchlist = await Watchlist.findById({ _id }).where({
+			$or: [
+				{ 'user._id': userId },
+				{ 'partners[partner_id]': { $elemMatch: { userId } } },
+			],
+		});
+
+		if (!watchlist) {
+			return res.status(404).send({ message: 'Could not find watchlist...' });
+		}
+		const totalRecords = watchlist.titles.length;
+		const recordsToSend = watchlist.titles.slice(skip, indexUpTo);
+		const numPages = Math.ceil(totalRecords / pageSize);
+		res.status(200).json({
+			titles: recordsToSend,
+			pages: numPages,
+			name: watchlist.wl_name,
+		});
 	} catch (e) {
 		console.error(e);
 		res.status(400).send({ message: e.message });
