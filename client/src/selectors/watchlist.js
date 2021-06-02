@@ -1,8 +1,6 @@
 // Get visible watchlist titles based on filter criteria
 
 const getVisibleWatchlistTitles = (titles, text) => {
-	console.log(titles);
-	console.log(text);
 	return titles.filter((title) => {
 		let nameToMatch = '';
 		if (title.title) {
