@@ -2,10 +2,14 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProfileThumbnail from '../favorites/ProfileThumbnail';
 import watchlistContext from '../../context/watchlist/watchlistContext';
+import WatchlistFilters from './WatchlistFilters';
+import getVisibleWatchlistTitles from '../../selectors/watchlist';
+import filtersContext from '../../context/filters/filtersContext';
 
 const Watchlist = ({ match }) => {
 	const { activateWatchlist, getWatchlist, watchlist, loading } =
 		useContext(watchlistContext);
+	const { watchlist: myWatchlist } = useContext(filtersContext);
 	useEffect(() => {
 		getWatchlist(match.params.watchlist_id);
 		activateWatchlist(match.params.watchlist_id);
@@ -33,8 +37,12 @@ const Watchlist = ({ match }) => {
 						}}>
 						{watchlist.wl_name} <i className='favCrown fas fa-list'></i>
 					</p>
+					<WatchlistFilters />
 					<div className='landing-grid'>
-						{watchlist.titles.map((title) => (
+						{getVisibleWatchlistTitles(
+							watchlist.titles,
+							myWatchlist.textFilter
+						).map((title) => (
 							<Link
 								to={{
 									pathname: `/media/${title.media_type}/${title.tmdb_id}`,

@@ -4,6 +4,27 @@
 	grid-gap: 2rem;
 	margin-top: 2rem;
 }
+.text-filter-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Inter', sans-serif;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.text-filter-label {
+	margin-right: 1rem;
+}
+.text-filter-input {
+	outline: none;
+	padding: 0.8rem;
+	font-size: 1.8rem;
+	border-radius: 6px;
+	flex-grow: 1;
+	background: #ccc;
+	color: $primary-button-color;
+	width: 100%;
+}
 .watchlist-content {
 	display: flex;
 	flex-direction: column;
@@ -70,6 +91,9 @@
 @media (max-width: 500px) {
 	.watchlist-grid {
 		grid-template-columns: 1fr;
+	}
+	.text-filter-wrapper {
+		flex-direction: column;
 	}
 }
 @media (min-width: 1024px) {

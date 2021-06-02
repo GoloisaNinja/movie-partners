@@ -474,7 +474,7 @@ input {
   border-bottom: 2px #3d0069 solid;
   margin-right: 2rem; }
   .watchlist-btn:disabled {
-    cursor: default;
+    cursor: not-allowed;
     opacity: 0.5; }
   .watchlist-btn:hover:not(:disabled) {
     background-color: #7900cf;
@@ -1176,6 +1176,27 @@ input {
   grid-gap: 2rem;
   margin-top: 2rem; }
 
+.text-filter-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  margin-top: 1rem;
+  margin-bottom: 1rem; }
+
+.text-filter-label {
+  margin-right: 1rem; }
+
+.text-filter-input {
+  outline: none;
+  padding: 0.8rem;
+  font-size: 1.8rem;
+  border-radius: 6px;
+  flex-grow: 1;
+  background: #ccc;
+  color: #5b009c;
+  width: 100%; }
+
 .watchlist-content {
   display: flex;
   flex-direction: column;
@@ -1238,7 +1259,9 @@ input {
 
 @media (max-width: 500px) {
   .watchlist-grid {
-    grid-template-columns: 1fr; } }
+    grid-template-columns: 1fr; }
+  .text-filter-wrapper {
+    flex-direction: column; } }
 
 @media (min-width: 1024px) {
   .watchlist-grid {

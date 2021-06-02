@@ -25,6 +25,10 @@ const WatchedSchema = new mongoose.Schema(
 					type: String,
 					required: true,
 				},
+				primary_genre: {
+					type: String,
+					required: true,
+				},
 			},
 		],
 	},

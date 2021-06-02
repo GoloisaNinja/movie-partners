@@ -27,11 +27,12 @@ router.post('/add', auth, async (req, res) => {
 	const user = await req.user;
 	const _id = user._id;
 	let watchedFields = {};
-	const { tmdb_id, name, poster_path, media_type } = req.body;
+	const { tmdb_id, name, poster_path, media_type, primary_genre } = req.body;
 	watchedFields.tmdb_id = tmdb_id;
 	watchedFields.name = name;
 	watchedFields.poster_path = poster_path;
 	watchedFields.media_type = media_type;
+	watchedFields.primary_genre = primary_genre;
 	try {
 		const profile = await Profile.findOne({ user: _id });
 		let watched = await Watched.findOne({ user: _id });

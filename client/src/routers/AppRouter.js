@@ -25,6 +25,7 @@ import WatchlistState from '../context/watchlist/WatchlistState';
 import ProfileState from '../context/profile/ProfileState';
 import FavoriteState from '../context/favorite/FavoriteState';
 import WatchedState from '../context/watched/WatchedState';
+import FiltersState from '../context/filters/FiltersState';
 
 // Utils
 import axios from 'axios';
@@ -176,39 +177,41 @@ const AppRouter = () => {
 				<>
 					<ProfileState>
 						<WatchlistState>
-							<Navbar />
-							<Switch>
-								<Route exact path='/' component={Home} />
-								<Route path='/trending' component={Trending} />
+							<FiltersState>
+								<Navbar />
+								<Switch>
+									<Route exact path='/' component={Home} />
+									<Route path='/trending' component={Trending} />
 
-								<Route path='/pages/:media_id/:page' component={Pages} />
-								<Route path='/search/:search_string' component={Search} />
-								<Route exact path='/categories' component={Categories} />
-								<Route
-									path='/categories/:media_id/:genre_id/:genre_name/:page'
-									component={Category}
-								/>
+									<Route path='/pages/:media_id/:page' component={Pages} />
+									<Route path='/search/:search_string' component={Search} />
+									<Route exact path='/categories' component={Categories} />
+									<Route
+										path='/categories/:media_id/:genre_id/:genre_name/:page'
+										component={Category}
+									/>
 
-								<FavoriteState>
-									<WatchedState>
-										<Route path='/media/:type/:id' component={Media} />
-										<PrivateRoute exact path='/profile' component={Profile} />
-										<PrivateRoute path='/favorites' component={Favorites} />
-										<PrivateRoute path='/watched' component={Watched} />
-										<PrivateRoute
-											exact
-											path='/watchlists'
-											component={Watchlists}
-										/>
-										<PrivateRoute
-											path='/watchlists/:watchlist_id'
-											component={Watchlist}
-										/>
-										<PrivateRoute path='/people' component={People} />
-									</WatchedState>
-								</FavoriteState>
-							</Switch>
-							<Footer />
+									<FavoriteState>
+										<WatchedState>
+											<Route path='/media/:type/:id' component={Media} />
+											<PrivateRoute exact path='/profile' component={Profile} />
+											<PrivateRoute path='/favorites' component={Favorites} />
+											<PrivateRoute path='/watched' component={Watched} />
+											<PrivateRoute
+												exact
+												path='/watchlists'
+												component={Watchlists}
+											/>
+											<PrivateRoute
+												path='/watchlists/:watchlist_id'
+												component={Watchlist}
+											/>
+											<PrivateRoute path='/people' component={People} />
+										</WatchedState>
+									</FavoriteState>
+								</Switch>
+								<Footer />
+							</FiltersState>
 						</WatchlistState>
 					</ProfileState>
 				</>

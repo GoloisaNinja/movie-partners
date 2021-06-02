@@ -253,7 +253,7 @@ router.post('/add/:id', auth, async (req, res) => {
 	const user = await req.user;
 	const watchlist_id = req.params.id;
 	const _id = user._id;
-	const { tmdb_id, poster_path, name, media_type } = req.body;
+	const { tmdb_id, poster_path, name, media_type, primary_genre } = req.body;
 	try {
 		const profile = await Profile.findOne({ user: _id });
 		if (!profile) {
@@ -290,7 +290,13 @@ router.post('/add/:id', auth, async (req, res) => {
 					.send({ message: 'Title is already in your watchlist...' });
 			}
 		}
-		watchlist.titles.unshift({ tmdb_id, poster_path, name, media_type });
+		watchlist.titles.unshift({
+			tmdb_id,
+			poster_path,
+			name,
+			media_type,
+			primary_genre,
+		});
 		await watchlist.save();
 		res.status(200).send({ watchlist });
 	} catch (e) {

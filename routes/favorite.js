@@ -27,11 +27,13 @@ router.post('/add', auth, async (req, res) => {
 	const user = await req.user;
 	const _id = user._id;
 	let favoriteFields = {};
-	const { tmdb_id, name, poster_path, media_type } = req.body;
+	const { tmdb_id, name, poster_path, media_type, primary_genre } = req.body;
+	console.log(primary_genre);
 	favoriteFields.tmdb_id = tmdb_id;
 	favoriteFields.name = name;
 	favoriteFields.poster_path = poster_path;
 	favoriteFields.media_type = media_type;
+	favoriteFields.primary_genre = primary_genre;
 	try {
 		const profile = await Profile.findOne({ user: _id });
 		let favorite = await Favorite.findOne({ user: _id });

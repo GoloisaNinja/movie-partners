@@ -37,7 +37,7 @@
 	border-bottom: 2px darken($primary-button-color, 10%) solid;
 	margin-right: 2rem;
 	&:disabled {
-		cursor: default;
+		cursor: not-allowed;
 		opacity: 0.5;
 	}
 	&:hover:not(:disabled) {
