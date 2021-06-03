@@ -10,8 +10,7 @@ const WatchlistTitles = ({ titles }) => {
 	useEffect(() => {
 		const result = getVisibleWatchlistTitles({ titles, watchlist });
 		setVisibleTitles(result);
-		console.log('ran got visible');
-	}, [setVisibleTitles, watchlist]);
+	}, [setVisibleTitles, watchlist, titles]);
 	return (
 		visibleTitles?.length > 0 && (
 			<div className='landing-grid'>

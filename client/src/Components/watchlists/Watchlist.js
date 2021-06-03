@@ -10,7 +10,6 @@ const Watchlist = ({ match }) => {
 	useEffect(() => {
 		getWatchlist(match.params.watchlist_id);
 		activateWatchlist(match.params.watchlist_id);
-		console.log('ran');
 	}, []);
 
 	return (
