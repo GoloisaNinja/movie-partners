@@ -1176,13 +1176,35 @@ input {
   grid-gap: 2rem;
   margin-top: 2rem; }
 
-.text-filter-wrapper {
+.text-filter-wrapper, .drop-filters-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Inter', sans-serif;
   margin-top: 1rem;
-  margin-bottom: 1rem; }
+  margin-bottom: 1.25rem; }
+
+.drop-filters-wrapper {
+  justify-content: center; }
+  .drop-filters-wrapper > div:first-child {
+    margin-right: 2rem; }
+  .drop-filters-wrapper > div {
+    width: 100%;
+    flex-grow: 1; }
+    .drop-filters-wrapper > div > label {
+      text-align: center; }
+    .drop-filters-wrapper > div > select {
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      width: 100%;
+      color: #ccc;
+      border-radius: 6px;
+      padding: 0.8rem; }
+  @media (max-width: 500px) {
+    .drop-filters-wrapper > div:first-child {
+      margin-right: 0; }
+    .drop-filters-wrapper > div {
+      margin-bottom: 1.25rem; } }
 
 .text-filter-label {
   margin-right: 1rem; }
@@ -1260,7 +1282,7 @@ input {
 @media (max-width: 500px) {
   .watchlist-grid {
     grid-template-columns: 1fr; }
-  .text-filter-wrapper {
+  .text-filter-wrapper, .drop-filters-wrapper {
     flex-direction: column; } }
 
 @media (min-width: 1024px) {

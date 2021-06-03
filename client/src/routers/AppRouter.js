@@ -203,7 +203,7 @@ const AppRouter = () => {
 												component={Watchlists}
 											/>
 											<PrivateRoute
-												path='/watchlists/:watchlist_id/:page'
+												path='/watchlists/:watchlist_id'
 												component={Watchlist}
 											/>
 											<PrivateRoute path='/people' component={People} />

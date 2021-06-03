@@ -35,11 +35,7 @@ const watchlistReducer = (state, action) => {
 			return {
 				...state,
 				loading: false,
-				watchlist: {
-					wl_name: payload.name,
-					titles: payload.titles,
-					pages: payload.pages,
-				},
+				watchlist: payload,
 			};
 		case ACTIVATE_WATCHLIST:
 			return {

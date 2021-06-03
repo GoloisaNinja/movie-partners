@@ -10,8 +10,42 @@
 	align-items: center;
 	font-family: 'Inter', sans-serif;
 	margin-top: 1rem;
-	margin-bottom: 1rem;
+	margin-bottom: 1.25rem;
 }
+.drop-filters-wrapper {
+	@extend .text-filter-wrapper;
+	justify-content: center;
+
+	> div:first-child {
+		margin-right: 2rem;
+	}
+
+	> div {
+		width: 100%;
+		flex-grow: 1;
+
+		> label {
+			text-align: center;
+		}
+		> select {
+			font-family: 'Inter', sans-serif;
+			text-align: center;
+			width: 100%;
+			color: #ccc;
+			border-radius: 6px;
+			padding: 0.8rem;
+		}
+	}
+	@media (max-width: 500px) {
+		> div:first-child {
+			margin-right: 0;
+		}
+		> div {
+			margin-bottom: 1.25rem;
+		}
+	}
+}
+
 .text-filter-label {
 	margin-right: 1rem;
 }
