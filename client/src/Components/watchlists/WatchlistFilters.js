@@ -8,9 +8,9 @@ const WatchlistFilters = ({ watchlistTitles }) => {
 		setWatchlistGenreFilter,
 		setWatchlistMediaFilter,
 	} = useContext(filtersContext);
-	const [genre, setGenre] = useState('');
+	const [genre, setGenre] = useState(watchlist.genreFilter);
 	const [genres, setGenres] = useState([]);
-	const [mediaType, setMediaType] = useState('');
+	const [mediaType, setMediaType] = useState(watchlist.mediaFilter);
 	useEffect(() => {
 		const genres = watchlistTitles.map((title) => title.primary_genre);
 		const cleanGenres = Array.from(new Set(genres));
