@@ -43,7 +43,7 @@ router.get('/get/:id', auth, async (req, res) => {
 		const watchlist = await Watchlist.findById({ _id }).where({
 			$or: [
 				{ 'user._id': userId },
-				{ 'partners[partner_id]': { $elemMatch: { userId } } },
+				{ partners: { $elemMatch: { partner_id: userId } } },
 			],
 		});
 		if (!watchlist) {
