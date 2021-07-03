@@ -3,6 +3,7 @@ import axios from 'axios';
 import favoriteContext from '../../context/favorite/favoriteContext';
 import watchedContext from '../../context/watched/watchedContext';
 import MediaTop from './MediaTop';
+import Seo from '../Seo';
 import MediaBottom from './MediaBottom';
 
 const Media = ({ match, location }) => {
@@ -48,6 +49,12 @@ const Media = ({ match, location }) => {
 		</div>
 	) : (
 		<>
+			<Seo
+				title={type === 'movie' ? media.title : media.name}
+				description={media.overview}
+				lang={'en'}
+				image={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
+			/>
 			<MediaTop media={media} type={type} />
 			<MediaBottom media={media} type={type} media_id={media_id} />
 		</>
