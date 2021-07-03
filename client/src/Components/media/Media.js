@@ -51,7 +51,11 @@ const Media = ({ match, location }) => {
 		<>
 			<Seo
 				title={type === 'movie' ? media.title : media.name}
-				description={media.overview}
+				description={
+					type === 'movie'
+						? `${media.title} shared from weWatch`
+						: `${media.name} shared from weWatch`
+				}
 				lang={'en'}
 				image={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
 			/>
