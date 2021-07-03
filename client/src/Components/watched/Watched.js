@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProfileThumbnail from '../favorites/ProfileThumbnail';
 import watchedContext from '../../context/watched/watchedContext';
+import Seo from '../Seo';
 
 const Watched = () => {
 	const { getWatched, watched } = useContext(watchedContext);
@@ -10,6 +11,12 @@ const Watched = () => {
 	}, []);
 	return (
 		<>
+			<Seo
+				lang={`en`}
+				title={`Movie Partners | Watched movies and shows`}
+				description={`Browse your watched content here`}
+				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+			/>
 			<div className='container'>
 				<p
 					style={{

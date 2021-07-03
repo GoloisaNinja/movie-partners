@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Thumbnail from '../Thumbnail';
+import Seo from '../Seo';
 
 const Category = ({ match, history }) => {
 	useEffect(() => {
@@ -67,73 +68,83 @@ const Category = ({ match, history }) => {
 			...
 		</div>
 	) : (
-		<div className='container'>
-			<p
-				style={{
-					fontSize: '2.5rem',
-					fontWeight: '700',
-					fontFamily: "'Inter', sans-serif",
-				}}>
-				{type === 'movie'
-					? `${genreName} movies page ${page}`
-					: `${genreName} shows page ${page}`}
-			</p>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-					justifyContent: 'center',
-					alignItems: 'center',
-				}}>
-				<p>
-					Sorted by {sortBy === 'popularity.desc' ? 'popularity' : 'rating'}
+		<>
+			<Seo
+				lang={`en`}
+				title={`Movie Partners | ${genreName} - ${type}`}
+				description={`Browse ${genreName} category results`}
+				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+			/>
+			<div className='container'>
+				<p
+					style={{
+						fontSize: '2.5rem',
+						fontWeight: '700',
+						fontFamily: "'Inter', sans-serif",
+					}}>
+					{type === 'movie'
+						? `${genreName} movies page ${page}`
+						: `${genreName} shows page ${page}`}
 				</p>
-				<div className='sortButtons'>
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}>
+					<p>
+						Sorted by {sortBy === 'popularity.desc' ? 'popularity' : 'rating'}
+					</p>
+					<div className='sortButtons'>
+						<button
+							className='unBtn sortBtn fire'
+							onClick={(e) => handleSort('popularity.desc')}>
+							<i className='fas fa-fire-alt'></i>
+						</button>
+						<button
+							className='unBtn sortBtn star'
+							onClick={(e) =>
+								handleSort('vote_average.desc&vote_count.gte=50')
+							}>
+							<i className='fas fa-star'></i>
+						</button>
+					</div>
+				</div>
+
+				<div className='landing-grid'>
+					{results.results.map(
+						(item) =>
+							item.poster_path !== null &&
+							item.backdrop_path !== null && (
+								<Link
+									to={{
+										pathname: `/media/${type}/${item.id}`,
+										state: { type: type },
+									}}
+									key={item.id}>
+									<Thumbnail media={item} type={type} />
+								</Link>
+							)
+					)}
+				</div>
+				<div className='pages-buttons'>
 					<button
-						className='unBtn sortBtn fire'
-						onClick={(e) => handleSort('popularity.desc')}>
-						<i className='fas fa-fire-alt'></i>
+						className='unBtn'
+						disabled={page === '1'}
+						onClick={(e) => handlePage('-')}>
+						<i className='chevBack fas fa-chevron-circle-left'></i>
 					</button>
+
 					<button
-						className='unBtn sortBtn star'
-						onClick={(e) => handleSort('vote_average.desc&vote_count.gte=50')}>
-						<i className='fas fa-star'></i>
+						className='unBtn'
+						disabled={parseInt(match.params.page) === results.total_pages}
+						onClick={(e) => handlePage('+')}>
+						<i className='chevNext fas fa-chevron-circle-right'></i>
 					</button>
 				</div>
 			</div>
-
-			<div className='landing-grid'>
-				{results.results.map(
-					(item) =>
-						item.poster_path !== null &&
-						item.backdrop_path !== null && (
-							<Link
-								to={{
-									pathname: `/media/${type}/${item.id}`,
-									state: { type: type },
-								}}
-								key={item.id}>
-								<Thumbnail media={item} type={type} />
-							</Link>
-						)
-				)}
-			</div>
-			<div className='pages-buttons'>
-				<button
-					className='unBtn'
-					disabled={page === '1'}
-					onClick={(e) => handlePage('-')}>
-					<i className='chevBack fas fa-chevron-circle-left'></i>
-				</button>
-
-				<button
-					className='unBtn'
-					disabled={parseInt(match.params.page) === results.total_pages}
-					onClick={(e) => handlePage('+')}>
-					<i className='chevNext fas fa-chevron-circle-right'></i>
-				</button>
-			</div>
-		</div>
+		</>
 	);
 };
 

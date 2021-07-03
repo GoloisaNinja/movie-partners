@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Seo from '../Seo';
 import CategoryBadge from './CategoryBadge';
 
 const Categories = () => {
@@ -29,45 +30,57 @@ const Categories = () => {
 		getResults();
 	}, [apiKey]);
 	return movieGenres.length > 0 && tvGenres.length > 0 ? (
-		<div className='container'>
-			<p
-				style={{
-					fontSize: '2.5rem',
-					fontWeight: '700',
-					fontFamily: "'Inter', sans-serif",
-				}}>
-				Movie Categories <i className='caticon fas fa-film'></i>
-			</p>
+		<>
+			<Seo
+				lang={`en`}
+				title={`Movie Partners Categories`}
+				description={`Categories | movies and shows`}
+				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+			/>
+			<div className='container'>
+				<p
+					style={{
+						fontSize: '2.5rem',
+						fontWeight: '700',
+						fontFamily: "'Inter', sans-serif",
+					}}>
+					Movie Categories <i className='caticon fas fa-film'></i>
+				</p>
 
-			<div className='category-grid'>
-				{movieGenres.map((genre) => (
-					<div key={genre.id}>
-						<Link to={`/categories/movie/${genre.id}/${genre.name}/1`}>
-							<CategoryBadge key={genre.id} name={genre.name} type={'movie'} />
-						</Link>
-					</div>
-				))}
-			</div>
+				<div className='category-grid'>
+					{movieGenres.map((genre) => (
+						<div key={genre.id}>
+							<Link to={`/categories/movie/${genre.id}/${genre.name}/1`}>
+								<CategoryBadge
+									key={genre.id}
+									name={genre.name}
+									type={'movie'}
+								/>
+							</Link>
+						</div>
+					))}
+				</div>
 
-			<p
-				style={{
-					fontSize: '2.5rem',
-					fontWeight: '700',
-					fontFamily: "'Inter', sans-serif",
-					marginTop: '2.5rem',
-				}}>
-				Show Categories <i className='caticon fas fa-tv'></i>
-			</p>
-			<div className='category-grid'>
-				{tvGenres.map((genre) => (
-					<div key={genre.id}>
-						<Link to={`/categories/tv/${genre.id}/${genre.name}/1`}>
-							<CategoryBadge key={genre.id} name={genre.name} type={'tv'} />
-						</Link>
-					</div>
-				))}
+				<p
+					style={{
+						fontSize: '2.5rem',
+						fontWeight: '700',
+						fontFamily: "'Inter', sans-serif",
+						marginTop: '2.5rem',
+					}}>
+					Show Categories <i className='caticon fas fa-tv'></i>
+				</p>
+				<div className='category-grid'>
+					{tvGenres.map((genre) => (
+						<div key={genre.id}>
+							<Link to={`/categories/tv/${genre.id}/${genre.name}/1`}>
+								<CategoryBadge key={genre.id} name={genre.name} type={'tv'} />
+							</Link>
+						</div>
+					))}
+				</div>
 			</div>
-		</div>
+		</>
 	) : (
 		<div
 			style={{

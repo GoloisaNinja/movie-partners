@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Seo from '../Seo';
 import TrendingMovies from './TrendingMovies';
 import TrendingShows from './TrendingShows';
 
@@ -40,6 +41,12 @@ const Trending = () => {
 		movieTrending !== undefined &&
 		showTrending !== undefined && (
 			<>
+				<Seo
+					lang={`en`}
+					title={`Movie Partners | Trending`}
+					description={`Trending movies and shows`}
+					image={`https://www.wewatch.pw/assets/mp_logo.png`}
+				/>
 				<TrendingMovies movies={movieTrending} />
 				<TrendingShows shows={showTrending} />
 			</>
