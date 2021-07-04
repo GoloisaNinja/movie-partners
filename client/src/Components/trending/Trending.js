@@ -37,20 +37,36 @@ const Trending = () => {
 		}
 	}, []);
 
-	return (
-		movieTrending !== undefined &&
-		showTrending !== undefined && (
-			<>
-				<Seo
-					lang={`en`}
-					title={`Movie Partners | Trending`}
-					description={`Trending movies and shows`}
-					image={`https://www.wewatch.pw/assets/mp_logo.png`}
-				/>
-				<TrendingMovies movies={movieTrending} />
-				<TrendingShows shows={showTrending} />
-			</>
-		)
+	return movieTrending !== undefined && showTrending !== undefined ? (
+		<>
+			<Seo
+				lang={`en`}
+				title={`Movie Partners | Trending`}
+				description={`Trending movies and shows`}
+				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+			/>
+			<TrendingMovies movies={movieTrending} />
+			<TrendingShows shows={showTrending} />
+		</>
+	) : (
+		<>
+			<Seo
+				lang={`en`}
+				title={`Movie Partners | Trending`}
+				description={`Trending movies and shows`}
+				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+			/>
+			<div
+				style={{
+					minHeight: '100vh',
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+					textAlign: 'center',
+				}}>
+				...
+			</div>
+		</>
 	);
 };
 
