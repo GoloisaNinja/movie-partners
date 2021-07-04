@@ -33,8 +33,8 @@ const Categories = () => {
 		<>
 			<Seo
 				lang={`en`}
-				title={`Movie Partners Categories`}
-				description={`Categories | movies and shows`}
+				title={`Categories`}
+				description={`Categories`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>
 			<div className='container'>

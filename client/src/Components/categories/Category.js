@@ -72,7 +72,7 @@ const Category = ({ match, history }) => {
 			<Seo
 				lang={`en`}
 				title={`${genreName} - ${type}`}
-				description={`Browse ${genreName} category results`}
+				description={`Browse ${genreName} results`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>
 			<div className='container'>

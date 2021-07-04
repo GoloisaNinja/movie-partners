@@ -16,8 +16,8 @@ const Profile = () => {
 		<>
 			<Seo
 				lang={`en`}
-				title={`Profile | ${user.name}`}
-				description={`Movie Partners | Profile`}
+				title={`Profile page for ${user.name}`}
+				description={`Your Profile Page`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>
 			<div className='container'>
