@@ -195,7 +195,19 @@ const AppRouter = () => {
 					<ProfileState>
 						<WatchlistState>
 							<FiltersState>
-								<Suspense fallback={<div>Loading...</div>}>
+								<Suspense
+									fallback={
+										<div
+											style={{
+												minHeight: '100vh',
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'center',
+												textAlign: 'center',
+											}}>
+											...
+										</div>
+									}>
 									<Navbar />
 									<Switch>
 										<Route exact path='/' component={Home} />
