@@ -31,7 +31,7 @@ const Watchlists = () => {
 		<>
 			<Seo
 				lang={`en`}
-				title={`Movie Partners | Watchlists`}
+				title={`Watchlists`}
 				description={`Home for your watchlists`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>

@@ -17,7 +17,7 @@ const Watchlist = ({ match }) => {
 		<>
 			<Seo
 				lang={`en`}
-				title={`Movie Partners Watchlist`}
+				title={`Watchlist`}
 				description={`Home for your watchlist`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>
@@ -36,7 +36,7 @@ const Watchlist = ({ match }) => {
 				<>
 					<Seo
 						lang={`en`}
-						title={`Watchlist | ${watchlist.wl_name}`}
+						title={`Watchlist - ${watchlist.wl_name}`}
 						description={`Browse your watchlist here`}
 						image={`https://www.wewatch.pw/assets/mp_logo.png`}
 					/>
@@ -57,7 +57,7 @@ const Watchlist = ({ match }) => {
 				<>
 					<Seo
 						lang={`en`}
-						title={`Watchlist | ${watchlist.wl_name}`}
+						title={`Watchlist`}
 						description={`Browse your watchlist here`}
 						image={`https://www.wewatch.pw/assets/mp_logo.png`}
 					/>

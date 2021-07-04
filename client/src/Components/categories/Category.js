@@ -71,7 +71,7 @@ const Category = ({ match, history }) => {
 		<>
 			<Seo
 				lang={`en`}
-				title={`Movie Partners | ${genreName} - ${type}`}
+				title={`${genreName} - ${type}`}
 				description={`Browse ${genreName} category results`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>

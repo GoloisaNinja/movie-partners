@@ -32,6 +32,7 @@ const Pages = ({ match, history }) => {
 		} else {
 			newPage = parseInt(page) - 1;
 		}
+		window.scroll(0, 0);
 		history.push(`/pages/${type}/${newPage}`);
 	};
 	useEffect(() => {

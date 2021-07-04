@@ -13,7 +13,7 @@ const Watched = () => {
 		<>
 			<Seo
 				lang={`en`}
-				title={`Movie Partners | Watched movies and shows`}
+				title={`Watched movies and shows`}
 				description={`Browse your watched content here`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>

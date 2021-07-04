@@ -41,7 +41,7 @@ const Trending = () => {
 		<>
 			<Seo
 				lang={`en`}
-				title={`Movie Partners | Trending`}
+				title={`Trending`}
 				description={`Trending movies and shows`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>
@@ -52,7 +52,7 @@ const Trending = () => {
 		<>
 			<Seo
 				lang={`en`}
-				title={`Movie Partners | Trending`}
+				title={`Trending`}
 				description={`Trending movies and shows`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>

@@ -13,7 +13,7 @@ const Favorites = () => {
 		<>
 			<Seo
 				lang={`en`}
-				title={`Movie Partners | Favorites`}
+				title={`Favorites`}
 				description={`Browse your favorite shows and movies here`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>

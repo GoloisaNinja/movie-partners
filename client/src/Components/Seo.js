@@ -6,7 +6,7 @@ const Seo = ({ lang, title, description, image, meta = [] }) => {
 		<Helmet
 			htmlAttributes={{ lang }}
 			title={title}
-			titleTemplate={`weWatch | ${title}`}
+			titleTemplate={`Movie Partners | ${title}`}
 			meta={[
 				{
 					name: `description`,
