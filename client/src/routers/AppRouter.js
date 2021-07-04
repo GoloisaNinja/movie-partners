@@ -1,24 +1,24 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Routing Needs - Private Route
 import PrivateRoute from '../Components/routing/PrivateRoute';
 
 // Components
-import Trending from '../Components/trending/Trending';
-import Media from '../Components/media/Media';
-import Navbar from '../Components/Navbar';
-import Footer from '../Components/Footer';
-import Pages from '../Components/trending/Pages';
-import Search from '../Components/search/Search';
-import Categories from '../Components/categories/Categories';
-import Category from '../Components/categories/Category';
-import Home from '../Components/Home';
-import Profile from '../Components/profile/Profile';
-import Favorites from '../Components/favorites/Favorites';
-import Watched from '../Components/watched/Watched';
-import Watchlists from '../Components/watchlists/Watchlists';
-import Watchlist from '../Components/watchlists/Watchlist';
-import People from '../Components/people/People';
+// import Trending from '../Components/trending/Trending';
+// import Media from '../Components/media/Media';
+// import Navbar from '../Components/Navbar';
+// import Footer from '../Components/Footer';
+// import Pages from '../Components/trending/Pages';
+// import Search from '../Components/search/Search';
+// import Categories from '../Components/categories/Categories';
+// import Category from '../Components/categories/Category';
+// import Home from '../Components/Home';
+// import Profile from '../Components/profile/Profile';
+// import Favorites from '../Components/favorites/Favorites';
+// import Watched from '../Components/watched/Watched';
+// import Watchlists from '../Components/watchlists/Watchlists';
+// import Watchlist from '../Components/watchlists/Watchlist';
+// import People from '../Components/people/People';
 
 // Contexts and States
 import WatchlistState from '../context/watchlist/WatchlistState';
@@ -43,6 +43,23 @@ import {
 	LOGIN_FAILURE,
 	LOGOUT_USER,
 } from '../context/auth/authActions';
+
+const Trending = lazy(() => import('../Components/trending/Trending'));
+const Media = lazy(() => import('../Components/media/Media'));
+const Navbar = lazy(() => import('../Components/Navbar'));
+const Footer = lazy(() => import('../Components/Footer'));
+const Pages = lazy(() => import('../Components/trending/Pages'));
+const Search = lazy(() => import('../Components/search/Search'));
+const Categories = lazy(() => import('../Components/categories/Categories'));
+const Category = lazy(() => import('../Components/categories/Category'));
+const Home = lazy(() => import('../Components/Home'));
+const Profile = lazy(() => import('../Components/profile/Profile'));
+const Favorites = lazy(() => import('../Components/favorites/Favorites'));
+const Watched = lazy(() => import('../Components/watched/Watched'));
+const Watchlists = lazy(() => import('../Components/watchlists/Watchlists'));
+const Watchlist = lazy(() => import('../Components/watchlists/Watchlist'));
+const People = lazy(() => import('../Components/people/People'));
+
 const AppRouter = () => {
 	const initialState = {
 		loading: true,
@@ -178,39 +195,45 @@ const AppRouter = () => {
 					<ProfileState>
 						<WatchlistState>
 							<FiltersState>
-								<Navbar />
-								<Switch>
-									<Route exact path='/' component={Home} />
-									<Route path='/trending' component={Trending} />
+								<Suspense fallback={<div>Loading...</div>}>
+									<Navbar />
+									<Switch>
+										<Route exact path='/' component={Home} />
+										<Route path='/trending' component={Trending} />
 
-									<Route path='/pages/:media_id/:page' component={Pages} />
-									<Route path='/search/:search_string' component={Search} />
-									<Route exact path='/categories' component={Categories} />
-									<Route
-										path='/categories/:media_id/:genre_id/:genre_name/:page'
-										component={Category}
-									/>
+										<Route path='/pages/:media_id/:page' component={Pages} />
+										<Route path='/search/:search_string' component={Search} />
+										<Route exact path='/categories' component={Categories} />
+										<Route
+											path='/categories/:media_id/:genre_id/:genre_name/:page'
+											component={Category}
+										/>
 
-									<FavoriteState>
-										<WatchedState>
-											<Route path='/media/:type/:id' component={Media} />
-											<PrivateRoute exact path='/profile' component={Profile} />
-											<PrivateRoute path='/favorites' component={Favorites} />
-											<PrivateRoute path='/watched' component={Watched} />
-											<PrivateRoute
-												exact
-												path='/watchlists'
-												component={Watchlists}
-											/>
-											<PrivateRoute
-												path='/watchlists/:watchlist_id'
-												component={Watchlist}
-											/>
-											<PrivateRoute path='/people' component={People} />
-										</WatchedState>
-									</FavoriteState>
-								</Switch>
-								<Footer />
+										<FavoriteState>
+											<WatchedState>
+												<Route path='/media/:type/:id' component={Media} />
+												<PrivateRoute
+													exact
+													path='/profile'
+													component={Profile}
+												/>
+												<PrivateRoute path='/favorites' component={Favorites} />
+												<PrivateRoute path='/watched' component={Watched} />
+												<PrivateRoute
+													exact
+													path='/watchlists'
+													component={Watchlists}
+												/>
+												<PrivateRoute
+													path='/watchlists/:watchlist_id'
+													component={Watchlist}
+												/>
+												<PrivateRoute path='/people' component={People} />
+											</WatchedState>
+										</FavoriteState>
+									</Switch>
+									<Footer />
+								</Suspense>
 							</FiltersState>
 						</WatchlistState>
 					</ProfileState>
