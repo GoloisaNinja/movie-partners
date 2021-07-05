@@ -144,9 +144,9 @@ input {
   right: 0;
   z-index: 11;
   background: #272727;
-  opacity: 0.2;
+  opacity: 0.99;
   visibility: hidden;
-  transition: opacity 0.35s, width 0.6s ease, visibility 0.35s; }
+  transition: opacity 0.35s, width 0.2s ease, visibility 0.2s; }
 
 .menu-isopen {
   height: 100%;
