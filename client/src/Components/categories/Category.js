@@ -43,6 +43,7 @@ const Category = ({ match, history }) => {
 		} else {
 			newPage = parseInt(page) - 1;
 		}
+		window.scroll(0, 0);
 		history.push(`/categories/${type}/${genreId}/${genreName}/${newPage}`);
 	};
 
