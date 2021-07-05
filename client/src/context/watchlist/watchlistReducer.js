@@ -7,6 +7,7 @@ import {
 	CREATE_FAILURE,
 	DELETE_WATCHLIST,
 	ACTIVATE_WATCHLIST,
+	DEACTIVATE_WATCHLIST,
 } from './watchlistActions';
 
 const watchlistReducer = (state, action) => {
@@ -42,6 +43,12 @@ const watchlistReducer = (state, action) => {
 				...state,
 				loading: false,
 				activatedWatchlist: payload,
+			};
+		case DEACTIVATE_WATCHLIST:
+			return {
+				...state,
+				loading: false,
+				activatedWatchlist: null,
 			};
 		case GET_ALL_WATCHLISTS:
 			return {

@@ -12,6 +12,7 @@ import {
 	CREATE_FAILURE,
 	DELETE_WATCHLIST,
 	ACTIVATE_WATCHLIST,
+	DEACTIVATE_WATCHLIST,
 } from './watchlistActions';
 
 const WatchlistState = ({ children }) => {
@@ -36,7 +37,6 @@ const WatchlistState = ({ children }) => {
 			},
 		};
 		const body = JSON.stringify({ name });
-		console.log(body);
 		try {
 			const res = await axios.post(`/api/watchlist/create`, body, config);
 			if (res.status === 201) {
@@ -76,6 +76,12 @@ const WatchlistState = ({ children }) => {
 				config
 			);
 			if (res.status === 200) {
+				if (localStorage.getItem('activatedWatchlist') === watchlist_id) {
+					localStorage.removeItem('activatedWatchlist');
+					dispatch({
+						type: DEACTIVATE_WATCHLIST,
+					});
+				}
 				dispatch({
 					type: DELETE_WATCHLIST,
 					payload: watchlist_id,

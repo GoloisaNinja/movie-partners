@@ -11,14 +11,16 @@ const Navbar = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const history = useHistory();
 	const { isAuthenticated, user, logoutUser } = useContext(authContext);
-	const { activateWatchlist } = useContext(watchlistContext);
+	const { activateWatchlist, watchlists, activatedWatchlist } =
+		useContext(watchlistContext);
 	const { clearProfile, getProfile, profile } = useContext(profileContext);
 
 	useEffect(() => {
 		if (localStorage.getItem('activatedWatchlist')) {
 			activateWatchlist(localStorage.getItem('activatedWatchlist'));
 		}
-	}, []);
+		console.log('checking for endless renders');
+	}, [watchlists]);
 
 	const handleSearch = (e) => {
 		e.preventDefault();
@@ -101,14 +103,18 @@ const Navbar = () => {
 					onClick={(e) => setOpenSeach(!openSearch)}>
 					Search
 				</button>
+				{profile !== null && (
+					<Link to='/watchlists'>
+						<button className='unBtn nav-link'>Watchlists</button>
+					</Link>
+				)}
 				{profile !== null
-					? profile.watchlists.length !== 0 && (
-							<Link to='/watchlists'>
-								<button className='unBtn nav-link'>Watchlists</button>
+					? activatedWatchlist && (
+							<Link to={`/watchlists/${activatedWatchlist._id}`}>
+								<button className='unBtn nav-link'>Active Watchlist</button>
 							</Link>
 					  )
 					: null}
-
 				<Link to='/categories'>
 					<button className='unBtn nav-link'>Categories</button>
 				</Link>
@@ -148,14 +154,24 @@ const Navbar = () => {
 				</div>
 				<div className='menu-bottom'>
 					<ul className='menu-list'>
+						{profile !== null && (
+							<Link to='/watchlists'>
+								<button
+									className='unBtn'
+									style={{ color: '#ededed' }}
+									onClick={(e) => handleHamburger()}>
+									<li>Watchlists</li>
+								</button>
+							</Link>
+						)}
 						{profile !== null
-							? profile.watchlists.length !== 0 && (
-									<Link to='/watchlists'>
+							? activatedWatchlist && (
+									<Link to={`/watchlists/${activatedWatchlist._id}`}>
 										<button
 											className='unBtn'
 											style={{ color: '#ededed' }}
 											onClick={(e) => handleHamburger()}>
-											<li>Watchlists</li>
+											<li>Active Watchlist</li>
 										</button>
 									</Link>
 							  )
@@ -274,6 +290,7 @@ const Navbar = () => {
 			</div>
 		</>
 	);
+
 	return (
 		<>
 			<nav className='navbar'>{isAuthenticated ? authLinks : guestLinks}</nav>

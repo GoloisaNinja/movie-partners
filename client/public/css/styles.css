@@ -120,9 +120,9 @@ input {
   position: relative; }
 
 .nav-search__input {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   width: 100%;
-  padding: 0.8rem;
+  padding: 1.1rem;
   border-radius: 6px;
   text-align: center;
   border: none; }
@@ -249,13 +249,13 @@ input {
 .menu-button.open .menu-button__burger::after {
   transform: rotate(-45deg) translate(35px, 35px); }
 
-@media (max-width: 425px) {
+@media (max-width: 599px) {
   .nav-link {
     display: none; }
   .avatar {
     display: none; } }
 
-@media (min-width: 426px) {
+@media (min-width: 600px) {
   .menu-button {
     display: none; } }
 
