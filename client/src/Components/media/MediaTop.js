@@ -16,9 +16,7 @@ const MediaTop = ({ media, type }) => {
 					/>
 					<div className='overlay'></div>
 				</div>
-				<div className='media-top-navigation'>
-					<button onClick={() => history.goBack()}>go back</button>
-				</div>
+
 				<div className='media-top-poster-info'>
 					<div className='poster'>
 						<img
@@ -47,6 +45,11 @@ const MediaTop = ({ media, type }) => {
 							)}
 							<li>
 								Rating: {media.vote_average} / out of {media.vote_count} votes
+							</li>
+							<li>
+								<div className='media-top-navigation'>
+									<button onClick={() => history.goBack()}>go back</button>
+								</div>
 							</li>
 						</ul>
 					</div>

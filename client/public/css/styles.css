@@ -299,7 +299,6 @@ input {
 .backdrop {
   width: 100%;
   height: auto;
-  min-height: 300px;
   z-index: 2;
   opacity: 0.5;
   vertical-align: bottom; }
@@ -315,10 +314,7 @@ input {
   display: block; }
 
 .media-top-navigation {
-  position: absolute;
-  z-index: 1;
-  top: 8%;
-  left: 5%; }
+  margin-top: 10px; }
   .media-top-navigation > button {
     background: none;
     border: none;
@@ -328,7 +324,7 @@ input {
     border: 2px solid #fff;
     color: #fff;
     text-transform: uppercase;
-    padding: 8px 15px; }
+    padding: 5px 15px; }
     .media-top-navigation > button:hover {
       background: #fff;
       color: #009985; }
@@ -338,7 +334,7 @@ input {
   z-index: 1;
   display: flex;
   align-items: center;
-  bottom: 5%;
+  bottom: 1%;
   left: 5%;
   padding: 1rem; }
 
@@ -381,6 +377,10 @@ input {
     line-height: 1.2; }
 
 .info-title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   font-size: 3.5rem;
   line-height: 1.4;
   font-weight: 700;
