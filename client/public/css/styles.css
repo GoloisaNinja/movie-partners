@@ -299,6 +299,7 @@ input {
 .backdrop {
   width: 100%;
   height: auto;
+  min-height: 300px;
   z-index: 2;
   opacity: 0.5;
   vertical-align: bottom; }
@@ -312,6 +313,25 @@ input {
   right: 0;
   opacity: 0.3;
   display: block; }
+
+.media-top-navigation {
+  position: absolute;
+  z-index: 1;
+  top: 8%;
+  left: 5%; }
+  .media-top-navigation > button {
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #fff;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 8px 15px; }
+    .media-top-navigation > button:hover {
+      background: #fff;
+      color: #009985; }
 
 .media-top-poster-info {
   position: absolute;

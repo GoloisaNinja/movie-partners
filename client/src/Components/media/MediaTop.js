@@ -1,6 +1,8 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const MediaTop = ({ media, type }) => {
+	const history = useHistory();
 	return (
 		<>
 			<div className='media-top-outer'>
@@ -14,7 +16,9 @@ const MediaTop = ({ media, type }) => {
 					/>
 					<div className='overlay'></div>
 				</div>
-
+				<div className='media-top-navigation'>
+					<button onClick={() => history.goBack()}>go back</button>
+				</div>
 				<div className='media-top-poster-info'>
 					<div className='poster'>
 						<img
