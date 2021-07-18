@@ -70,7 +70,8 @@ input {
   min-height: 100vh; }
 
 .pink-span {
-  color: #d100b9; }
+  font-family: 'Inter', sans-serif;
+  color: #ff45e9; }
 
 .green-span {
   color: #009985; }
@@ -423,9 +424,10 @@ input {
 
 .media-bottom-desc, .profile-bio-desc {
   font-size: 2rem;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   text-align: center;
-  color: #d100b9; }
+  color: #ff45e9; }
 
 .media-bottom-overview {
   font-size: 1.8rem;
@@ -679,7 +681,7 @@ input {
   margin-bottom: 2rem; }
 
 .category-genre {
-  color: #d100b9; }
+  color: #ff45e9; }
 
 .category-grid {
   display: grid;
@@ -1128,7 +1130,7 @@ input {
   margin-bottom: 1.5rem; }
 
 .profile-label {
-  color: #d100b9;
+  color: #ff45e9;
   font-size: 2rem; }
 
 .form-input {
