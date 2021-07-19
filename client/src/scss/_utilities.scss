@@ -29,3 +29,11 @@
 .green-span {
 	color: $green-text-color;
 }
+.pugalicious {
+	@media (min-width: 600px) {
+		width: 50%;
+	}
+	@media (min-width: 769px) {
+		width: 30%;
+	}
+}

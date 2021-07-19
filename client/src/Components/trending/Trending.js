@@ -3,6 +3,7 @@ import axios from 'axios';
 import Seo from '../Seo';
 import TrendingMovies from './TrendingMovies';
 import TrendingShows from './TrendingShows';
+import Loading from '../Loading';
 
 const Trending = () => {
 	const [movieTrending, setMovieTrending] = useState();
@@ -56,16 +57,7 @@ const Trending = () => {
 				description={`Trending movies and shows`}
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>
-			<div
-				style={{
-					minHeight: '100vh',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-					textAlign: 'center',
-				}}>
-				...
-			</div>
+			<Loading />
 		</>
 	);
 };

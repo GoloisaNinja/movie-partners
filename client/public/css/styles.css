@@ -76,6 +76,14 @@ input {
 .green-span {
   color: #009985; }
 
+@media (min-width: 600px) {
+  .pugalicious {
+    width: 50%; } }
+
+@media (min-width: 769px) {
+  .pugalicious {
+    width: 30%; } }
+
 .navbar {
   background-color: #d100b9;
   display: flex;

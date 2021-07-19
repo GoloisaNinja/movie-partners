@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import WatchlistCard from './WatchlistCard';
 import watchlistContext from '../../context/watchlist/watchlistContext';
 import Seo from '../Seo';
+import Loading from '../Loading';
 
 const Watchlists = () => {
 	const { getAllWatchlists, watchlists, loading, createWatchlist } =
@@ -17,16 +18,7 @@ const Watchlists = () => {
 		setListName('');
 	};
 	return loading ? (
-		<div
-			style={{
-				minHeight: '100vh',
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				textAlign: 'center',
-			}}>
-			...
-		</div>
+		<Loading />
 	) : (
 		<>
 			<Seo

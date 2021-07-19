@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Thumbnail from '../Thumbnail';
 import Seo from '../Seo';
+import Loading from '../Loading';
 
 const Category = ({ match, history }) => {
 	useEffect(() => {
@@ -58,16 +59,7 @@ const Category = ({ match, history }) => {
 	}, [match.params.page]);
 
 	return !results ? (
-		<div
-			style={{
-				minHeight: '100vh',
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				textAlign: 'center',
-			}}>
-			...
-		</div>
+		<Loading />
 	) : (
 		<>
 			<Seo

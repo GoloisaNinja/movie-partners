@@ -3,6 +3,7 @@ import WatchlistTitles from './WatchlistTitles';
 import watchlistContext from '../../context/watchlist/watchlistContext';
 import WatchlistFilters from './WatchlistFilters';
 import Seo from '../Seo';
+import Loading from '../Loading';
 
 const Watchlist = ({ match }) => {
 	const { activateWatchlist, getWatchlist, watchlist, loading } =
@@ -22,16 +23,7 @@ const Watchlist = ({ match }) => {
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>
 			{loading ? (
-				<div
-					style={{
-						minHeight: '100vh',
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-						textAlign: 'center',
-					}}>
-					...
-				</div>
+				<Loading />
 			) : watchlist !== null && watchlist.titles?.length > 0 ? (
 				<>
 					<Seo

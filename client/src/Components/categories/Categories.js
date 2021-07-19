@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Seo from '../Seo';
 import CategoryBadge from './CategoryBadge';
+import Loading from '../Loading';
 
 const Categories = () => {
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
@@ -82,16 +83,7 @@ const Categories = () => {
 			</div>
 		</>
 	) : (
-		<div
-			style={{
-				minHeight: '100vh',
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				textAlign: 'center',
-			}}>
-			...
-		</div>
+		<Loading />
 	);
 };
 

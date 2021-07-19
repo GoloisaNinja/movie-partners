@@ -5,6 +5,7 @@ import watchedContext from '../../context/watched/watchedContext';
 import MediaTop from './MediaTop';
 import Seo from '../Seo';
 import MediaBottom from './MediaBottom';
+import Loading from '../Loading';
 
 const Media = ({ match, location }) => {
 	//const { type } = location.state;
@@ -37,16 +38,7 @@ const Media = ({ match, location }) => {
 		getWatched();
 	}, [match.params.id]);
 	return media === undefined || media.poster_path === undefined ? (
-		<div
-			style={{
-				minHeight: '100vh',
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				textAlign: 'center',
-			}}>
-			...
-		</div>
+		<Loading />
 	) : (
 		<>
 			<Seo
