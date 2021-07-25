@@ -5,7 +5,12 @@ import Thumbnail from '../Thumbnail';
 const ShowSearch = ({ shows }) => {
 	return (
 		<div>
-			<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+			<p
+				style={{
+					fontSize: '2.5rem',
+					fontWeight: '700',
+					fontFamily: "'Inter', sans-serif",
+				}}>
 				Matching show results
 			</p>
 			<div className='landing-grid'>

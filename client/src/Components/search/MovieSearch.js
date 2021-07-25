@@ -5,7 +5,12 @@ import Thumbnail from '../Thumbnail';
 const MovieSearch = ({ movies }) => {
 	return (
 		<div>
-			<p style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+			<p
+				style={{
+					fontSize: '2.5rem',
+					fontWeight: '700',
+					fontFamily: "'Inter', sans-serif",
+				}}>
 				Matching movie results
 			</p>
 			<div className='landing-grid'>
