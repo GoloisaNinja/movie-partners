@@ -9,7 +9,9 @@ const Pages = ({ match, history }) => {
 	const [results, setResults] = useState();
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const type = match.params.media_id;
-
+	const setScrollPosition = () => {
+		localStorage.setItem('scrollPosition', window.pageYOffset);
+	};
 	useEffect(() => {
 		const getResults = async () => {
 			try {
@@ -60,6 +62,7 @@ const Pages = ({ match, history }) => {
 						item.poster_path !== null &&
 						item.backdrop_path !== null && (
 							<Link
+								onClick={(e) => setScrollPosition()}
 								to={{
 									pathname: `/media/${type}/${item.id}`,
 									state: { type: type },

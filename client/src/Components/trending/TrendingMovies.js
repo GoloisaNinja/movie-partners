@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import Thumbnail from '../Thumbnail';
 
 const TrendingMovies = ({ movies }) => {
+	const setScrollPosition = () => {
+		localStorage.setItem('scrollPosition', window.pageYOffset);
+	};
 	return (
 		<>
 			<div className='container'>
@@ -26,6 +29,7 @@ const TrendingMovies = ({ movies }) => {
 							movie.poster_path !== null &&
 							movie.backdrop_path !== null && (
 								<Link
+									onClick={(e) => setScrollPosition()}
 									to={{
 										pathname: `/media/movie/${movie.id}`,
 										state: { type: 'movie' },
@@ -36,6 +40,22 @@ const TrendingMovies = ({ movies }) => {
 							)
 					)}
 				</div>
+				<Link
+					onClick={(e) => window.scrollTo(0, 0)}
+					to={{ pathname: '/pages/movie/2' }}>
+					<p
+						className='more'
+						style={{
+							fontSize: '2.5rem',
+							fontWeight: '700',
+							fontFamily: "'Inter', sans-serif",
+							textAlign: 'center',
+							color: '#ff45e9',
+							marginTop: '1.25rem',
+						}}>
+						see more movies
+					</p>
+				</Link>
 			</div>
 		</>
 	);

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import Thumbnail from '../Thumbnail';
 
 const MovieSearch = ({ movies }) => {
+	const setScrollPosition = () => {
+		localStorage.setItem('scrollPosition', window.pageYOffset);
+	};
 	return (
 		<div>
 			<p
@@ -19,6 +22,7 @@ const MovieSearch = ({ movies }) => {
 						movie.poster_path !== null &&
 						movie.backdrop_path !== null && (
 							<Link
+								onClick={(e) => setScrollPosition()}
 								to={{
 									pathname: `/media/movie/${movie.id}`,
 									state: { type: 'movie' },

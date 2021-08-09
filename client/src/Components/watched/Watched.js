@@ -9,6 +9,9 @@ const Watched = () => {
 	useEffect(() => {
 		getWatched();
 	}, []);
+	const setScrollPosition = () => {
+		localStorage.setItem('scrollPosition', window.pageYOffset);
+	};
 	return (
 		<>
 			<Seo
@@ -30,6 +33,7 @@ const Watched = () => {
 					<div className='landing-grid'>
 						{watched.map((watched) => (
 							<Link
+								onClick={(e) => setScrollPosition()}
 								to={{
 									pathname: `/media/${watched.media_type}/${watched.tmdb_id}`,
 									state: { type: watched.media_type },

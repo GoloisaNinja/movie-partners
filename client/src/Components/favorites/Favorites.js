@@ -9,6 +9,9 @@ const Favorites = () => {
 	useEffect(() => {
 		getFavorites();
 	}, []);
+	const setScrollPosition = () => {
+		localStorage.setItem('scrollPosition', window.pageYOffset);
+	};
 	return (
 		<>
 			<Seo
@@ -30,6 +33,7 @@ const Favorites = () => {
 					<div className='landing-grid'>
 						{favorites.map((favorite) => (
 							<Link
+								onClick={(e) => setScrollPosition()}
 								to={{
 									pathname: `/media/${favorite.media_type}/${favorite.tmdb_id}`,
 									state: { type: favorite.media_type },

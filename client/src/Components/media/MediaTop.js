@@ -3,6 +3,13 @@ import { useHistory } from 'react-router-dom';
 
 const MediaTop = ({ media, type }) => {
 	const history = useHistory();
+	const handleScrollReset = () => {
+		const scrollPosition = localStorage.getItem('scrollPosition') || 0;
+		history.goBack();
+		setTimeout(() => {
+			window.scrollTo(0, parseInt(scrollPosition));
+		}, 100);
+	};
 	return (
 		<>
 			<div className='media-top-outer'>
@@ -48,7 +55,7 @@ const MediaTop = ({ media, type }) => {
 							</li>
 							<li>
 								<div className='media-top-navigation'>
-									<button onClick={() => history.goBack()}>go back</button>
+									<button onClick={(e) => handleScrollReset()}>go back</button>
 								</div>
 							</li>
 						</ul>

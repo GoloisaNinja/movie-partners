@@ -9,7 +9,6 @@ const Trending = () => {
 	const [movieTrending, setMovieTrending] = useState();
 	const [showTrending, setShowTrending] = useState();
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
-
 	useEffect(() => {
 		const getTrending = async () => {
 			try {

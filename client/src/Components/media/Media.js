@@ -15,7 +15,6 @@ const Media = ({ match, location }) => {
 	const { getFavorites } = useContext(favoriteContext);
 	const { getWatched } = useContext(watchedContext);
 	useEffect(() => {
-		window.scrollTo(0, 0);
 		const getMedia = async () => {
 			try {
 				const mediaResult = await axios.get(
@@ -36,6 +35,13 @@ const Media = ({ match, location }) => {
 		getFavorites();
 		getWatched();
 	}, [match.params.id]);
+
+	const ScrollToTopOnMount = () => {
+		useEffect(() => {
+			window.scrollTo(0, 0);
+		}, []);
+		return null;
+	};
 	return media === undefined || media.poster_path === undefined ? (
 		<div
 			style={{
@@ -59,6 +65,7 @@ const Media = ({ match, location }) => {
 				lang={'en'}
 				image={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
 			/>
+			<ScrollToTopOnMount />
 			<MediaTop media={media} type={type} />
 			<MediaBottom media={media} type={type} media_id={media_id} />
 		</>

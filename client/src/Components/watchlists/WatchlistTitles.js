@@ -11,11 +11,15 @@ const WatchlistTitles = ({ titles }) => {
 		const result = getVisibleWatchlistTitles({ titles, watchlist });
 		setVisibleTitles(result);
 	}, [setVisibleTitles, watchlist, titles]);
+	const setScrollPosition = () => {
+		localStorage.setItem('scrollPosition', window.pageYOffset);
+	};
 	return (
 		visibleTitles?.length > 0 && (
 			<div className='landing-grid'>
 				{visibleTitles.map((title) => (
 					<Link
+						onClick={(e) => setScrollPosition()}
 						to={{
 							pathname: `/media/${title.media_type}/${title.tmdb_id}`,
 							state: { type: title.media_type },

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import Thumbnail from '../Thumbnail';
 
 const TrendingShows = ({ shows }) => {
+	const setScrollPosition = () => {
+		localStorage.setItem('scrollPosition', window.pageYOffset);
+	};
 	return (
 		<>
 			<div className='container'>
@@ -25,6 +28,7 @@ const TrendingShows = ({ shows }) => {
 							show.poster_path !== null &&
 							show.backdrop_path !== null && (
 								<Link
+									onClick={(e) => setScrollPosition()}
 									to={{
 										pathname: `/media/tv/${show.id}`,
 										state: { type: 'tv' },
@@ -35,6 +39,22 @@ const TrendingShows = ({ shows }) => {
 							)
 					)}
 				</div>
+				<Link
+					onClick={(e) => window.scrollTo(0, 0)}
+					to={{ pathname: '/pages/tv/2' }}>
+					<p
+						className='more'
+						style={{
+							fontSize: '2.5rem',
+							fontWeight: '700',
+							fontFamily: "'Inter', sans-serif",
+							textAlign: 'center',
+							color: '#ff45e9',
+							marginTop: '1.25rem',
+						}}>
+						see more tv
+					</p>
+				</Link>
 			</div>
 		</>
 	);
