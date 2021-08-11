@@ -58,6 +58,10 @@ const Category = ({ match, history }) => {
 		setPage(match.params.page);
 	}, [match.params.page]);
 
+	const setScrollPosition = () => {
+		localStorage.setItem('scrollPosition', window.pageYOffset);
+	};
+
 	return !results ? (
 		<Loading />
 	) : (
@@ -111,6 +115,7 @@ const Category = ({ match, history }) => {
 							item.poster_path !== null &&
 							item.backdrop_path !== null && (
 								<Link
+									onClick={(e) => setScrollPosition()}
 									to={{
 										pathname: `/media/${type}/${item.id}`,
 										state: { type: type },

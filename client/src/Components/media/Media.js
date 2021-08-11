@@ -14,6 +14,14 @@ const Media = ({ match, location }) => {
 	const [media, setMedia] = useState({});
 	const { getFavorites } = useContext(favoriteContext);
 	const { getWatched } = useContext(watchedContext);
+
+	const ScrollToTopOnMount = () => {
+		useEffect(() => {
+			window.scrollTo(0, 0);
+		}, []);
+		return null;
+	};
+
 	useEffect(() => {
 		const getMedia = async () => {
 			try {
@@ -36,12 +44,6 @@ const Media = ({ match, location }) => {
 		getWatched();
 	}, [match.params.id]);
 
-	const ScrollToTopOnMount = () => {
-		useEffect(() => {
-			window.scrollTo(0, 0);
-		}, []);
-		return null;
-	};
 	return media === undefined || media.poster_path === undefined ? (
 		<div
 			style={{

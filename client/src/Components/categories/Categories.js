@@ -51,7 +51,9 @@ const Categories = () => {
 				<div className='category-grid'>
 					{movieGenres.map((genre) => (
 						<div key={genre.id}>
-							<Link to={`/categories/movie/${genre.id}/${genre.name}/1`}>
+							<Link
+								onClick={(e) => window.scrollTo(0, 0)}
+								to={`/categories/movie/${genre.id}/${genre.name}/1`}>
 								<CategoryBadge
 									key={genre.id}
 									name={genre.name}
