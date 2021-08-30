@@ -5,6 +5,7 @@ import watchedContext from '../../context/watched/watchedContext';
 import MediaTop from './MediaTop';
 import Seo from '../Seo';
 import MediaBottom from './MediaBottom';
+import MediaRelated from './MediaRelated';
 
 const Media = ({ match, location }) => {
 	//const { type } = location.state;
@@ -12,6 +13,7 @@ const Media = ({ match, location }) => {
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const media_id = match.params.id;
 	const [media, setMedia] = useState({});
+	const [related, setRelated] = useState({});
 	const { getFavorites } = useContext(favoriteContext);
 	const { getWatched } = useContext(watchedContext);
 
@@ -23,28 +25,38 @@ const Media = ({ match, location }) => {
 	};
 
 	useEffect(() => {
+		setMedia({});
 		const getMedia = async () => {
 			try {
 				const mediaResult = await axios.get(
 					`https://api.themoviedb.org/3/${type}/${media_id}?api_key=${apiKey}&language=en-US&append_to_response=videos`
 				);
+				const relatedResult = await axios.get(
+					`https://api.themoviedb.org/3/${type}/${media_id}/similar?api_key=${apiKey}&language=en-US&page=1`
+				);
 
 				if (mediaResult) {
 					setMedia(mediaResult.data);
+				}
+				if (relatedResult) {
+					setRelated(relatedResult.data);
 				}
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		getMedia();
-	}, [match.params.id, apiKey, media_id, type]);
+		console.log('media effect ran');
+	}, [match.params.id, apiKey, type]);
 
 	useEffect(() => {
 		getFavorites();
 		getWatched();
 	}, [match.params.id]);
 
-	return media === undefined || media.poster_path === undefined ? (
+	return media === undefined ||
+		media.poster_path === undefined ||
+		related === undefined ? (
 		<div
 			style={{
 				minHeight: '100vh',
@@ -68,8 +80,13 @@ const Media = ({ match, location }) => {
 				image={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
 			/>
 			<ScrollToTopOnMount />
-			<MediaTop media={media} type={type} />
-			<MediaBottom media={media} type={type} media_id={media_id} />
+			{media !== undefined && <MediaTop media={media} type={type} />}
+			{media !== undefined && (
+				<MediaBottom media={media} type={type} media_id={media_id} />
+			)}
+			{related?.results?.length > 0 && (
+				<MediaRelated relatedMedia={related} type={type} />
+			)}
 		</>
 	);
 };

@@ -5,6 +5,10 @@
 	align-items: center;
 }
 .thumbnail-title {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 	font-weight: 700;
 	font-size: 1.1rem;
 }

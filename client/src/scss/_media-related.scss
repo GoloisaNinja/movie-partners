@@ -1,0 +1,17 @@
+.related-wrapper {
+	margin: 2rem;
+}
+.related-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 2rem;
+	@media (max-width: 425px) {
+		grid-template-columns: repeat(2, 10fr);
+	}
+	@media (min-width: 426px) {
+		grid-template-columns: repeat(4, 5fr);
+	}
+	@media (min-width: 768px) {
+		grid-template-columns: repeat(5, 4fr);
+	}
+}
