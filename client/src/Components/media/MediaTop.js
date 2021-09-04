@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 const MediaTop = ({ media, type }) => {
 	const history = useHistory();
+	console.log(history);
 	const handleScrollReset = () => {
 		const scrollPosition = localStorage.getItem('scrollPosition') || 0;
 		history.goBack();
@@ -53,11 +54,15 @@ const MediaTop = ({ media, type }) => {
 							<li>
 								Rating: {media.vote_average} / out of {media.vote_count} votes
 							</li>
-							<li>
-								<div className='media-top-navigation'>
-									<button onClick={(e) => handleScrollReset()}>go back</button>
-								</div>
-							</li>
+							{history.action !== 'POP' && (
+								<li>
+									<div className='media-top-navigation'>
+										<button onClick={(e) => handleScrollReset()}>
+											go back
+										</button>
+									</div>
+								</li>
+							)}
 						</ul>
 					</div>
 				</div>
