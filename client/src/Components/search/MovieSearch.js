@@ -17,21 +17,17 @@ const MovieSearch = ({ movies }) => {
 				Matching movie results
 			</p>
 			<div className='landing-grid'>
-				{movies.map(
-					(movie) =>
-						movie.poster_path !== null &&
-						movie.backdrop_path !== null && (
-							<Link
-								onClick={(e) => setScrollPosition()}
-								to={{
-									pathname: `/media/movie/${movie.id}`,
-									state: { type: 'movie' },
-								}}
-								key={movie.id}>
-								<Thumbnail media={movie} type={'movie'} />
-							</Link>
-						)
-				)}
+				{movies.map((movie) => (
+					<Link
+						onClick={(e) => setScrollPosition()}
+						to={{
+							pathname: `/media/movie/${movie.id}`,
+							state: { type: 'movie' },
+						}}
+						key={movie.id}>
+						<Thumbnail media={movie} type={'movie'} />
+					</Link>
+				))}
 			</div>
 		</div>
 	);

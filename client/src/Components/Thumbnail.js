@@ -1,11 +1,16 @@
 import React from 'react';
+import NoPoster from '../utils/mpPosterNA.png';
 
 const Thumbnail = ({ media, type }) => {
 	return (
 		<div className='thumbnail-container'>
 			<img
 				className='thumbnail-img'
-				src={`https://image.tmdb.org/t/p/original/${media.poster_path}`}
+				src={
+					media.poster_path !== null
+						? `https://image.tmdb.org/t/p/original/${media.poster_path}`
+						: NoPoster
+				}
 				width='200'
 				height='300'
 				alt='content poster'

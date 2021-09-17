@@ -1,9 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import BackDrop from '../../utils/imagena-comp.png';
+import NoPoster from '../../utils/mpPosterNA.png';
 
 const MediaTop = ({ media, type }) => {
 	const history = useHistory();
-	console.log(history);
 	const handleScrollReset = () => {
 		const scrollPosition = localStorage.getItem('scrollPosition') || 0;
 		history.goBack();
@@ -17,7 +18,11 @@ const MediaTop = ({ media, type }) => {
 				<div className='media-top-backdrop'>
 					<img
 						className='backdrop'
-						src={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
+						src={
+							media.backdrop_path !== null
+								? `https://image.tmdb.org/t/p/original/${media.backdrop_path}`
+								: BackDrop
+						}
 						width='384'
 						height='216'
 						alt='backdrop'
@@ -28,7 +33,11 @@ const MediaTop = ({ media, type }) => {
 				<div className='media-top-poster-info'>
 					<div className='poster'>
 						<img
-							src={`https://image.tmdb.org/t/p/original/${media.poster_path}`}
+							src={
+								media.poster_path !== null
+									? `https://image.tmdb.org/t/p/original/${media.poster_path}`
+									: NoPoster
+							}
 							alt='poster'
 						/>
 					</div>

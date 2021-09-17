@@ -19,8 +19,7 @@ const ShowSearch = ({ shows }) => {
 			<div className='landing-grid'>
 				{shows.map(
 					(show) =>
-						show.poster_path !== null &&
-						show.backdrop_path !== null && (
+						show.poster_path !== null && (
 							<Link
 								onClick={(e) => setScrollPosition()}
 								to={{ pathname: `/media/tv/${show.id}`, state: { type: 'tv' } }}

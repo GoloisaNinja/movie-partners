@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import MediaButtons from './MediaButtons';
 import MediaGenres from './MediaGenres';
+import MediaCast from './MediaCast';
 import MediaServices from './MediaServices';
 import profileContext from '../../context/profile/profileContext';
 import axios from 'axios';
 
-const MediaBottom = ({ media, type, media_id }) => {
+const MediaBottom = ({ media, type, media_id, credits }) => {
 	const [providers, setProviders] = useState({});
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const { profile, getProfile } = useContext(profileContext);
@@ -58,7 +59,24 @@ const MediaBottom = ({ media, type, media_id }) => {
 					<p className='media-bottom-overview'>{media.overview}</p>
 				</div>
 				<MediaGenres genres={media.genres} />
-				{providers.results.US && <MediaServices providers={providers} />}
+				{credits.cast.length > 0 ? (
+					<MediaCast cast={credits.cast} />
+				) : (
+					<div className='genre-container'>
+						<p className='media-bottom-desc'>Cast</p>
+						<p>this title has no associated cast...</p>
+					</div>
+				)}
+				{providers.results.US ? (
+					<MediaServices providers={providers} />
+				) : (
+					<div className='providers-container'>
+						<div>
+							<p className='media-bottom-desc'>Where to Watch</p>
+							<p>this title has no associated providers or services...</p>
+						</div>
+					</div>
+				)}
 				{profile && <MediaButtons media={media} type={type} />}
 				{media.videos.results.length !== 0 && (
 					<div className='media-bottom-iframe'>

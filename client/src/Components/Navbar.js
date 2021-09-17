@@ -19,7 +19,6 @@ const Navbar = () => {
 		if (localStorage.getItem('activatedWatchlist')) {
 			activateWatchlist(localStorage.getItem('activatedWatchlist'));
 		}
-		console.log('checking for endless renders');
 	}, [watchlists]);
 
 	const handleSearch = (e) => {

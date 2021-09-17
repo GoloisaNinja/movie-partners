@@ -561,7 +561,8 @@ input {
 
 .thumbnail-img {
   width: 100%;
-  height: auto; }
+  height: auto;
+  border-radius: 8px; }
 
 .landing-grid {
   display: grid;
@@ -1463,3 +1464,68 @@ tr:nth-child(even) {
   @media (min-width: 768px) {
     .related-grid {
       grid-template-columns: repeat(5, 4fr); } }
+
+.carousel-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin: 0 auto; }
+
+.cast-carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none; }
+  .cast-carousel::-webkit-scrollbar {
+    display: none; }
+  .cast-carousel > * {
+    scroll-snap-align: center; }
+  .cast-carousel > div:not(:last-child) {
+    margin-right: 15px; }
+
+.media-card-container {
+  display: flex;
+  width: 130px;
+  flex-direction: column;
+  border: 2px solid #d100b9;
+  border-radius: 5px; }
+
+.media-card-image {
+  width: 125px;
+  height: auto;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.media-card-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 5px;
+  text-align: center; }
+
+.media-card-character {
+  color: #eee;
+  font-style: italic;
+  font-size: 1rem; }
+
+.media-card-actor {
+  font-size: 1.2rem; }
+
+.carousel-button, .carousel-button-left, .carousel-button-right {
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  z-index: 1;
+  padding: 0.25rem;
+  font-size: 3rem;
+  color: #d100b9; }
+
+.carousel-button-left {
+  left: 0;
+  transform: translate(-100%, -50%); }
+
+.carousel-button-right {
+  right: 0;
+  transform: translate(100%, -50%); }

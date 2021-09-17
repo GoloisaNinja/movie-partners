@@ -6,23 +6,26 @@ import MediaTop from './MediaTop';
 import Seo from '../Seo';
 import MediaBottom from './MediaBottom';
 import MediaRelated from './MediaRelated';
+import Loading from '../Loading';
+import ScrollToTop from '../../utils/ScrollToTop';
 
-const Media = ({ match, location }) => {
+const Media = ({ match }) => {
 	//const { type } = location.state;
 	const type = match.params.type;
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const media_id = match.params.id;
 	const [media, setMedia] = useState({});
 	const [related, setRelated] = useState({});
+	const [credits, setCredits] = useState({});
 	const { getFavorites } = useContext(favoriteContext);
 	const { getWatched } = useContext(watchedContext);
 
-	const ScrollToTopOnMount = () => {
-		useEffect(() => {
-			window.scrollTo(0, 0);
-		}, []);
-		return null;
-	};
+	// const ScrollToTopOnMount = () => {
+	// 	useEffect(() => {
+	// 		window.scrollTo(0, 0);
+	// 	}, []);
+	// 	return null;
+	// };
 
 	useEffect(() => {
 		setMedia({});
@@ -34,19 +37,23 @@ const Media = ({ match, location }) => {
 				const relatedResult = await axios.get(
 					`https://api.themoviedb.org/3/${type}/${media_id}/similar?api_key=${apiKey}&language=en-US&page=1`
 				);
-
+				const mediaCredits = await axios.get(
+					`https://api.themoviedb.org/3/${type}/${media_id}/credits?api_key=${apiKey}`
+				);
 				if (mediaResult) {
 					setMedia(mediaResult.data);
 				}
 				if (relatedResult) {
 					setRelated(relatedResult.data);
 				}
+				if (mediaCredits) {
+					setCredits(mediaCredits.data);
+				}
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		getMedia();
-		console.log('media effect ran');
 	}, [match.params.id, apiKey, type]);
 
 	useEffect(() => {
@@ -57,16 +64,7 @@ const Media = ({ match, location }) => {
 	return media === undefined ||
 		media.poster_path === undefined ||
 		related === undefined ? (
-		<div
-			style={{
-				minHeight: '100vh',
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				textAlign: 'center',
-			}}>
-			...
-		</div>
+		<Loading />
 	) : (
 		<>
 			<Seo
@@ -79,14 +77,20 @@ const Media = ({ match, location }) => {
 				lang={'en'}
 				image={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
 			/>
-			<ScrollToTopOnMount />
+			{/* <ScrollToTopOnMount /> */}
 			{media !== undefined && <MediaTop media={media} type={type} />}
 			{media !== undefined && (
-				<MediaBottom media={media} type={type} media_id={media_id} />
+				<MediaBottom
+					media={media}
+					type={type}
+					media_id={media_id}
+					credits={credits}
+				/>
 			)}
 			{related?.results?.length > 0 && (
 				<MediaRelated relatedMedia={related} type={type} />
 			)}
+			<ScrollToTop />
 		</>
 	);
 };
