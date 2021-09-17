@@ -476,6 +476,7 @@ input {
   text-align: center;
   max-width: 85%;
   margin: 0 auto;
+  margin-top: 0.65rem;
   margin-bottom: 2.5rem; }
 
 .pagination-buttons {
@@ -1469,7 +1470,8 @@ tr:nth-child(even) {
   display: flex;
   position: relative;
   justify-content: center;
-  margin: 0 auto; }
+  margin: 0 auto;
+  margin-top: 0.65rem; }
 
 .cast-carousel {
   display: flex;

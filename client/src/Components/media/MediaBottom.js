@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import MediaButtons from './MediaButtons';
 import MediaGenres from './MediaGenres';
 import MediaCast from './MediaCast';
@@ -77,14 +78,37 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 						</div>
 					</div>
 				)}
-				{profile && <MediaButtons media={media} type={type} />}
+				{profile ? (
+					<>
+						<p className='media-bottom-desc'>Profile Actions</p>
+						<MediaButtons media={media} type={type} />
+					</>
+				) : (
+					<>
+						<div
+							style={{ width: '85%', margin: '0 auto', marginBottom: '2rem' }}>
+							<p className='media-bottom-desc'>Profile Actions</p>
+							<p style={{ fontSize: '1.8rem' }}>
+								Looks like you don't have a profile yet. Already registered?
+								Visit the menu and create your profile! Haven't registered?{' '}
+								<Link style={{ fontSize: '1.8rem', color: '#ff45e9' }} to='/'>
+									Register Now
+								</Link>{' '}
+								for free!
+							</p>
+						</div>
+					</>
+				)}
 				{media.videos.results.length !== 0 && (
-					<div className='media-bottom-iframe'>
-						<iframe
-							className='bottom-iframe'
-							title={media.videos.results[0].id}
-							src={`https://www.youtube.com/embed/${media.videos.results[0].key}`}></iframe>
-					</div>
+					<>
+						<p className='media-bottom-desc'>Sneak a Peek</p>
+						<div className='media-bottom-iframe'>
+							<iframe
+								className='bottom-iframe'
+								title={media.videos.results[0].id}
+								src={`https://www.youtube.com/embed/${media.videos.results[0].key}`}></iframe>
+						</div>
+					</>
 				)}
 			</div>
 		</>

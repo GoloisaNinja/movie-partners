@@ -57,21 +57,17 @@ const Pages = ({ match, history }) => {
 					: `Trending shows page ${page}`}
 			</p>
 			<div className='landing-grid'>
-				{results.results.map(
-					(item) =>
-						item.poster_path !== null &&
-						item.backdrop_path !== null && (
-							<Link
-								onClick={(e) => setScrollPosition()}
-								to={{
-									pathname: `/media/${type}/${item.id}`,
-									state: { type: type },
-								}}
-								key={item.id}>
-								<Thumbnail media={item} type={type} />
-							</Link>
-						)
-				)}
+				{results.results.map((item) => (
+					<Link
+						onClick={(e) => setScrollPosition()}
+						to={{
+							pathname: `/media/${type}/${item.id}`,
+							state: { type: type },
+						}}
+						key={item.id}>
+						<Thumbnail media={item} type={type} />
+					</Link>
+				))}
 			</div>
 			<div className='pages-buttons'>
 				<button
