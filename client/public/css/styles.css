@@ -347,6 +347,9 @@ input {
   left: 5%;
   padding: 1rem; }
 
+.media-top-poster-img {
+  border-radius: 8px; }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -450,7 +453,7 @@ input {
 .media-bottom-iframe {
   max-width: 85%;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 0.65rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -533,6 +536,8 @@ input {
     flex-direction: column;
     margin-bottom: 0;
     align-items: center; }
+  .profile-buttons {
+    margin-bottom: 2rem; }
   .favorites-btn, .watchlist-btn, .watched-btn, .invite-btn, .profile-form-btn, .profile-submit-btn,
   .watchlist-btn,
   .watched-btn {

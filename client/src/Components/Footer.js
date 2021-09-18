@@ -8,7 +8,7 @@ const Footer = () => {
 			<div className='footer-main'>
 				<p>
 					Movie Partners was designed and built by{' '}
-					<a href='https://joncollins-dev.netlify.com'>
+					<a href='https://jcodes.page'>
 						<span
 							className='pink-span'
 							style={{

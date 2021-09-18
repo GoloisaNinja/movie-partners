@@ -101,7 +101,7 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 				)}
 				{media.videos.results.length !== 0 && (
 					<>
-						<p className='media-bottom-desc'>Sneak a Peek</p>
+						<p className='media-bottom-desc'>Videos and Trailers</p>
 						<div className='media-bottom-iframe'>
 							<iframe
 								className='bottom-iframe'

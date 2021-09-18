@@ -33,6 +33,7 @@ const MediaTop = ({ media, type }) => {
 				<div className='media-top-poster-info'>
 					<div className='poster'>
 						<img
+							className='media-top-poster-img'
 							src={
 								media.poster_path !== null
 									? `https://image.tmdb.org/t/p/original/${media.poster_path}`
