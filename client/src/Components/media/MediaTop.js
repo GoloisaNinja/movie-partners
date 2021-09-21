@@ -5,6 +5,7 @@ import NoPoster from '../../utils/mpPosterNA.png';
 
 const MediaTop = ({ media, type }) => {
 	const history = useHistory();
+	const baseImageURL = `https://image.tmdb.org/t/p/original`;
 	const handleScrollReset = () => {
 		const scrollPosition = localStorage.getItem('scrollPosition') || 0;
 		history.goBack();
@@ -20,7 +21,7 @@ const MediaTop = ({ media, type }) => {
 						className='backdrop'
 						src={
 							media.backdrop_path !== null
-								? `https://image.tmdb.org/t/p/original/${media.backdrop_path}`
+								? `${baseImageURL}/${media.backdrop_path}`
 								: BackDrop
 						}
 						width='384'
@@ -36,7 +37,7 @@ const MediaTop = ({ media, type }) => {
 							className='media-top-poster-img'
 							src={
 								media.poster_path !== null
-									? `https://image.tmdb.org/t/p/original/${media.poster_path}`
+									? `${baseImageURL}/${media.poster_path}`
 									: NoPoster
 							}
 							alt='poster'

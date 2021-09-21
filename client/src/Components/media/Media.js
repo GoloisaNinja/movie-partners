@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { getMedia, getRelatedMedia, getMediaCredits } from '../../Api/Api';
 import favoriteContext from '../../context/favorite/favoriteContext';
 import watchedContext from '../../context/watched/watchedContext';
 import MediaTop from './MediaTop';
@@ -12,49 +12,36 @@ import ScrollToTop from '../../utils/ScrollToTop';
 const Media = ({ match }) => {
 	//const { type } = location.state;
 	const type = match.params.type;
-	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const media_id = match.params.id;
 	const [media, setMedia] = useState({});
 	const [related, setRelated] = useState({});
 	const [credits, setCredits] = useState({});
 	const { getFavorites } = useContext(favoriteContext);
 	const { getWatched } = useContext(watchedContext);
-
-	// const ScrollToTopOnMount = () => {
-	// 	useEffect(() => {
-	// 		window.scrollTo(0, 0);
-	// 	}, []);
-	// 	return null;
-	// };
+	const baseImageURL = `https://image.tmdb.org/t/p/original`;
 
 	useEffect(() => {
 		setMedia({});
-		const getMedia = async () => {
+		const populateMediaComponentStates = async () => {
 			try {
-				const mediaResult = await axios.get(
-					`https://api.themoviedb.org/3/${type}/${media_id}?api_key=${apiKey}&language=en-US&append_to_response=videos`
-				);
-				const relatedResult = await axios.get(
-					`https://api.themoviedb.org/3/${type}/${media_id}/similar?api_key=${apiKey}&language=en-US&page=1`
-				);
-				const mediaCredits = await axios.get(
-					`https://api.themoviedb.org/3/${type}/${media_id}/credits?api_key=${apiKey}`
-				);
+				const mediaResult = await getMedia(type, media_id);
+				const relatedResult = await getRelatedMedia(type, media_id);
+				const mediaCredits = await getMediaCredits(type, media_id);
 				if (mediaResult) {
-					setMedia(mediaResult.data);
+					setMedia(mediaResult);
 				}
 				if (relatedResult) {
-					setRelated(relatedResult.data);
+					setRelated(relatedResult);
 				}
 				if (mediaCredits) {
-					setCredits(mediaCredits.data);
+					setCredits(mediaCredits);
 				}
 			} catch (error) {
 				console.error(error);
 			}
 		};
-		getMedia();
-	}, [match.params.id, apiKey, type]);
+		populateMediaComponentStates();
+	}, [match.params.id, type]);
 
 	useEffect(() => {
 		getFavorites();
@@ -64,7 +51,10 @@ const Media = ({ match }) => {
 	return media === undefined ||
 		media.poster_path === undefined ||
 		related === undefined ? (
-		<Loading />
+		<>
+			<ScrollToTop />
+			<Loading />
+		</>
 	) : (
 		<>
 			<Seo
@@ -75,9 +65,8 @@ const Media = ({ match }) => {
 						: `${media.name} shared from weWatch`
 				}
 				lang={'en'}
-				image={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
+				image={`${baseImageURL}/${media.backdrop_path}`}
 			/>
-			{/* <ScrollToTopOnMount /> */}
 			{media !== undefined && <MediaTop media={media} type={type} />}
 			{media !== undefined && (
 				<MediaBottom

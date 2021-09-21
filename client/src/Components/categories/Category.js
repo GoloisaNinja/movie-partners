@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { getCategoryGenreTitles } from '../../Api/Api';
 import Thumbnail from '../Thumbnail';
 import Seo from '../Seo';
 import Loading from '../Loading';
@@ -15,8 +15,8 @@ const Category = ({ match, history }) => {
 
 	const [page, setPage] = useState(match.params.page);
 	const [results, setResults] = useState();
+	const [totalPages, setTotalPages] = useState();
 	const [sortBy, setSortBy] = useState(localStorage.getItem('sortBy'));
-	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const type = match.params.media_id;
 	const genreId = match.params.genre_id;
 	const genreName = match.params.genre_name;
@@ -24,18 +24,23 @@ const Category = ({ match, history }) => {
 	useEffect(() => {
 		const getResults = async () => {
 			try {
-				const result = await axios.get(
-					`https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&language=en-US&sort_by=${sortBy}&include_adult=false&include_video=false&page=${page}&with_genres=${genreId}`
+				const mediaResult = await getCategoryGenreTitles(
+					'discover',
+					type,
+					sortBy,
+					page,
+					genreId
 				);
-				if (result) {
-					setResults(result.data);
+				if (mediaResult.media_results.length > 0) {
+					setResults(mediaResult.media_results);
+					setTotalPages(mediaResult.total_pages);
 				}
 			} catch (error) {
 				console.log(error.message);
 			}
 		};
 		getResults();
-	}, [page, apiKey, type, genreId, sortBy]);
+	}, [page, type, genreId, sortBy]);
 
 	const handlePage = (dir) => {
 		let newPage;
@@ -73,6 +78,11 @@ const Category = ({ match, history }) => {
 				image={`https://www.wewatch.pw/assets/mp_logo.png`}
 			/>
 			<div className='container'>
+				<div style={{ marginBottom: '1rem' }} className='media-top-navigation'>
+					<button onClick={(e) => history.push(`/categories`)}>
+						back to categories
+					</button>
+				</div>
 				<p
 					style={{
 						fontSize: '2.5rem',
@@ -110,7 +120,7 @@ const Category = ({ match, history }) => {
 				</div>
 
 				<div className='landing-grid'>
-					{results.results.map((item) => (
+					{results.map((item) => (
 						<Link
 							onClick={(e) => setScrollPosition()}
 							to={{
@@ -132,7 +142,7 @@ const Category = ({ match, history }) => {
 
 					<button
 						className='unBtn'
-						disabled={parseInt(match.params.page) === results.total_pages}
+						disabled={parseInt(match.params.page) === totalPages}
 						onClick={(e) => handlePage('+')}>
 						<i className='chevNext fas fa-chevron-circle-right'></i>
 					</button>

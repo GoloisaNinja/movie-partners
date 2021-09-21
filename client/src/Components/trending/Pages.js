@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { getTrending } from '../../Api/Api';
 import Thumbnail from '../Thumbnail';
 import Loading from '../Loading';
 
 const Pages = ({ match, history }) => {
 	const [page, setPage] = useState(match.params.page);
 	const [results, setResults] = useState();
-	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
+	const [totalPages, setTotalPages] = useState();
 	const type = match.params.media_id;
 	const setScrollPosition = () => {
 		localStorage.setItem('scrollPosition', window.pageYOffset);
 	};
 	useEffect(() => {
-		const getResults = async () => {
+		const populateTrendingStatePage = async () => {
 			try {
-				const result = await axios.get(
-					`https://api.themoviedb.org/3/trending/${type}/week?page=${page}&api_key=${apiKey}`
-				);
-				if (result) {
-					setResults(result.data);
+				const response = await getTrending('trending', type, page);
+				if (response.media_results.length > 0) {
+					setResults(response.media_results);
+					setTotalPages(response.total_pages);
 				}
 			} catch (error) {
 				console.log(error.message);
 			}
 		};
-		getResults();
-	}, [page, apiKey, type]);
+		populateTrendingStatePage();
+	}, [page, type]);
 
 	const handlePage = (dir) => {
 		let newPage;
@@ -57,7 +56,7 @@ const Pages = ({ match, history }) => {
 					: `Trending shows page ${page}`}
 			</p>
 			<div className='landing-grid'>
-				{results.results.map((item) => (
+				{results.map((item) => (
 					<Link
 						onClick={(e) => setScrollPosition()}
 						to={{
@@ -79,7 +78,7 @@ const Pages = ({ match, history }) => {
 
 				<button
 					className='unBtn'
-					disabled={parseInt(match.params.page) === results.total_results}
+					disabled={parseInt(match.params.page) === totalPages}
 					onClick={(e) => handlePage('+')}>
 					<i className='chevNext fas fa-chevron-circle-right'></i>
 				</button>

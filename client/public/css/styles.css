@@ -555,7 +555,10 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  transition: all 0.3s ease-in-out; }
+  .thumbnail-container:hover {
+    transform: scale(1.07); }
 
 .thumbnail-title {
   display: -webkit-box;
@@ -825,7 +828,10 @@ input {
   background-image: url("/assets/genres/westernGenreT.jpg"); }
 
 .badge-outer {
-  position: relative; }
+  position: relative;
+  transition: all 0.5s ease-in-out; }
+  .badge-outer:hover {
+    transform: scale(1.1); }
 
 .badge-overlay {
   background: #6b005f;

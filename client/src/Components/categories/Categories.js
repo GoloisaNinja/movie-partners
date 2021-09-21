@@ -1,35 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { getCategoryGenres } from '../../Api/Api';
 import Seo from '../Seo';
 import CategoryBadge from './CategoryBadge';
 import Loading from '../Loading';
 
 const Categories = () => {
-	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const [movieGenres, setMovieGenres] = useState([]);
 	const [tvGenres, setTvGenres] = useState([]);
 	useEffect(() => {
-		const getResults = async () => {
+		const populateCategories = async () => {
 			try {
-				const movieGensResult = await axios.get(
-					`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
-				);
-				if (movieGensResult) {
-					setMovieGenres(movieGensResult.data.genres);
+				const movieGenresResult = await getCategoryGenres('genre', 'movie');
+				if (movieGenresResult.length > 0) {
+					setMovieGenres(movieGenresResult);
 				}
-				const tvGensResult = await axios.get(
-					`https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=en-US`
-				);
-				if (tvGensResult) {
-					setTvGenres(tvGensResult.data.genres);
+				const tvGenresResult = await getCategoryGenres('genre', 'tv');
+				if (tvGenresResult.length > 0) {
+					setTvGenres(tvGenresResult);
 				}
 			} catch (error) {
 				console.log(error.message);
 			}
 		};
-		getResults();
-	}, [apiKey]);
+		populateCategories();
+	}, []);
 	return movieGenres.length > 0 && tvGenres.length > 0 ? (
 		<>
 			<Seo

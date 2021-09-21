@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { getMediaProviders } from '../../Api/Api';
 import { Link } from 'react-router-dom';
 import MediaButtons from './MediaButtons';
 import MediaGenres from './MediaGenres';
 import MediaCast from './MediaCast';
 import MediaServices from './MediaServices';
 import profileContext from '../../context/profile/profileContext';
-import axios from 'axios';
 
 const MediaBottom = ({ media, type, media_id, credits }) => {
 	const [providers, setProviders] = useState({});
-	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const { profile, getProfile } = useContext(profileContext);
 	useEffect(() => {
 		getProfile();
@@ -17,11 +16,9 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 	useEffect(() => {
 		const getProviders = async () => {
 			try {
-				const providerResult = await axios.get(
-					`https://api.themoviedb.org/3/${type}/${media_id}/watch/providers?api_key=${apiKey}&language=en-US&append_to_response=videos`
-				);
-				if (Object.keys(providerResult.data.results).length !== 0) {
-					setProviders(providerResult.data);
+				const providerResult = await getMediaProviders(type, media_id);
+				if (Object.keys(providerResult.results).length !== 0) {
+					setProviders(providerResult);
 				} else {
 					setProviders({
 						results: 'none',
@@ -32,7 +29,7 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 			}
 		};
 		getProviders();
-	}, [apiKey, media_id, type]);
+	}, [media_id, type]);
 	return !providers.results ? (
 		<div
 			style={{
