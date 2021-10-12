@@ -4,6 +4,7 @@ import { getCategoryGenreTitles } from '../../Api/Api';
 import Thumbnail from '../Thumbnail';
 import Seo from '../Seo';
 import Loading from '../Loading';
+import ScrollToTop from '../../utils/ScrollToTop';
 
 const Category = ({ match, history }) => {
 	useEffect(() => {
@@ -68,7 +69,10 @@ const Category = ({ match, history }) => {
 	};
 
 	return !results ? (
-		<Loading />
+		<>
+			<ScrollToTop />
+			<Loading />
+		</>
 	) : (
 		<>
 			<Seo
@@ -148,6 +152,7 @@ const Category = ({ match, history }) => {
 					</button>
 				</div>
 			</div>
+			<ScrollToTop />
 		</>
 	);
 };
