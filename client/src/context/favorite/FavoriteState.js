@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import FavoriteContext from './favoriteContext';
 import favoriteReducer from './favoriteReducer';
 import axios from 'axios';
@@ -19,9 +19,9 @@ const FavoriteState = ({ children }) => {
 
 	// Favorite Functions
 
-	// Get Favorites
+	// Get Favorites - memoized
 
-	const getFavorites = async () => {
+	const getFavorites = useCallback(async () => {
 		const token = localStorage.getItem('token');
 		try {
 			const config = {
@@ -38,7 +38,28 @@ const FavoriteState = ({ children }) => {
 		} catch (e) {
 			console.log(e.message);
 		}
-	};
+	}, []);
+
+	// Get Favorites
+
+	// const getFavorites = async () => {
+	// 	const token = localStorage.getItem('token');
+	// 	try {
+	// 		const config = {
+	// 			headers: {
+	// 				'Content-type': 'applicaiton/json',
+	// 				Authorization: token,
+	// 			},
+	// 		};
+	// 		const res = await axios.get(`/api/favorite`, config);
+	// 		dispatch({
+	// 			type: GET_FAVORITES,
+	// 			payload: res.data,
+	// 		});
+	// 	} catch (e) {
+	// 		console.log(e.message);
+	// 	}
+	// };
 
 	// Add title to Favorites
 

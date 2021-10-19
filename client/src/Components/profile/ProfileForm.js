@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import profileContext from '../../context/profile/profileContext';
-import axios from 'axios';
+import { getCategoryGenres } from '../../Api/Api';
 
 const ProfileForm = () => {
-	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const [bio, setBio] = useState('');
 	const [discoverable, setDiscoverable] = useState(true);
 	const [genres, setGenres] = useState({
@@ -22,19 +21,15 @@ const ProfileForm = () => {
 	useEffect(() => {
 		const getResults = async () => {
 			try {
-				const movieGensResult = await axios.get(
-					`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
-				);
+				const movieGensResult = await getCategoryGenres('genre', 'movie');
 				if (movieGensResult) {
-					let myMovArr = movieGensResult.data.genres;
+					let myMovArr = movieGensResult;
 					myMovArr.unshift({ id: Math.random(), name: 'Choose Movie Genre' });
 					setMovieGenres(myMovArr);
 				}
-				const tvGensResult = await axios.get(
-					`https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=en-US`
-				);
+				const tvGensResult = await getCategoryGenres('genre', 'tv');
 				if (tvGensResult) {
-					let myTvArr = tvGensResult.data.genres;
+					let myTvArr = tvGensResult;
 					myTvArr.unshift({ id: Math.random(), name: 'Choose Tv Genre' });
 					setTvGenres(myTvArr);
 				}
@@ -43,7 +38,7 @@ const ProfileForm = () => {
 			}
 		};
 		getResults();
-	}, [apiKey]);
+	}, []);
 
 	const handleGenres = (e) => {
 		const objArr = e.target.value.split(',');

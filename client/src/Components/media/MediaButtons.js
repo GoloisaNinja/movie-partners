@@ -32,7 +32,7 @@ const MediaButtons = ({ media, type }) => {
 		setContent({
 			title: `Added to Favorites!`,
 			body: `${title} was added to your favorites`,
-			icon: `/assets/mp_logo.png`,
+			icon: `/assets/mp_logoMenuDark.png`,
 			type: 'dismiss',
 		});
 		let genre;
@@ -61,7 +61,7 @@ const MediaButtons = ({ media, type }) => {
 		setContent({
 			title: `Removed from Favorites`,
 			body: `${title} was removed from your favorites`,
-			icon: `/assets/mp_logo.png`,
+			icon: `/assets/mp_logoMenuDark.png`,
 			type: 'dismiss',
 		});
 		removeFavorite(favoriteId);
@@ -79,7 +79,7 @@ const MediaButtons = ({ media, type }) => {
 		setContent({
 			title: `Added to Watched!`,
 			body: `${title} was added to watched`,
-			icon: `/assets/mp_logo.png`,
+			icon: `/assets/mp_logoMenuDark.png`,
 			type: 'dismiss',
 		});
 		let genre;
@@ -108,7 +108,7 @@ const MediaButtons = ({ media, type }) => {
 		setContent({
 			title: `Removed from Watched`,
 			body: `${title} was removed from watched`,
-			icon: `/assets/mp_logo.png`,
+			icon: `/assets/mp_logoMenuDark.png`,
 			type: 'dismiss',
 		});
 		removeWatched(watchedId);
@@ -126,7 +126,7 @@ const MediaButtons = ({ media, type }) => {
 		setContent({
 			title: `Added to Watchlist!`,
 			body: `${title} was added to ${activatedWatchlist.wl_name}`,
-			icon: `/assets/mp_logo.png`,
+			icon: `/assets/mp_logoMenuDark.png`,
 			type: 'dismiss',
 		});
 		let genre;
@@ -155,7 +155,7 @@ const MediaButtons = ({ media, type }) => {
 		setContent({
 			title: `Removed from Watchlist`,
 			body: `${title} was removed from ${activatedWatchlist.wl_name}`,
-			icon: `/assets/mp_logo.png`,
+			icon: `/assets/mp_logoMenuDark.png`,
 			type: 'dismiss',
 		});
 		removeTitle(activatedWatchlist._id, media.id);

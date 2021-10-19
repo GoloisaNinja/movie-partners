@@ -10,7 +10,7 @@ const People = ({ location }) => {
 	const [content, setContent] = useState({
 		title: '',
 		body: '',
-		icon: '/assets/mp_logo.png',
+		icon: '/assets/mp_logoMenuDark.png',
 		type: 'dismiss',
 	});
 	const { profiles, getAllProfiles, inviteWatchlist } =

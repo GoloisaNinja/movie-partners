@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProfileThumbnail from '../favorites/ProfileThumbnail';
 import watchedContext from '../../context/watched/watchedContext';
@@ -6,14 +6,11 @@ import Seo from '../Seo';
 
 const Watched = () => {
 	const { getWatched, watched } = useContext(watchedContext);
-	const checkWatched = useCallback(() => {
+
+	useEffect(() => {
 		getWatched();
 	}, [getWatched]);
-	useEffect(() => {
-		if (!watched.length) {
-			checkWatched();
-		}
-	}, [checkWatched, watched, watched.length]);
+
 	const setScrollPosition = () => {
 		localStorage.setItem('scrollPosition', window.pageYOffset);
 	};

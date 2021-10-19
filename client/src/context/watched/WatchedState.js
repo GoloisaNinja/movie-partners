@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import WatchedContext from './watchedContext';
 import watchedReducer from './watchedReducer';
 import axios from 'axios';
@@ -19,9 +19,9 @@ const WatchedState = ({ children }) => {
 
 	// Watched Functions
 
-	// Get Watched
+	// Get Watched - memoized
 
-	const getWatched = async () => {
+	const getWatched = useCallback(async () => {
 		const token = localStorage.getItem('token');
 		try {
 			const config = {
@@ -38,7 +38,28 @@ const WatchedState = ({ children }) => {
 		} catch (e) {
 			console.log(e.message);
 		}
-	};
+	}, []);
+
+	// Get Watched
+
+	// const getWatched = async () => {
+	// 	const token = localStorage.getItem('token');
+	// 	try {
+	// 		const config = {
+	// 			headers: {
+	// 				'Content-type': 'applicaiton/json',
+	// 				Authorization: token,
+	// 			},
+	// 		};
+	// 		const res = await axios.get(`/api/watched`, config);
+	// 		dispatch({
+	// 			type: GET_WATCHED,
+	// 			payload: res.data,
+	// 		});
+	// 	} catch (e) {
+	// 		console.log(e.message);
+	// 	}
+	// };
 
 	// Add title to Watched
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProfileThumbnail from './ProfileThumbnail';
 import favoriteContext from '../../context/favorite/favoriteContext';
@@ -6,14 +6,11 @@ import Seo from '../Seo';
 
 const Favorites = () => {
 	const { getFavorites, favorites } = useContext(favoriteContext);
-	const checkForFavorites = useCallback(() => {
+
+	useEffect(() => {
 		getFavorites();
 	}, [getFavorites]);
-	useEffect(() => {
-		if (!favorites?.length) {
-			checkForFavorites();
-		}
-	}, [checkForFavorites, favorites, favorites.length]);
+
 	const setScrollPosition = () => {
 		localStorage.setItem('scrollPosition', window.pageYOffset);
 	};
