@@ -102,11 +102,14 @@ input {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin-right: 1rem;
-  margin-bottom: 0.2rem; }
+  margin-right: 1rem; }
 
-.nav-logo {
-  width: 50px; }
+.nav-logo, .nav-logo__dark {
+  width: 50px;
+  margin-left: 10px; }
+
+.nav-logo__dark {
+  margin-left: 0; }
 
 .nav-link {
   color: #fff;
@@ -114,7 +117,6 @@ input {
   font-family: 'Darker Grotesque', sans-serif;
   font-size: 1.5rem;
   margin-left: 2rem;
-  margin-bottom: 0.5rem;
   font-weight: 700; }
 
 .avatar {
@@ -1239,14 +1241,16 @@ input {
     width: 100%;
     flex-grow: 1; }
     .drop-filters-wrapper > div > label {
-      text-align: center; }
+      text-align: center;
+      font-size: 1rem; }
     .drop-filters-wrapper > div > select {
       font-family: 'Inter', sans-serif;
       text-align: center;
       width: 100%;
       color: #ccc;
-      border-radius: 6px;
-      padding: 0.8rem; }
+      border-radius: 20px;
+      padding: 0.8rem;
+      background: none; }
   @media (max-width: 500px) {
     .drop-filters-wrapper > div:first-child {
       margin-right: 0; }
@@ -1260,11 +1264,14 @@ input {
   outline: none;
   padding: 0.8rem;
   font-size: 1.8rem;
-  border-radius: 6px;
+  border-radius: 20px;
   flex-grow: 1;
   background: #ccc;
   color: #5b009c;
   width: 100%; }
+  .text-filter-input::placeholder {
+    opacity: 0.9;
+    color: #5b009c; }
 
 .watchlist-content {
   display: flex;
@@ -1282,7 +1289,7 @@ input {
   margin-bottom: 1rem; }
 
 .wrapper {
-  background-image: url("/assets/mp_logo.png");
+  background-image: url("/assets/mp_logoPurple.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

@@ -17,6 +17,7 @@ const MediaButtons = ({ media, type }) => {
 	const [inActiveWatchlist, setInActiveWatchlist] = useState();
 	const [show, setShow] = useState(false);
 	const [content, setContent] = useState({});
+
 	const handleDismiss = () => {
 		setShow(false);
 	};
@@ -162,7 +163,7 @@ const MediaButtons = ({ media, type }) => {
 	};
 
 	useEffect(() => {
-		const checkFavorites = () => {
+		const checkFavorites = async () => {
 			for (let i = 0; i < favorites.length; i++) {
 				if (
 					favorites[i]['tmdb_id'] === media.id &&
@@ -174,7 +175,7 @@ const MediaButtons = ({ media, type }) => {
 			}
 		};
 		checkFavorites();
-	}, [setIsFavorite, favorites, media.id]);
+	}, [setIsFavorite, favorites, media.id, type]);
 	useEffect(() => {
 		const checkWatched = () => {
 			for (let i = 0; i < watched.length; i++) {
@@ -188,7 +189,7 @@ const MediaButtons = ({ media, type }) => {
 			}
 		};
 		checkWatched();
-	}, [setIsWatched, watched, media.id]);
+	}, [setIsWatched, watched, media.id, type]);
 	useEffect(() => {
 		const checkInWatchlist = () => {
 			if (activatedWatchlist !== null) {
@@ -203,7 +204,7 @@ const MediaButtons = ({ media, type }) => {
 			}
 		};
 		checkInWatchlist();
-	}, [setInActiveWatchlist, activatedWatchlist, media.id]);
+	}, [setInActiveWatchlist, activatedWatchlist, media.id, type]);
 
 	return (
 		<div className='profile-buttons'>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { getMedia, getRelatedMedia, getMediaCredits } from '../../Api/Api';
 import favoriteContext from '../../context/favorite/favoriteContext';
 import watchedContext from '../../context/watched/watchedContext';
@@ -16,8 +16,8 @@ const Media = ({ match }) => {
 	const [media, setMedia] = useState({});
 	const [related, setRelated] = useState({});
 	const [credits, setCredits] = useState({});
-	const { getFavorites } = useContext(favoriteContext);
-	const { getWatched } = useContext(watchedContext);
+	const { getFavorites, favorites } = useContext(favoriteContext);
+	const { getWatched, watched } = useContext(watchedContext);
 	const baseImageURL = `https://image.tmdb.org/t/p/original`;
 
 	useEffect(() => {
@@ -41,12 +41,27 @@ const Media = ({ match }) => {
 			}
 		};
 		populateMediaComponentStates();
-	}, [match.params.id, type]);
+	}, [match.params.id, type, media_id]);
+
+	const checkCurrentFavorites = useCallback(() => {
+		getFavorites();
+	}, [getFavorites]);
+
+	const checkCurrentWatched = useCallback(() => {
+		getWatched();
+	}, [getWatched]);
 
 	useEffect(() => {
-		getFavorites();
-		getWatched();
-	}, [match.params.id]);
+		if (!watched?.length) {
+			checkCurrentWatched();
+		}
+	}, [checkCurrentWatched, watched, watched.length]);
+
+	useEffect(() => {
+		if (!favorites?.length) {
+			checkCurrentFavorites();
+		}
+	}, [checkCurrentFavorites, favorites, favorites.length]);
 
 	return media === undefined ||
 		media.poster_path === undefined ||

@@ -1,5 +1,5 @@
 import React from 'react';
-import NoPoster from '../utils/mpPosterNA.png';
+import NoPoster from '../utils/mp_noPoster.png';
 
 const Thumbnail = ({ media, type }) => {
 	return (

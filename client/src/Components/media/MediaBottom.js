@@ -6,13 +6,13 @@ import MediaGenres from './MediaGenres';
 import MediaCast from './MediaCast';
 import MediaServices from './MediaServices';
 import profileContext from '../../context/profile/profileContext';
+import authContext from '../../context/auth/authContext';
 
 const MediaBottom = ({ media, type, media_id, credits }) => {
 	const [providers, setProviders] = useState({});
-	const { profile, getProfile } = useContext(profileContext);
-	useEffect(() => {
-		getProfile();
-	}, []);
+	const { profile } = useContext(profileContext);
+	const { user } = useContext(authContext);
+
 	useEffect(() => {
 		const getProviders = async () => {
 			try {
@@ -80,16 +80,36 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 						<p className='media-bottom-desc'>Profile Actions</p>
 						<MediaButtons media={media} type={type} />
 					</>
+				) : user ? (
+					<>
+						<div
+							style={{ width: '85%', margin: '0 auto', marginBottom: '2rem' }}>
+							<p className='media-bottom-desc'>Profile Actions</p>
+							<p style={{ fontSize: '1.8rem' }}>
+								Looks like you don't have a profile yet. Making a profile takes
+								just a few seconds and will let you add titles to your favorites
+								and watched collections and also create custom Watchlists that
+								you can share!{' '}
+								<Link
+									style={{ fontSize: '1.8rem', color: '#ff45e9' }}
+									to='/profile'>
+									Click here to Create Profile
+								</Link>{' '}
+								for free!
+							</p>
+						</div>
+					</>
 				) : (
 					<>
 						<div
 							style={{ width: '85%', margin: '0 auto', marginBottom: '2rem' }}>
 							<p className='media-bottom-desc'>Profile Actions</p>
 							<p style={{ fontSize: '1.8rem' }}>
-								Looks like you don't have a profile yet. Already registered?
-								Visit the menu and create your profile! Haven't registered?{' '}
+								Looks like you don't have a account. Register for an account and
+								create your profile to add titles to your favorites and watched
+								collections and even create and share custom Watchlists!{' '}
 								<Link style={{ fontSize: '1.8rem', color: '#ff45e9' }} to='/'>
-									Register Now
+									Click here to Register Now
 								</Link>{' '}
 								for free!
 							</p>

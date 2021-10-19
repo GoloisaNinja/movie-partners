@@ -15,7 +15,7 @@ const WatchlistCard = ({ watchlist }) => {
 	const content = {
 		title: `Delete Watchlist?`,
 		body: `Are you sure you want to delete ${watchlist.wl_name}`,
-		icon: '/assets/mp_logo.png',
+		icon: '/assets/mp_logoMenuDark.png',
 		type: 'decision',
 	};
 	const handleClose = (shouldAction) => {

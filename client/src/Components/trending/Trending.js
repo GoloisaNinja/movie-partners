@@ -39,7 +39,7 @@ const Trending = () => {
 				lang={`en`}
 				title={`Trending`}
 				description={`Trending movies and shows`}
-				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+				image={`https://www.wewatch.pw/assets/mp_logoAlt3.png`}
 			/>
 			<TrendingMovies movies={movieTrending} />
 			<TrendingShows shows={showTrending} />
@@ -50,7 +50,7 @@ const Trending = () => {
 				lang={`en`}
 				title={`Trending`}
 				description={`Trending movies and shows`}
-				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+				image={`https://www.wewatch.pw/assets/mp_logoAlt3.png`}
 			/>
 			<Loading />
 		</>

@@ -46,9 +46,9 @@ const profileReducer = (state, action) => {
 			};
 		case CLEAR_PROFILE:
 			return {
-				...state,
-				loading: false,
+				loading: true,
 				profile: null,
+				profiles: [],
 			};
 		default:
 			return state;

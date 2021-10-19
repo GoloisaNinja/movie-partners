@@ -1,5 +1,5 @@
 import React from 'react';
-import NoImageCast from '../../utils/mpPosterNA.png';
+import NoImageCast from '../../utils/mp_noPoster.png';
 
 const MediaCastCard = ({ castMember }) => {
 	return (

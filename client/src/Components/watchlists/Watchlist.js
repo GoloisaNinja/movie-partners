@@ -12,7 +12,7 @@ const Watchlist = ({ match }) => {
 	useEffect(() => {
 		getWatchlist(match.params.watchlist_id);
 		activateWatchlist(match.params.watchlist_id);
-	}, []);
+	}, [getWatchlist, activateWatchlist, match.params.watchlist_id]);
 
 	return (
 		<>
@@ -20,7 +20,7 @@ const Watchlist = ({ match }) => {
 				lang={`en`}
 				title={`Watchlist`}
 				description={`Home for your watchlist`}
-				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+				image={`https://www.wewatch.pw/assets/mp_logoAlt3.png`}
 			/>
 			{loading ? (
 				<Loading />
@@ -30,7 +30,7 @@ const Watchlist = ({ match }) => {
 						lang={`en`}
 						title={`Watchlist - ${watchlist.wl_name}`}
 						description={`Browse your watchlist here`}
-						image={`https://www.wewatch.pw/assets/mp_logo.png`}
+						image={`https://www.wewatch.pw/assets/mp_logoAlt3.png`}
 					/>
 					<div className='container'>
 						<p
@@ -51,7 +51,7 @@ const Watchlist = ({ match }) => {
 						lang={`en`}
 						title={`Watchlist`}
 						description={`Browse your watchlist here`}
-						image={`https://www.wewatch.pw/assets/mp_logo.png`}
+						image={`https://www.wewatch.pw/assets/mp_logoAlt3.png`}
 					/>
 					<div className='container'>
 						<p style={{ marginTop: '2rem' }} className='profile-bio-desc'>

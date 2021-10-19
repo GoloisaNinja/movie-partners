@@ -11,7 +11,7 @@ const Watchlists = () => {
 	const [listName, setListName] = useState('');
 	useEffect(() => {
 		getAllWatchlists();
-	}, []);
+	}, [getAllWatchlists]);
 	const handleCreateList = (e) => {
 		e.preventDefault();
 		createWatchlist(listName.trim());
@@ -25,7 +25,7 @@ const Watchlists = () => {
 				lang={`en`}
 				title={`Watchlists`}
 				description={`Home for your watchlists`}
-				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+				image={`https://www.wewatch.pw/assets/mp_logoAlt3.png`}
 			/>
 			<div className='container'>
 				<div className='profile-branding'>

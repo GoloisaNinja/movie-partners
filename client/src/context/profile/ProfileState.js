@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import ProfileContext from './profileContext';
 import profileReducer from './profileReducer';
 import axios from 'axios';
@@ -46,7 +46,7 @@ const ProfileState = ({ children }) => {
 
 	// Get all Profiles
 
-	const getAllProfiles = async () => {
+	const getAllProfiles = useCallback(async () => {
 		const token = localStorage.getItem('token');
 		try {
 			const config = {
@@ -63,7 +63,26 @@ const ProfileState = ({ children }) => {
 		} catch (e) {
 			console.log(e.message);
 		}
-	};
+	}, []);
+
+	// const getAllProfiles = async () => {
+	// 	const token = localStorage.getItem('token');
+	// 	try {
+	// 		const config = {
+	// 			headers: {
+	// 				'Content-type': 'applicaiton/json',
+	// 				Authorization: token,
+	// 			},
+	// 		};
+	// 		const res = await axios.get(`/api/profile/all`, config);
+	// 		dispatch({
+	// 			type: GET_ALL_PROFILES,
+	// 			payload: res.data,
+	// 		});
+	// 	} catch (e) {
+	// 		console.log(e.message);
+	// 	}
+	// };
 
 	// Invite Watchlist
 
@@ -169,7 +188,7 @@ const ProfileState = ({ children }) => {
 
 	// Clear Profile
 
-	const clearProfile = () => {
+	const clearProfile = async () => {
 		dispatch({
 			type: CLEAR_PROFILE,
 		});

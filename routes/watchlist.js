@@ -279,6 +279,23 @@ router.delete('/delete/:id', auth, async (req, res) => {
 			return res.status(404).send({ message: 'Could not find watchlist...' });
 		}
 		if (watchlist.user._id.toString() === user._id.toString()) {
+			const watchlistPartners = watchlist.partners;
+			if (watchlistPartners.length > 0) {
+				watchlistPartners.forEach(async (partner) => {
+					let partnerProfile = await Profile.findOne({
+						user: partner.partner_id,
+					});
+					if (partnerProfile) {
+						let partnerWatchlistIndex = partnerProfile.watchlists.findIndex(
+							(watchlist) => watchlist.wl_id.toString() === _id
+						);
+						if (partnerWatchlistIndex !== -1) {
+							partnerProfile.watchlists.splice(partnerWatchlistIndex, 1);
+							await partnerProfile.save();
+						}
+					}
+				});
+			}
 			watchlist.delete();
 			profile.watchlists.splice(index, 1);
 			await profile.save();

@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import authContext from '../../context/auth/authContext';
+import profileContext from '../../context/profile/profileContext';
+import watchlistContext from '../../context/watchlist/watchlistContext';
 import { useHistory } from 'react-router-dom';
 
-const ProfileTop = ({ user, logout, clear }) => {
+const ProfileTop = ({ user }) => {
+	const { logoutUser } = useContext(authContext);
+	const { clearProfile } = useContext(profileContext);
+	const { clearWatchlistState } = useContext(watchlistContext);
 	const history = useHistory();
-	const handleLogout = () => {
-		logout(history);
-		clear();
+	const handleLogout = async () => {
+		await clearProfile();
+		await clearWatchlistState();
+		logoutUser(history);
 	};
 	return (
 		<>

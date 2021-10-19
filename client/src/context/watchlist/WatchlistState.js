@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import WatchlistContext from './watchlistContext';
 import watchlistReducer from './watchlistReducer';
 import axios from 'axios';
@@ -13,6 +13,7 @@ import {
 	DELETE_WATCHLIST,
 	ACTIVATE_WATCHLIST,
 	DEACTIVATE_WATCHLIST,
+	CLEAR_WATCHLIST_STATE,
 } from './watchlistActions';
 
 const WatchlistState = ({ children }) => {
@@ -94,7 +95,7 @@ const WatchlistState = ({ children }) => {
 
 	// Get all Watchlists by User
 
-	const getAllWatchlists = async () => {
+	const getAllWatchlists = useCallback(async () => {
 		const token = localStorage.getItem('token');
 		const config = {
 			headers: {
@@ -111,11 +112,30 @@ const WatchlistState = ({ children }) => {
 		} catch (e) {
 			console.log(e.message);
 		}
-	};
+	}, []);
 
-	// Get a Watchlist
+	// const getAllWatchlists = async () => {
+	// 	const token = localStorage.getItem('token');
+	// 	const config = {
+	// 		headers: {
+	// 			'Content-type': 'application/json',
+	// 			Authorization: token,
+	// 		},
+	// 	};
+	// 	try {
+	// 		const res = await axios.get(`/api/watchlist/allwatchlists`, config);
+	// 		dispatch({
+	// 			type: GET_ALL_WATCHLISTS,
+	// 			payload: res.data,
+	// 		});
+	// 	} catch (e) {
+	// 		console.log(e.message);
+	// 	}
+	// };
 
-	const getWatchlist = async (watchlist_id) => {
+	// Get a Watchlist - memoized
+
+	const getWatchlist = useCallback(async (watchlist_id) => {
 		const token = localStorage.getItem('token');
 		const config = {
 			headers: {
@@ -132,11 +152,32 @@ const WatchlistState = ({ children }) => {
 		} catch (e) {
 			console.log(e.message);
 		}
-	};
+	}, []);
 
-	// Activate a Watchlist
+	// Get a Watchlist
 
-	const activateWatchlist = async (watchlist_id) => {
+	// const getWatchlist = async (watchlist_id) => {
+	// 	const token = localStorage.getItem('token');
+	// 	const config = {
+	// 		headers: {
+	// 			'Content-type': 'application/json',
+	// 			Authorization: token,
+	// 		},
+	// 	};
+	// 	try {
+	// 		const res = await axios.get(`/api/watchlist/get/${watchlist_id}`, config);
+	// 		dispatch({
+	// 			type: GET_WATCHLIST,
+	// 			payload: res.data,
+	// 		});
+	// 	} catch (e) {
+	// 		console.log(e.message);
+	// 	}
+	// };
+
+	// Activate a Watchlist - memoized
+
+	const activateWatchlist = useCallback(async (watchlist_id) => {
 		const token = localStorage.getItem('token');
 		const config = {
 			headers: {
@@ -154,7 +195,29 @@ const WatchlistState = ({ children }) => {
 		} catch (e) {
 			console.log(e.message);
 		}
-	};
+	}, []);
+
+	// Activate a Watchlist
+
+	// const activateWatchlist = async (watchlist_id) => {
+	// 	const token = localStorage.getItem('token');
+	// 	const config = {
+	// 		headers: {
+	// 			'Content-type': 'application/json',
+	// 			Authorization: token,
+	// 		},
+	// 	};
+	// 	try {
+	// 		const res = await axios.get(`/api/watchlist/get/${watchlist_id}`, config);
+	// 		dispatch({
+	// 			type: ACTIVATE_WATCHLIST,
+	// 			payload: res.data,
+	// 		});
+	// 		localStorage.setItem('activatedWatchlist', res.data._id);
+	// 	} catch (e) {
+	// 		console.log(e.message);
+	// 	}
+	// };
 
 	// Add a Title to Watchlist
 
@@ -210,6 +273,16 @@ const WatchlistState = ({ children }) => {
 		}
 	};
 
+	// Clear Watchlist State
+	const clearWatchlistState = () => {
+		if (!!localStorage.getItem('activatedWatchlist')) {
+			localStorage.removeItem('activatedWatchlist');
+		}
+		dispatch({
+			type: CLEAR_WATCHLIST_STATE,
+		});
+	};
+
 	return (
 		<WatchlistContext.Provider
 			value={{
@@ -224,6 +297,7 @@ const WatchlistState = ({ children }) => {
 				activateWatchlist,
 				createWatchlist,
 				deleteWatchlist,
+				clearWatchlistState,
 			}}>
 			{children}
 		</WatchlistContext.Provider>

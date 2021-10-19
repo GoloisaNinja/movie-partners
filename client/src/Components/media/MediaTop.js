@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import BackDrop from '../../utils/imagena-comp.png';
-import NoPoster from '../../utils/mpPosterNA.png';
+import BackDrop from '../../utils/mp_noBackdropBlank.png';
+import NoPoster from '../../utils/mp_noPoster.png';
 
 const MediaTop = ({ media, type }) => {
 	const history = useHistory();

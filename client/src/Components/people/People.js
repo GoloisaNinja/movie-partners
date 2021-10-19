@@ -13,13 +13,14 @@ const People = ({ location }) => {
 		icon: '/assets/mp_logo.png',
 		type: 'dismiss',
 	});
-	const { profiles, getAllProfiles, inviteWatchlist } = useContext(
-		profileContext
-	);
+	const { profiles, getAllProfiles, inviteWatchlist } =
+		useContext(profileContext);
 	const { user } = useContext(authContext);
+
 	useEffect(() => {
 		getAllProfiles();
-	}, []);
+	}, [getAllProfiles]);
+
 	const handleDismiss = () => {
 		setShow(false);
 	};
@@ -32,6 +33,7 @@ const People = ({ location }) => {
 		});
 		setShow(true);
 	};
+
 	const profileEntries = profiles.map((profile) => {
 		const inviteMatch = profile.invites.filter(
 			(invite) => invite.watchlist_id === wlId
@@ -67,6 +69,8 @@ const People = ({ location }) => {
 					</td>
 				</tr>
 			);
+		} else {
+			return null;
 		}
 	});
 	return profiles.length > 0 ? (

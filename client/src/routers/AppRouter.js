@@ -142,8 +142,8 @@ const AppRouter = () => {
 					type: LOGOUT_USER,
 				});
 				localStorage.removeItem('token');
+				history.push('/');
 			}
-			history.push('/');
 		} catch (e) {
 			console.log(e.message);
 		}

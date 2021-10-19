@@ -41,7 +41,11 @@ const Footer = () => {
 						<strong>{currentYear}</strong>
 					</span>
 				</p>
-				<img src='/assets/mp_logo.png' alt='logo' className='footer-logo' />
+				<img
+					src='/assets/mp_logoPurple.png'
+					alt='logo'
+					className='footer-logo'
+				/>
 			</div>
 		</footer>
 	);

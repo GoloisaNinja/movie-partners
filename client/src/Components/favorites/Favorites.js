@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import ProfileThumbnail from './ProfileThumbnail';
 import favoriteContext from '../../context/favorite/favoriteContext';
@@ -6,9 +6,14 @@ import Seo from '../Seo';
 
 const Favorites = () => {
 	const { getFavorites, favorites } = useContext(favoriteContext);
-	useEffect(() => {
+	const checkForFavorites = useCallback(() => {
 		getFavorites();
-	}, []);
+	}, [getFavorites]);
+	useEffect(() => {
+		if (!favorites?.length) {
+			checkForFavorites();
+		}
+	}, [checkForFavorites, favorites, favorites.length]);
 	const setScrollPosition = () => {
 		localStorage.setItem('scrollPosition', window.pageYOffset);
 	};
@@ -18,7 +23,7 @@ const Favorites = () => {
 				lang={`en`}
 				title={`Favorites`}
 				description={`Browse your favorite shows and movies here`}
-				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+				image={`https://www.wewatch.pw/assets/mp_logoAlt3.png`}
 			/>
 			<div className='container'>
 				<p

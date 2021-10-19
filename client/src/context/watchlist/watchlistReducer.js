@@ -8,6 +8,7 @@ import {
 	DELETE_WATCHLIST,
 	ACTIVATE_WATCHLIST,
 	DEACTIVATE_WATCHLIST,
+	CLEAR_WATCHLIST_STATE,
 } from './watchlistActions';
 
 const watchlistReducer = (state, action) => {
@@ -77,6 +78,13 @@ const watchlistReducer = (state, action) => {
 						),
 					],
 				},
+			};
+		case CLEAR_WATCHLIST_STATE:
+			return {
+				loading: true,
+				activatedWatchlist: null,
+				watchlist: null,
+				watchlists: [],
 			};
 		default:
 			return state;

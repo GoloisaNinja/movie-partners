@@ -26,14 +26,16 @@
 
 		> label {
 			text-align: center;
+			font-size: 1rem;
 		}
 		> select {
 			font-family: 'Inter', sans-serif;
 			text-align: center;
 			width: 100%;
 			color: #ccc;
-			border-radius: 6px;
+			border-radius: 20px;
 			padding: 0.8rem;
+			background: none;
 		}
 	}
 	@media (max-width: 500px) {
@@ -53,11 +55,15 @@
 	outline: none;
 	padding: 0.8rem;
 	font-size: 1.8rem;
-	border-radius: 6px;
+	border-radius: 20px;
 	flex-grow: 1;
 	background: #ccc;
 	color: $primary-button-color;
 	width: 100%;
+	&::placeholder {
+		opacity: 0.9;
+		color: $primary-button-color;
+	}
 }
 .watchlist-content {
 	display: flex;
@@ -75,7 +81,7 @@
 	margin-bottom: 1rem;
 }
 .wrapper {
-	background-image: url('/assets/mp_logo.png');
+	background-image: url('/assets/mp_logoPurple.png');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;

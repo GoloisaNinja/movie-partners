@@ -79,7 +79,7 @@ const Category = ({ match, history }) => {
 				lang={`en`}
 				title={`${genreName} - ${type}`}
 				description={`Browse ${genreName} results`}
-				image={`https://www.wewatch.pw/assets/mp_logo.png`}
+				image={`https://www.wewatch.pw/assets/mp_logoAlt3.png`}
 			/>
 			<div className='container'>
 				<div style={{ marginBottom: '1rem' }} className='media-top-navigation'>
