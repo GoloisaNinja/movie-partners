@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
+import cors from 'cors';
 import connectDB from './db/db.js';
 import user from './routes/user.js';
 import profile from './routes/profile.js';
@@ -21,6 +22,7 @@ connectDB();
 
 // init middleware
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 // define routes
 app.use('/api/user', user);
