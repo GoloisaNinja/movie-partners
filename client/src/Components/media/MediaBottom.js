@@ -12,7 +12,6 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 	const [providers, setProviders] = useState({});
 	const { profile } = useContext(profileContext);
 	const { user } = useContext(authContext);
-
 	useEffect(() => {
 		let mounted = true;
 		const getProviders = async () => {
