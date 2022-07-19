@@ -14,12 +14,13 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 	const { user } = useContext(authContext);
 
 	useEffect(() => {
+		let mounted = true;
 		const getProviders = async () => {
 			try {
 				const providerResult = await getMediaProviders(type, media_id);
-				if (Object.keys(providerResult.results).length !== 0) {
+				if (Object.keys(providerResult.results).length !== 0 && mounted) {
 					setProviders(providerResult);
-				} else {
+				} else if (mounted) {
 					setProviders({
 						results: 'none',
 					});
@@ -29,6 +30,10 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 			}
 		};
 		getProviders();
+
+		return () => {
+			mounted = false;
+		};
 	}, [media_id, type]);
 	return !providers.results ? (
 		<div
