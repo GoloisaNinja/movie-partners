@@ -63,7 +63,8 @@ const MediaTop = ({ media, type }) => {
 								</>
 							)}
 							<li>
-								Rating: {media.vote_average} / out of {media.vote_count} votes
+								Rating: {Math.round(media.vote_average)} / out of{' '}
+								{media.vote_count} votes
 							</li>
 							{history.action !== 'POP' && (
 								<li>

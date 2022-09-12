@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import NoPoster from '../../utils/mp_noPoster.png';
 
-const ProfileThumbnail = ({ item }) => {
+const ProfileThumbnail = ({ item, delay = 0 }) => {
+	const [ready, setReady] = useState(false);
+	useEffect(() => {
+		if (delay) {
+			setTimeout(() => {
+				setReady(true);
+			}, delay * 50);
+		} else {
+			setReady(true);
+		}
+		return () => {
+			setReady(false);
+		};
+	}, [delay]);
 	return (
 		<div className='thumbnail-container'>
 			<img
 				className='thumbnail-img'
 				src={
-					item.poster_path === null
+					!ready
+						? NoPoster
+						: item.poster_path === null
 						? NoPoster
 						: `https://image.tmdb.org/t/p/original/${item.poster_path}`
 				}
@@ -20,4 +36,4 @@ const ProfileThumbnail = ({ item }) => {
 	);
 };
 
-export default ProfileThumbnail;
+export default withRouter(ProfileThumbnail);

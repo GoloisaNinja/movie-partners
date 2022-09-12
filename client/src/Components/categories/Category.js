@@ -43,15 +43,17 @@ const Category = ({ match, history }) => {
 		getResults();
 	}, [page, type, genreId, sortBy]);
 
-	const handlePage = (dir) => {
+	const handlePage = async (dir) => {
 		let newPage;
 		if (dir === '+') {
 			newPage = parseInt(page) + 1;
 		} else {
 			newPage = parseInt(page) - 1;
 		}
+		await history.push(
+			`/categories/${type}/${genreId}/${genreName}/${newPage}`
+		);
 		window.scroll(0, 0);
-		history.push(`/categories/${type}/${genreId}/${genreName}/${newPage}`);
 	};
 
 	const handleSort = (sort) => {

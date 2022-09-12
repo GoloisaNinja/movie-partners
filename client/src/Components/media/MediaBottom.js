@@ -12,26 +12,89 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 	const [providers, setProviders] = useState({});
 	const { profile } = useContext(profileContext);
 	const { user } = useContext(authContext);
+
+	let fetchProvidersRequest = null;
+	const userTextObj = {
+		p: "Looks like you don't have a profile yet. Making a profile take just a few seconds and will let you add titles to your favorites and watched collections and also create custom Watchlists that you can share! ",
+		l: 'Click here to Create Profile',
+		a: '/profile',
+	};
+
+	const nonUserTextObj = {
+		p: "Looks like you don't have a account. Register for an account and create your profile to add titles to your favorites and watched collections and even create and share custom Watchlists! ",
+		l: 'Click here to Register Now',
+		a: '/',
+	};
+
+	const NoProfileComponent = ({ obj }) => {
+		return (
+			<>
+				<div style={{ width: '85%', margin: '0 auto', marginBottom: '2rem' }}>
+					<p className='media-bottom-desc'>Profile Actions</p>
+					<p style={{ fontSize: '1.8rem' }}>
+						{obj.p}
+						<Link style={{ fontSize: '1.8rem', color: '#ff45e9' }} to={obj.a}>
+							{obj.l}
+						</Link>{' '}
+						for free!
+					</p>
+				</div>
+			</>
+		);
+	};
+
+	const makeCancelable = (promise) => {
+		let isCancelled = false;
+		const wrappedPromise = new Promise((resolve, reject) => {
+			promise.then(
+				(val) => (isCancelled ? reject({ isCancelled: true }) : resolve(val)),
+				(error) => (isCancelled ? reject({ isCancelled: true }) : reject(error))
+			);
+		});
+		return {
+			promise: wrappedPromise,
+			cancel() {
+				isCancelled = true;
+			},
+		};
+	};
+
 	useEffect(() => {
-		let mounted = true;
 		const getProviders = async () => {
+			if (fetchProvidersRequest) {
+				try {
+					await fetchProvidersRequest.promise;
+					return;
+				} catch (error) {
+					return;
+				}
+			}
+			fetchProvidersRequest = makeCancelable(getMediaProviders(type, media_id));
 			try {
-				const providerResult = await getMediaProviders(type, media_id);
-				if (Object.keys(providerResult.results).length !== 0 && mounted) {
-					setProviders(providerResult);
-				} else if (mounted) {
-					setProviders({
-						results: 'none',
-					});
+				const fetchedProviders = await fetchProvidersRequest.promise;
+				fetchProvidersRequest = null;
+				if (
+					Object.keys(fetchedProviders.results).length !== 0 &&
+					!fetchedProviders.isCancelled
+				) {
+					setProviders(fetchedProviders);
+				} else if (
+					Object.keys(fetchedProviders.results).length === 0 &&
+					!fetchedProviders.isCancelled
+				) {
+					setProviders({ results: 'none' });
 				}
 			} catch (error) {
-				console.log(error.message);
+				console.log(error);
 			}
 		};
+
 		getProviders();
 
 		return () => {
-			mounted = false;
+			if (fetchProvidersRequest) {
+				fetchProvidersRequest.cancel();
+			}
 		};
 	}, [media_id, type]);
 	return !providers.results ? (
@@ -85,40 +148,9 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 						<MediaButtons media={media} type={type} />
 					</>
 				) : user ? (
-					<>
-						<div
-							style={{ width: '85%', margin: '0 auto', marginBottom: '2rem' }}>
-							<p className='media-bottom-desc'>Profile Actions</p>
-							<p style={{ fontSize: '1.8rem' }}>
-								Looks like you don't have a profile yet. Making a profile takes
-								just a few seconds and will let you add titles to your favorites
-								and watched collections and also create custom Watchlists that
-								you can share!{' '}
-								<Link
-									style={{ fontSize: '1.8rem', color: '#ff45e9' }}
-									to='/profile'>
-									Click here to Create Profile
-								</Link>{' '}
-								for free!
-							</p>
-						</div>
-					</>
+					<NoProfileComponent obj={userTextObj} />
 				) : (
-					<>
-						<div
-							style={{ width: '85%', margin: '0 auto', marginBottom: '2rem' }}>
-							<p className='media-bottom-desc'>Profile Actions</p>
-							<p style={{ fontSize: '1.8rem' }}>
-								Looks like you don't have a account. Register for an account and
-								create your profile to add titles to your favorites and watched
-								collections and even create and share custom Watchlists!{' '}
-								<Link style={{ fontSize: '1.8rem', color: '#ff45e9' }} to='/'>
-									Click here to Register Now
-								</Link>{' '}
-								for free!
-							</p>
-						</div>
-					</>
+					<NoProfileComponent obj={nonUserTextObj} />
 				)}
 				{media.videos.results.length !== 0 && (
 					<>

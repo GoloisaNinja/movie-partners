@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import filtersContext from '../../context/filters/filtersContext';
 
-const WatchlistFilters = ({ watchlistTitles }) => {
+const WatchlistFilters = ({ watchlistTitles, watchlistId }) => {
 	const {
 		watchlist,
 		setWatchlistTextFilter,
 		setWatchlistGenreFilter,
 		setWatchlistMediaFilter,
 	} = useContext(filtersContext);
+	const history = useHistory();
 	const [genre, setGenre] = useState(watchlist.genreFilter);
 	const [genres, setGenres] = useState([]);
 	const [mediaType, setMediaType] = useState(watchlist.mediaFilter);
@@ -18,6 +20,11 @@ const WatchlistFilters = ({ watchlistTitles }) => {
 		cleanGenres.unshift('No Genre Filter');
 		setGenres(cleanGenres);
 	}, [watchlistTitles]);
+	useEffect(() => {
+		if (watchlist.textFilter) {
+			history.push(`/watchlists/${watchlistId}/1`);
+		}
+	}, [watchlist.textFilter, history, watchlistId]);
 	const handleGenre = (e) => {
 		setGenre(e.target.value);
 		setWatchlistGenreFilter(e.target.value);

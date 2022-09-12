@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import { getMedia, getRelatedMedia, getMediaCredits } from '../../Api/Api';
+import { getMedia, getMediaCredits } from '../../Api/Api';
 import favoriteContext from '../../context/favorite/favoriteContext';
 import watchedContext from '../../context/watched/watchedContext';
 import MediaTop from './MediaTop';
@@ -14,7 +14,6 @@ const Media = ({ match }) => {
 	const type = match.params.type;
 	const media_id = match.params.id;
 	const [media, setMedia] = useState({});
-	const [related, setRelated] = useState({});
 	const [credits, setCredits] = useState({});
 	const { getFavorites, favorites } = useContext(favoriteContext);
 	const { getWatched, watched } = useContext(watchedContext);
@@ -25,13 +24,9 @@ const Media = ({ match }) => {
 		const populateMediaComponentStates = async () => {
 			try {
 				const mediaResult = await getMedia(type, media_id);
-				const relatedResult = await getRelatedMedia(type, media_id);
 				const mediaCredits = await getMediaCredits(type, media_id);
 				if (mediaResult) {
 					setMedia(mediaResult);
-				}
-				if (relatedResult) {
-					setRelated(relatedResult);
 				}
 				if (mediaCredits) {
 					setCredits(mediaCredits);
@@ -63,9 +58,7 @@ const Media = ({ match }) => {
 		}
 	}, [checkCurrentFavorites, favorites, favorites.length]);
 
-	return media === undefined ||
-		media.poster_path === undefined ||
-		related === undefined ? (
+	return media === undefined || media.poster_path === undefined ? (
 		<>
 			<ScrollToTop />
 			<Loading />
@@ -91,9 +84,7 @@ const Media = ({ match }) => {
 					credits={credits}
 				/>
 			)}
-			{related?.results?.length > 0 && (
-				<MediaRelated relatedMedia={related} type={type} />
-			)}
+			<MediaRelated id={media_id} type={type} />
 			<ScrollToTop />
 		</>
 	);

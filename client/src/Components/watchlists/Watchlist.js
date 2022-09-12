@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import WatchlistTitles from './WatchlistTitles';
 import watchlistContext from '../../context/watchlist/watchlistContext';
 import WatchlistFilters from './WatchlistFilters';
@@ -41,7 +42,10 @@ const Watchlist = ({ match }) => {
 							}}>
 							{watchlist.wl_name} <i className='favCrown fas fa-list'></i>
 						</p>
-						<WatchlistFilters watchlistTitles={watchlist.titles} />
+						<WatchlistFilters
+							watchlistTitles={watchlist.titles}
+							watchlistId={watchlist._id}
+						/>
 						<WatchlistTitles titles={watchlist.titles} />
 					</div>
 				</>
@@ -64,4 +68,4 @@ const Watchlist = ({ match }) => {
 	);
 };
 
-export default Watchlist;
+export default withRouter(Watchlist);

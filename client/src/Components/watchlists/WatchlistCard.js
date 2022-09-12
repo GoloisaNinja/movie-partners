@@ -29,7 +29,7 @@ const WatchlistCard = ({ watchlist }) => {
 			<div className='wrapper'>
 				<div className='watchlist-overlay'></div>
 				<div className='watchlist-content'>
-					<Link to={`/watchlists/${watchlist._id}`}>
+					<Link to={`/watchlists/${watchlist._id}/1`}>
 						<p className='profile-bio-desc'>
 							<strong>{watchlist.wl_name}</strong>
 						</p>
@@ -53,7 +53,7 @@ const WatchlistCard = ({ watchlist }) => {
 						List titles:{' '}
 						<Link
 							style={{ fontSize: '1.6rem' }}
-							to={`/watchlists/${watchlist._id}`}>
+							to={`/watchlists/${watchlist._id}/1`}>
 							<span className='pink-span'>
 								<strong>{watchlist.titles.length}</strong>
 							</span>

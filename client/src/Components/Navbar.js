@@ -145,7 +145,7 @@ const Navbar = () => {
 							<button
 								className='unBtn nav-link'
 								onClick={(e) =>
-									history.push(`/watchlists/${activatedWatchlist._id}`)
+									history.push(`/watchlists/${activatedWatchlist._id}/1`)
 								}>
 								Active Watchlist
 							</button>
@@ -204,7 +204,7 @@ const Navbar = () => {
 						)}
 						{profile !== null
 							? activatedWatchlist && (
-									<Link to={`/watchlists/${activatedWatchlist._id}`}>
+									<Link to={`/watchlists/${activatedWatchlist._id}/1`}>
 										<button
 											className='unBtn'
 											style={{ color: '#ededed' }}
