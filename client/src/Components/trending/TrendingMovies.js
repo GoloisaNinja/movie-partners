@@ -25,7 +25,7 @@ const TrendingMovies = ({ movies }) => {
 
 				<div className='landing-grid'>
 					{movies.map(
-						(movie) =>
+						(movie, index) =>
 							movie.poster_path !== null &&
 							movie.backdrop_path !== null && (
 								<Link
@@ -35,7 +35,7 @@ const TrendingMovies = ({ movies }) => {
 										state: { type: 'movie' },
 									}}
 									key={movie.id}>
-									<Thumbnail media={movie} type={'movie'} />
+									<Thumbnail media={movie} type={'movie'} delay={index} />
 								</Link>
 							)
 					)}

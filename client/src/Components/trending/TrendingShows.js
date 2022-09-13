@@ -24,7 +24,7 @@ const TrendingShows = ({ shows }) => {
 				</p>
 				<div className='landing-grid'>
 					{shows.map(
-						(show) =>
+						(show, index) =>
 							show.poster_path !== null &&
 							show.backdrop_path !== null && (
 								<Link
@@ -34,7 +34,7 @@ const TrendingShows = ({ shows }) => {
 										state: { type: 'tv' },
 									}}
 									key={show.id}>
-									<Thumbnail media={show} type={'tv'} />
+									<Thumbnail media={show} type={'tv'} delay={index} />
 								</Link>
 							)
 					)}
