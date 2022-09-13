@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MovieSearch from './MovieSearch';
 import ShowSearch from './ShowSearch';
+import Loading from '../Loading';
 
 const Search = ({ match }) => {
 	const searchString = match.params.search_string;
 	const apiKey = process.env.REACT_APP_TMDB_APIKEY;
 	const [movies, setMovies] = useState({});
 	const [shows, setShows] = useState({});
+	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		const getResults = async () => {
 			try {
@@ -24,6 +26,7 @@ const Search = ({ match }) => {
 				if (showResults) {
 					setShows(showResults.data.results);
 				}
+				setLoading(false);
 			} catch (error) {
 				console.log(error);
 			}
@@ -31,7 +34,9 @@ const Search = ({ match }) => {
 		getResults();
 	}, [match.params.search_string, apiKey, searchString, setMovies, setShows]);
 
-	return Object.keys(movies).length === 0 && Object.keys(shows).length === 0 ? (
+	return loading ? (
+		<Loading />
+	) : Object.keys(movies).length === 0 && Object.keys(shows).length === 0 ? (
 		<div className='container'>No matching results found...</div>
 	) : (
 		<div className='container'>

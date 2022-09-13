@@ -6,6 +6,7 @@ const MovieSearch = ({ movies }) => {
 	const setScrollPosition = () => {
 		localStorage.setItem('scrollPosition', window.pageYOffset);
 	};
+
 	return (
 		<div>
 			<p
@@ -17,7 +18,7 @@ const MovieSearch = ({ movies }) => {
 				Matching movie results
 			</p>
 			<div className='landing-grid'>
-				{movies.map((movie) => (
+				{movies.map((movie, index) => (
 					<Link
 						onClick={(e) => setScrollPosition()}
 						to={{
@@ -25,7 +26,7 @@ const MovieSearch = ({ movies }) => {
 							state: { type: 'movie' },
 						}}
 						key={movie.id}>
-						<Thumbnail media={movie} type={'movie'} />
+						<Thumbnail media={movie} type={'movie'} delay={index} />
 					</Link>
 				))}
 			</div>

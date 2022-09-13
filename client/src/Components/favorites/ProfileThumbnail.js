@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import NoPoster from '../../utils/mp_noPoster.png';
 
 const ProfileThumbnail = ({ item, delay = 0 }) => {
 	const [ready, setReady] = useState(false);
 	useEffect(() => {
-		if (delay) {
-			setTimeout(() => {
+		let isMounted = true;
+		if (isMounted) {
+			if (delay) {
+				setTimeout(() => {
+					setReady(true);
+				}, delay * 50);
+			} else {
 				setReady(true);
-			}, delay * 50);
-		} else {
-			setReady(true);
+			}
 		}
+
 		return () => {
-			setReady(false);
+			isMounted = false;
 		};
 	}, [delay]);
 	return (
@@ -36,4 +39,4 @@ const ProfileThumbnail = ({ item, delay = 0 }) => {
 	);
 };
 
-export default withRouter(ProfileThumbnail);
+export default ProfileThumbnail;
