@@ -7,11 +7,11 @@ const MediaTop = ({ media, type }) => {
 	const history = useHistory();
 	const baseImageURL = `https://image.tmdb.org/t/p/original`;
 	const handleScrollReset = () => {
-		const scrollPosition = localStorage.getItem('scrollPosition') || 0;
+		//const scrollPosition = localStorage.getItem('scrollPosition') || 0;
 		history.goBack();
-		setTimeout(() => {
-			window.scrollTo(0, parseInt(scrollPosition));
-		}, 100);
+		// setTimeout(() => {
+		// 	window.scrollTo(0, parseInt(scrollPosition));
+		// }, 75);
 	};
 	return (
 		<>

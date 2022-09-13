@@ -36,6 +36,14 @@ const Media = ({ match }) => {
 			}
 		};
 		populateMediaComponentStates();
+
+		return () => {
+			if (localStorage.getItem('scrollPosition')) {
+				setTimeout(() => {
+					window.scroll(0, parseInt(localStorage.getItem('scrollPosition')));
+				}, 80);
+			}
+		};
 	}, [match.params.id, type, media_id]);
 
 	const checkCurrentFavorites = useCallback(() => {
