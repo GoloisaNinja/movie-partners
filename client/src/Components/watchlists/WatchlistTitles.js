@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { Link, withRouter, useHistory } from 'react-router-dom';
-import ProfileThumbnail from '../favorites/ProfileThumbnail';
+import Thumbnail from '../Thumbnail';
 import filtersContext from '../../context/filters/filtersContext';
 import getVisibleWatchlistTitles from '../../selectors/watchlist';
 
@@ -14,7 +14,7 @@ const WatchlistTitles = ({ titles, match }) => {
 	const watchlistId = match.params.watchlist_id;
 
 	const paginateVisibleTitles = useCallback(() => {
-		const recordCount = 30;
+		const recordCount = 20;
 		setTotalPages(Math.round(visibleTitles.length / recordCount) * 1);
 		const start = parseInt(match.params.page) * recordCount - recordCount;
 		const end = parseInt(match.params.page) * recordCount;
@@ -61,26 +61,41 @@ const WatchlistTitles = ({ titles, match }) => {
 								state: { type: title.media_type },
 							}}
 							key={title._id}>
-							<ProfileThumbnail key={title._id} item={title} delay={index} />
+							<Thumbnail
+								key={title._id}
+								media={title}
+								type={title.media_type}
+								delay={index}
+							/>
 						</Link>
 					))}
 				</div>
 				{visibleTitles?.length > 30 && (
-					<div className='pages-buttons'>
-						<button
-							className='unBtn'
-							disabled={parseInt(match.params.page) === 1}
-							onClick={(e) => handlePage('-')}>
-							<i className='chevBack fas fa-chevron-circle-left'></i>
-						</button>
+					<>
+						<div className='pages-buttons'>
+							<button
+								className='unBtn'
+								disabled={parseInt(match.params.page) === 1}
+								onClick={(e) => handlePage('-')}>
+								<i className='chevBack fas fa-chevron-circle-left'></i>
+							</button>
 
-						<button
-							className='unBtn'
-							disabled={parseInt(match.params.page) === totalPages}
-							onClick={(e) => handlePage('+')}>
-							<i className='chevNext fas fa-chevron-circle-right'></i>
-						</button>
-					</div>
+							<button
+								className='unBtn'
+								disabled={parseInt(match.params.page) === totalPages}
+								onClick={(e) => handlePage('+')}>
+								<i className='chevNext fas fa-chevron-circle-right'></i>
+							</button>
+						</div>
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								marginTop: '15px',
+							}}>
+							{page} / {totalPages}
+						</div>
+					</>
 				)}
 			</>
 		)

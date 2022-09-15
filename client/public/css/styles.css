@@ -573,6 +573,8 @@ input {
 .thumbnail-img {
   width: 100%;
   height: auto;
+  max-height: 220px;
+  min-height: 220px;
   border-radius: 8px; }
 
 .landing-grid {
@@ -1514,6 +1516,7 @@ tr:nth-child(even) {
 .media-card-image {
   width: 125px;
   height: auto;
+  max-height: 187.5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px; }
 

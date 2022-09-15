@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ProfileThumbnail from './ProfileThumbnail';
+import Thumbnail from '../Thumbnail';
 import favoriteContext from '../../context/favorite/favoriteContext';
 import Seo from '../Seo';
 
@@ -33,7 +33,7 @@ const Favorites = () => {
 				</p>
 				{favorites.length > 0 ? (
 					<div className='landing-grid'>
-						{favorites.map((favorite) => (
+						{favorites.map((favorite, index) => (
 							<Link
 								onClick={(e) => setScrollPosition()}
 								to={{
@@ -41,7 +41,12 @@ const Favorites = () => {
 									state: { type: favorite.media_type },
 								}}
 								key={favorite._id}>
-								<ProfileThumbnail key={favorite._id} item={favorite} />
+								<Thumbnail
+									key={favorite._id}
+									media={favorite}
+									type={favorite.media_type}
+									delay={index}
+								/>
 							</Link>
 						))}
 					</div>

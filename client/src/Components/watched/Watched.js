@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ProfileThumbnail from '../favorites/ProfileThumbnail';
+import Thumbnail from '../Thumbnail';
 import watchedContext from '../../context/watched/watchedContext';
 import Seo from '../Seo';
 
@@ -33,7 +33,7 @@ const Watched = () => {
 				</p>
 				{watched.length > 0 ? (
 					<div className='landing-grid'>
-						{watched.map((watched) => (
+						{watched.map((watched, index) => (
 							<Link
 								onClick={(e) => setScrollPosition()}
 								to={{
@@ -41,7 +41,12 @@ const Watched = () => {
 									state: { type: watched.media_type },
 								}}
 								key={watched._id}>
-								<ProfileThumbnail key={watched._id} item={watched} />
+								<Thumbnail
+									key={watched._id}
+									media={watched}
+									type={watched.media_type}
+									delay={index}
+								/>
 							</Link>
 						))}
 					</div>

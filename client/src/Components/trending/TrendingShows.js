@@ -34,7 +34,7 @@ const TrendingShows = ({ shows }) => {
 										state: { type: 'tv' },
 									}}
 									key={show.id}>
-									<Thumbnail media={show} type={'tv'} delay={index} />
+									<Thumbnail media={show} delay={index} />
 								</Link>
 							)
 					)}

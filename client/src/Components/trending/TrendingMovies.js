@@ -35,7 +35,7 @@ const TrendingMovies = ({ movies }) => {
 										state: { type: 'movie' },
 									}}
 									key={movie.id}>
-									<Thumbnail media={movie} type={'movie'} delay={index} />
+									<Thumbnail media={movie} delay={index} />
 								</Link>
 							)
 					)}
