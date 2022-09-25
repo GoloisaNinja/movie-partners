@@ -60,6 +60,7 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 	};
 
 	useEffect(() => {
+		let attempts = 0;
 		const getProviders = async () => {
 			if (fetchProvidersRequest) {
 				try {
@@ -85,6 +86,11 @@ const MediaBottom = ({ media, type, media_id, credits }) => {
 					setProviders({ results: 'none' });
 				}
 			} catch (error) {
+				if (attempts < 4) {
+					attempts++;
+					console.log('attempting another request after failure...');
+					getProviders();
+				}
 				console.log(error);
 			}
 		};

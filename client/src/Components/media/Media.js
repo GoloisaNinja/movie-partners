@@ -20,6 +20,7 @@ const Media = ({ match }) => {
 	const baseImageURL = `https://image.tmdb.org/t/p/original`;
 
 	useEffect(() => {
+		let attempts = 0;
 		setMedia({});
 		const populateMediaComponentStates = async () => {
 			try {
@@ -32,6 +33,11 @@ const Media = ({ match }) => {
 					setCredits(mediaCredits);
 				}
 			} catch (error) {
+				if (attempts < 4) {
+					attempts++;
+					console.log('attempting another request after failure...');
+					populateMediaComponentStates();
+				}
 				console.error(error);
 			}
 		};

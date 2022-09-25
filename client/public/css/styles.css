@@ -573,8 +573,7 @@ input {
 .thumbnail-img {
   width: 100%;
   height: auto;
-  max-height: 220px;
-  min-height: 220px;
+  aspect-ratio: 17/25;
   border-radius: 8px; }
 
 .landing-grid {
