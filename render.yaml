@@ -11,5 +11,5 @@ services:
     domains: # custom domains
       - 'www.wewatch.pw'
     envVars:
-      - key: REACT_APP_TMDB_APIKEY
+      - key: REACT_APP_TMDB_APIKEY # Imported from Heroku app
         sync: false
