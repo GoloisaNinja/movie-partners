@@ -1,1 +1,1 @@
-web: npm --cwd node server.js
+web: npm node server.js
