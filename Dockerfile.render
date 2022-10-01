@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:1.2
 # "v2-" stacks use our new, more rigorous buildpacks management system. They
 # allow you to use multiple buildpacks in a single application, as well as to
 # use custom buildpacks. We do not support using the original stack images with
@@ -31,3 +32,5 @@ ENTRYPOINT [ "/render/setup-env" ]
 # process type name in the CMD line below. That process type must have been
 # defined in the app's Procfile during build.
 CMD [ "/render/process/web" ]
+RUN --mount=type=secret,id=_env,dst=/.env cat /.env
+RUN --mount=type=secret,id=_env,dst=/client/.env cat /client/.env
