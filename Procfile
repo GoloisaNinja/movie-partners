@@ -1,1 +1,1 @@
-web: npm start && npm --cwd "client" build
+web: npm --cwd "client" build && npm start
