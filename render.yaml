@@ -12,4 +12,4 @@ services:
       - 'www.wewatch.pw'
     envVars:
       - key: REACT_APP_TMDB_APIKEY
-      sync: false
+        sync: false
