@@ -10,3 +10,6 @@ services:
     numInstances: 1
     domains: # custom domains
       - 'www.wewatch.pw'
+    envVars:
+      - key: REACT_APP_TMDB_APIKEY
+      sync: false
